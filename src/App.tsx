@@ -1,383 +1,533 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
+  Bug,
+  Code,
+  Code2,
+  Database,
   ExternalLink,
   Github,
+  Globe,
+  Linkedin,
   Mail,
-  MapPin,
+  Menu,
+  Moon,
+  Send,
+  Server,
   Sparkles,
+  Sun,
+  Terminal,
+  Workflow,
+  X,
 } from "lucide-react";
-import { Badge } from "./components/ui/badge";
-import { ButtonLink } from "./components/ui/button";
-import {
-  contactLinks,
-  navItems,
-  profile,
-  projects,
-  services,
-  skillGroups,
-  strengths,
-  targetRoles,
-} from "./data/portfolio";
+import type { LucideIcon } from "lucide-react";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.5, ease: "easeOut" as const },
+const navItems = [
+  { label: "about", id: "about" },
+  { label: "skills", id: "skills" },
+  { label: "work", id: "projects" },
+  { label: "contact", id: "contact" },
+];
+
+const contacts = [
+  {
+    label: "Email",
+    value: "danilomabulac1@gmail.com",
+    href: "mailto:danilomabulac1@gmail.com",
+    icon: Mail,
+    accent: "group-hover:bg-purple-100 dark:group-hover:bg-purple-950/50 group-hover:text-purple-600 dark:group-hover:text-purple-400",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/danilomabulac",
+    href: "https://github.com/danilomabulac",
+    icon: Github,
+    accent: "group-hover:bg-slate-900 dark:group-hover:bg-slate-100 group-hover:text-white dark:group-hover:text-slate-900",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/dbmabulac",
+    href: "https://www.linkedin.com/in/dbmabulac",
+    icon: Linkedin,
+    accent: "group-hover:bg-blue-600 group-hover:text-white",
+  },
+];
+
+type SkillCategory = {
+  category: string;
+  icon: LucideIcon;
+  skills: string[];
 };
 
-function SectionHeading({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-}) {
+const skillCategories: SkillCategory[] = [
+  {
+    category: "Professional Stack",
+    icon: Code2,
+    skills: [".NET", "C#", "ASP.NET", "REST APIs", "SQL Server", "Entity Framework", "Production Debugging"],
+  },
+  {
+    category: "Web Development",
+    icon: Globe,
+    skills: ["React", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Node.js"],
+  },
+  {
+    category: "Focus Areas",
+    icon: Sparkles,
+    skills: ["Automation Tools", "AI Integration", "Workflow Solutions", "Business Systems", "Internal Tools", "Enterprise Systems"],
+  },
+];
+
+const projects = [
+  {
+    title: "Enterprise REST API System",
+    description:
+      "Production .NET API work for business applications with database-backed features, authentication, and practical error handling.",
+    technologies: [".NET Core", "C#", "SQL Server", "REST API"],
+    icon: Server,
+  },
+  {
+    title: "Business Workflow Automation",
+    description:
+      "Internal workflow tools that reduce manual steps, align frontend screens with backend contracts, and make daily operations easier to run.",
+    technologies: [".NET", "TypeScript", "React", "SQL Server"],
+    icon: Workflow,
+  },
+  {
+    title: "AI-Assisted Feature Experiments",
+    description:
+      "Small, practical AI-assisted features and product experiments focused on useful workflow support instead of novelty demos.",
+    technologies: ["React", "Node.js", "OpenAI API", "TypeScript"],
+    icon: Sparkles,
+  },
+  {
+    title: "Internal Dashboard System",
+    description:
+      "Dashboard and admin interfaces for tracking operational data, reviewing records, and giving users clearer actions.",
+    technologies: ["React", "ASP.NET", "SQL Server"],
+    icon: Code2,
+  },
+  {
+    title: "Data Integration Pipeline",
+    description:
+      "Backend-oriented data flow work involving database changes, API responses, and verification against real application behavior.",
+    technologies: [".NET", "SQL Server", "REST APIs", "Entity Framework"],
+    icon: Database,
+  },
+  {
+    title: "Production Debugging Tooling",
+    description:
+      "Debugging habits and utilities around logs, requests, environment settings, build checks, and release-risk review.",
+    technologies: [".NET", "C#", "SQL Server", "React"],
+    icon: Bug,
+  },
+];
+
+const skillIcons: Record<string, LucideIcon> = {
+  ".NET": Code2,
+  "C#": Code2,
+  "ASP.NET": Server,
+  "SQL Server": Database,
+  React: Globe,
+  TypeScript: Code2,
+  JavaScript: Code2,
+  "Node.js": Server,
+  "AI Integration": Sparkles,
+  "Automation Tools": Workflow,
+  "Workflow Solutions": Workflow,
+};
+
+const skillColors: Record<string, string> = {
+  ".NET": "text-purple-600 dark:text-purple-400",
+  "C#": "text-purple-600 dark:text-purple-400",
+  "ASP.NET": "text-purple-600 dark:text-purple-400",
+  "Entity Framework": "text-purple-600 dark:text-purple-400",
+  TypeScript: "text-blue-600 dark:text-blue-400",
+  JavaScript: "text-yellow-600 dark:text-yellow-400",
+  React: "text-cyan-600 dark:text-cyan-400",
+  "Node.js": "text-green-600 dark:text-green-400",
+  "SQL Server": "text-orange-600 dark:text-orange-400",
+  "HTML/CSS": "text-orange-500 dark:text-orange-400",
+  "Tailwind CSS": "text-cyan-600 dark:text-cyan-400",
+  "REST APIs": "text-green-600 dark:text-green-400",
+  "Automation Tools": "text-emerald-600 dark:text-emerald-400",
+  "AI Integration": "text-violet-600 dark:text-violet-400",
+  "Workflow Solutions": "text-blue-600 dark:text-blue-400",
+};
+
+const techColors: Record<string, string> = {
+  ".NET": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  ".NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "C#": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "ASP.NET": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "Entity Framework": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  TypeScript: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  React: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  "Node.js": "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
+  "SQL Server": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  "REST API": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "REST APIs": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "OpenAI API": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+};
+
+function scrollToSection(sectionId: string) {
+  document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+}
+
+function SectionLabel({ children }: { children: string }) {
   return (
-    <motion.div className="mx-auto max-w-3xl text-center" {...fadeUp}>
-      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{title}</h2>
-      <p className="mt-4 text-base leading-7 text-slate-600">{description}</p>
-    </motion.div>
+    <div className="mb-12 flex items-center gap-3">
+      <h2 className="font-mono text-sm text-slate-500 dark:text-slate-400">{children}</h2>
+      <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+    </div>
   );
 }
 
-function Header() {
+function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
+  theme: "dark" | "light";
+  mobileMenuOpen: boolean;
+  onToggleTheme: () => void;
+  onToggleMenu: () => void;
+}) {
+  const handleNav = (sectionId: string) => {
+    scrollToSection(sectionId);
+    if (mobileMenuOpen) onToggleMenu();
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
-        <a href="#home" className="flex items-center gap-3 font-semibold text-slate-950">
-          <span className="grid size-9 place-items-center rounded-md bg-slate-950 text-sm text-white">DM</span>
-          <span className="hidden sm:inline">Danilo Mabulac</span>
-        </a>
-        <div className="hidden items-center gap-1 lg:flex">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm transition-colors dark:border-slate-800 dark:bg-slate-950/95">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <button onClick={() => scrollToSection("hero")} className="font-mono text-sm text-slate-900 dark:text-slate-100">
+          dan.dev
+        </button>
+
+        <div className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
+            <button
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
             >
               {item.label}
-            </a>
+            </button>
           ))}
+          <button
+            onClick={onToggleTheme}
+            className="ml-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            aria-label="Toggle color theme"
+          >
+            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+          </button>
         </div>
-        <ButtonLink href="#contact" variant="secondary" className="hidden sm:inline-flex">
-          <Mail className="size-4" />
-          Contact
-        </ButtonLink>
-      </nav>
-    </header>
-  );
-}
 
-function HeroVisual() {
-  return (
-    <motion.div
-      className="relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-soft"
-      initial={{ opacity: 0, scale: 0.97 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.55, ease: "easeOut" as const }}
-      aria-label="Portfolio preview showing development workflow cards"
-    >
-      <div className="border-b border-slate-200 bg-slate-950 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <span className="size-2.5 rounded-full bg-rose-400" />
-          <span className="size-2.5 rounded-full bg-amber-300" />
-          <span className="size-2.5 rounded-full bg-teal-300" />
-          <span className="ml-3 text-xs font-medium text-slate-300">business-system.workflow</span>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={onToggleTheme}
+            className="p-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            aria-label="Toggle color theme"
+          >
+            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+          </button>
+          <button
+            onClick={onToggleMenu}
+            className="rounded-md p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </div>
-      <div className="grid gap-4 p-5">
-        <div className="rounded-md border border-slate-200 bg-slate-50 p-4">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-sm font-semibold text-slate-950">API Contract</p>
-              <p className="mt-1 text-xs text-slate-500">Orders, inventory, payments, branches</p>
-            </div>
-            <Badge tone="accent">Ready</Badge>
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <span className="h-2 rounded-full bg-teal-500" />
-            <span className="h-2 rounded-full bg-amber-400" />
-            <span className="h-2 rounded-full bg-slate-300" />
-          </div>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-md border border-slate-200 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Backend</p>
-            <p className="mt-2 text-2xl font-bold text-slate-950">.NET</p>
-            <p className="mt-2 text-sm text-slate-600">Auth, EF Core, PostgreSQL</p>
-          </div>
-          <div className="rounded-md border border-slate-200 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Frontend</p>
-            <p className="mt-2 text-2xl font-bold text-slate-950">React</p>
-            <p className="mt-2 text-sm text-slate-600">TypeScript, Tailwind, UX</p>
-          </div>
-        </div>
-        <div className="rounded-md bg-slate-950 p-4 font-mono text-xs leading-6 text-slate-200">
-          <p>
-            <span className="text-teal-300">$</span> npm run build
-          </p>
-          <p className="text-slate-400">dist ready for GitHub Pages</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
-function HomeSection() {
-  return (
-    <section id="home" className="scroll-mt-24 bg-white">
-      <div className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-          <Badge tone="accent">{profile.eyebrow}</Badge>
-          <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-            {profile.headline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">{profile.summary}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="#projects">
-              View Projects
-              <ArrowRight className="size-4" />
-            </ButtonLink>
-            <ButtonLink href="#contact" variant="secondary">
-              Contact Me
-              <Mail className="size-4" />
-            </ButtonLink>
-          </div>
-          <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-600">
-            <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-teal-700" />
-              {profile.location}
-            </span>
-            <span className="hidden text-slate-300 sm:inline">/</span>
-            <span>{profile.availability}</span>
-          </div>
-        </motion.div>
-        <HeroVisual />
-      </div>
-    </section>
-  );
-}
-
-function AboutSection() {
-  return (
-    <section id="about" className="scroll-mt-24 border-y border-slate-200 bg-slate-50">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <motion.div {...fadeUp}>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">About</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              I like building systems that make daily operations easier to run.
-            </h2>
-          </motion.div>
-          <motion.div className="space-y-6 text-base leading-8 text-slate-600" {...fadeUp}>
-            <p>
-              I am a developer focused on practical business software: APIs, dashboards, data flows, and deployment
-              details that make an application usable outside a demo.
-            </p>
-            <p>
-              My current work leans toward ASP.NET Core backends, React frontends, PostgreSQL data modeling, and the
-              real-world debugging that connects all of them. I value clear contracts, simple architecture, and steady
-              iteration over unnecessary complexity.
-            </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {strengths.map((strength) => {
-                const Icon = strength.icon;
-                return (
-                  <div key={strength.label} className="rounded-md border border-slate-200 bg-white p-4">
-                    <Icon className="size-5 text-teal-700" />
-                    <h3 className="mt-3 text-sm font-semibold text-slate-950">{strength.label}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{strength.detail}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SkillsSection() {
-  return (
-    <section id="skills" className="scroll-mt-24 bg-white">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <SectionHeading
-          eyebrow="Skills"
-          title="Capabilities grouped by the work they support"
-          description="The focus is not just knowing tools, but using them to design, debug, and ship business applications."
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((group) => {
-            const Icon = group.icon;
-            return (
-              <motion.article key={group.title} className="rounded-md border border-slate-200 bg-white p-5 shadow-sm" {...fadeUp}>
-                <Icon className="size-6 text-teal-700" />
-                <h3 className="mt-4 text-lg font-semibold text-slate-950">{group.title}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <Badge key={skill} tone="quiet">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </motion.article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <section id="projects" className="scroll-mt-24 border-y border-slate-200 bg-stone-50">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <SectionHeading
-          eyebrow="Projects"
-          title="Case studies that show how I think through product work"
-          description="Each project is framed around the problem, my role, the stack, and the practical engineering decisions behind it."
-        />
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {projects.map((project) => (
-            <motion.article key={project.title} className="flex rounded-md border border-slate-200 bg-white p-6 shadow-sm" {...fadeUp}>
-              <div className="flex w-full flex-col">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-xl font-semibold text-slate-950">{project.title}</h3>
-                  <Sparkles className="size-5 shrink-0 text-amber-500" />
-                </div>
-                <p className="mt-3 text-sm font-semibold text-teal-800">{project.role}</p>
-                <p className="mt-4 text-sm leading-7 text-slate-600">{project.summary}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <Badge key={item}>{item}</Badge>
-                  ))}
-                </div>
-                <ul className="mt-6 space-y-3">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3 text-sm leading-6 text-slate-600">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-teal-700" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-                {(project.repoUrl || project.demoUrl) && (
-                  <div className="mt-6 flex gap-3">
-                    {project.repoUrl && (
-                      <ButtonLink href={project.repoUrl} variant="ghost" target="_blank" rel="noreferrer">
-                        <Github className="size-4" />
-                        Repo
-                      </ButtonLink>
-                    )}
-                    {project.demoUrl && (
-                      <ButtonLink href={project.demoUrl} variant="ghost" target="_blank" rel="noreferrer">
-                        <ExternalLink className="size-4" />
-                        Demo
-                      </ButtonLink>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServicesSection() {
-  return (
-    <section id="services" className="scroll-mt-24 bg-white">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <SectionHeading
-          eyebrow="Services"
-          title="Ways I can help small teams and business systems"
-          description="These are intentionally practical services, aimed at building or improving software that people use to run work."
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <motion.article key={service.title} className="rounded-md border border-slate-200 bg-white p-6 shadow-sm" {...fadeUp}>
-                <Icon className="size-6 text-teal-700" />
-                <h3 className="mt-4 text-lg font-semibold text-slate-950">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{service.description}</p>
-              </motion.article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function RolesSection() {
-  return (
-    <section id="roles" className="scroll-mt-24 border-y border-slate-200 bg-slate-950 text-white">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <motion.div {...fadeUp}>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-300">Target Roles</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Where I can contribute right away</h2>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              I am most interested in product teams that need dependable backend work, business-focused web apps, and
-              a developer who can trace problems through the whole stack.
-            </p>
-          </motion.div>
-          <div className="grid gap-4">
-            {targetRoles.map((role) => (
-              <motion.article key={role.title} className="rounded-md border border-white/10 bg-white/5 p-5" {...fadeUp}>
-                <h3 className="text-lg font-semibold">{role.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-300">{role.description}</p>
-              </motion.article>
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 md:hidden">
+          <div className="flex flex-col gap-2 px-6 py-4">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNav(item.id)}
+                className="py-2 text-left text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+              >
+                {item.label}
+              </button>
             ))}
           </div>
         </div>
+      )}
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20 transition-colors">
+      <div
+        className="absolute inset-0 opacity-20 [mask-image:linear-gradient(0deg,transparent,black)]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "4rem 4rem",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <div className="mb-8">
+          <div className="mb-6 flex items-center gap-2">
+            <Terminal className="size-5 text-slate-500 dark:text-slate-400" />
+            <p className="font-mono text-sm text-slate-500 dark:text-slate-400">whoami</p>
+          </div>
+
+          <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-7xl">
+            Danilo Mabulac
+          </h1>
+          <p className="mb-6 text-xl text-slate-600 dark:text-slate-300 md:text-2xl">Software Developer</p>
+        </div>
+
+        <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          <p>
+            Professional experience in{" "}
+            <span className="rounded bg-purple-100 px-2 py-1 font-mono text-sm text-purple-700 dark:bg-purple-950/50 dark:text-purple-300">
+              .NET
+            </span>{" "}
+            web development, enterprise systems, REST APIs, and SQL Server.
+          </p>
+          <p>
+            I build practical automation tools, AI-assisted features, and workflow solutions that solve real operational
+            problems.
+          </p>
+        </div>
+
+        <div className="mt-12 flex items-center gap-6">
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="group flex items-center gap-2 pb-1 text-sm text-slate-900 transition-colors hover:text-slate-600 dark:text-slate-100 dark:hover:text-slate-400"
+          >
+            View work
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </button>
+          <span className="text-slate-300 dark:text-slate-700">|</span>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+          >
+            Get in touch
+          </button>
+        </div>
       </div>
     </section>
   );
 }
 
-function ContactSection() {
+function About() {
+  const cards = [
+    {
+      title: "Enterprise Development",
+      description: "Building .NET applications, REST APIs, and production systems for business requirements.",
+      icon: Code,
+      color: "purple",
+    },
+    {
+      title: "Data & Systems",
+      description: "SQL Server work, data-backed features, API contracts, and production debugging.",
+      icon: Database,
+      color: "orange",
+    },
+    {
+      title: "Automation & AI",
+      description: "Creating practical tools that automate workflows, integrate AI, and reduce repetitive work.",
+      icon: Workflow,
+      color: "cyan",
+    },
+  ];
+
+  const colorClasses = {
+    purple: "bg-purple-100 text-purple-600 group-hover:border-purple-300 dark:bg-purple-950/50 dark:text-purple-400 dark:group-hover:border-purple-700",
+    orange: "bg-orange-100 text-orange-600 group-hover:border-orange-300 dark:bg-orange-950/50 dark:text-orange-400 dark:group-hover:border-orange-700",
+    cyan: "bg-cyan-100 text-cyan-600 group-hover:border-cyan-300 dark:bg-cyan-950/50 dark:text-cyan-400 dark:group-hover:border-cyan-700",
+  };
+
   return (
-    <section id="contact" className="scroll-mt-24 bg-white">
-      <div className="mx-auto max-w-4xl px-5 py-20 text-center lg:px-8">
-        <motion.div {...fadeUp}>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">Contact</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Let us build something practical.</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-            I am open to developer roles, practical software projects, and conversations about backend or full-stack
-            business applications.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            {contactLinks.map((link) => {
-              const Icon = link.icon;
-              const external = link.href.startsWith("http");
-              return (
-                <ButtonLink
-                  key={link.label}
-                  href={link.href}
-                  variant={link.label === "Email" ? "primary" : "secondary"}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
+    <section id="about" className="relative overflow-hidden border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <SectionLabel>about</SectionLabel>
+
+        <div className="mb-16 grid gap-6 md:grid-cols-3">
+          {cards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <article
+                key={card.title}
+                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:shadow-slate-900/50"
+              >
+                <div
+                  className={`mb-4 flex size-12 items-center justify-center rounded-lg transition-transform group-hover:scale-110 ${colorClasses[card.color as keyof typeof colorClasses]}`}
                 >
-                  <Icon className="size-4" />
-                  {link.label}
-                  {external && <ArrowUpRight className="size-4" />}
-                </ButtonLink>
+                  <Icon className="size-6" />
+                </div>
+                <h3 className="mb-3 text-slate-900 dark:text-slate-100">{card.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="max-w-3xl space-y-4 leading-relaxed text-slate-600 dark:text-slate-400">
+          <p>
+            My professional background is in .NET web development, where I work with enterprise systems, REST APIs, SQL
+            Server databases, and production debugging. I focus on building reliable, maintainable solutions for real
+            business requirements.
+          </p>
+          <p>
+            Outside of my professional work, I develop practical web applications and business systems including
+            automation tools, AI-assisted features, workflow solutions, and internal tools. My goal is to create
+            software that solves real operational problems, not just tutorial projects.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Skills() {
+  return (
+    <section id="skills" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
+      <div className="mx-auto max-w-5xl">
+        <SectionLabel>skills</SectionLabel>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {skillCategories.map((category) => {
+            const CategoryIcon = category.icon;
+            return (
+              <article key={category.category} className="group">
+                <div className="mb-6 flex items-center gap-2">
+                  <div className="rounded-lg bg-slate-200 p-2 text-slate-700 transition-transform group-hover:scale-110 dark:bg-slate-800 dark:text-slate-300">
+                    <CategoryIcon className="size-5" />
+                  </div>
+                  <h3 className="text-sm text-slate-900 dark:text-slate-100">{category.category}</h3>
+                </div>
+                <div className="space-y-3">
+                  {category.skills.map((skill) => {
+                    const SkillIcon = skillIcons[skill];
+                    return (
+                      <div
+                        key={skill}
+                        className={`flex items-center gap-2 font-mono text-sm transition-transform hover:translate-x-1 ${skillColors[skill] ?? "text-slate-600 dark:text-slate-400"}`}
+                      >
+                        {SkillIcon && <SkillIcon className="size-4" />}
+                        <span>{skill}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Projects() {
+  return (
+    <section id="projects" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
+      <div className="mx-auto max-w-5xl">
+        <SectionLabel>selected work</SectionLabel>
+
+        <div className="space-y-8">
+          {projects.map((project) => {
+            const Icon = project.icon;
+            return (
+              <article
+                key={project.title}
+                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
+              >
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                      <Icon className="size-5" />
+                    </div>
+                    <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <div className="flex gap-2">
+                    <a
+                      href="https://github.com/danilomabulac"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                      title="View GitHub"
+                    >
+                      <Github className="size-4" />
+                    </a>
+                    <a
+                      href="#contact"
+                      className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                      title="Ask about this project"
+                    >
+                      <ExternalLink className="size-4" />
+                    </a>
+                  </div>
+                </div>
+                <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="relative overflow-hidden bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <SectionLabel>contact</SectionLabel>
+
+        <div className="max-w-2xl">
+          <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
+            Open to discussing developer roles, practical software projects, or collaborations on business systems.
+          </p>
+
+          <div className="space-y-3">
+            {contacts.map((contact) => {
+              const Icon = contact.icon;
+              const isExternal = contact.href.startsWith("http");
+              return (
+                <a
+                  key={contact.label}
+                  href={contact.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
+                >
+                  <div
+                    className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                  >
+                    <Icon className="size-5" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
+                    <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                      {contact.value}
+                    </span>
+                  </div>
+                  <Send className="size-4 text-slate-400 transition-all group-hover:translate-x-1 group-hover:text-purple-600 dark:text-slate-600 dark:group-hover:text-purple-400" />
+                </a>
               );
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -385,29 +535,54 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
-        <p>© {new Date().getFullYear()} Danilo Mabulac. Built with React, Vite, and Tailwind CSS.</p>
-        <a href="#home" className="font-medium text-slate-700 hover:text-slate-950">
-          Back to top
-        </a>
+    <footer className="border-t border-slate-200 py-12 transition-colors dark:border-slate-800">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
+        <p className="font-mono text-sm text-slate-500 dark:text-slate-400">&copy; 2026 Dan</p>
+        <div className="flex gap-6">
+          {contacts.map((contact) => {
+            const Icon = contact.icon;
+            const isExternal = contact.href.startsWith("http");
+            return (
+              <a
+                key={contact.label}
+                href={contact.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                title={contact.label}
+              >
+                <Icon className="size-5" />
+              </a>
+            );
+          })}
+        </div>
       </div>
     </footer>
   );
 }
 
 export default function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   return (
-    <div className="min-h-screen bg-white text-slate-950">
-      <Header />
+    <div className="min-h-screen bg-white transition-colors dark:bg-slate-950">
+      <Header
+        theme={theme}
+        mobileMenuOpen={mobileMenuOpen}
+        onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+        onToggleMenu={() => setMobileMenuOpen((current) => !current)}
+      />
       <main>
-        <HomeSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ServicesSection />
-        <RolesSection />
-        <ContactSection />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
       </main>
       <Footer />
     </div>
