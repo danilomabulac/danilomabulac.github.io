@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
+  BriefcaseBusiness,
   Bug,
+  CheckCircle2,
   Code,
   Code2,
+  Copy,
   Database,
+  Download,
   ExternalLink,
   Github,
   Globe,
@@ -12,7 +16,7 @@ import {
   Mail,
   Menu,
   Moon,
-  Send,
+  Phone,
   Server,
   Sparkles,
   Sun,
@@ -25,7 +29,9 @@ import type { LucideIcon } from "lucide-react";
 const navItems = [
   { label: "about", id: "about" },
   { label: "skills", id: "skills" },
+  { label: "services", id: "services" },
   { label: "work", id: "projects" },
+  { label: "roles", id: "roles" },
   { label: "contact", id: "contact" },
 ];
 
@@ -33,9 +39,18 @@ const contacts = [
   {
     label: "Email",
     value: "danilomabulac1@gmail.com",
+    copyValue: "danilomabulac1@gmail.com",
     href: "mailto:danilomabulac1@gmail.com",
     icon: Mail,
     accent: "group-hover:bg-purple-100 dark:group-hover:bg-purple-950/50 group-hover:text-purple-600 dark:group-hover:text-purple-400",
+  },
+  {
+    label: "Phone",
+    value: "+63 976 572 0751",
+    copyValue: "+639765720751",
+    href: "tel:+639765720751",
+    icon: Phone,
+    accent: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950/50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
   },
   {
     label: "GitHub",
@@ -51,6 +66,13 @@ const contacts = [
     icon: Linkedin,
     accent: "group-hover:bg-blue-600 group-hover:text-white",
   },
+  {
+    label: "Resume",
+    value: "Download resume",
+    href: "/Danilo-Mabulac-Jr-Resume.pdf",
+    icon: Download,
+    accent: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950/50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
+  },
 ];
 
 type SkillCategory = {
@@ -61,27 +83,147 @@ type SkillCategory = {
 
 const skillCategories: SkillCategory[] = [
   {
-    category: "Professional Stack",
+    category: "Professional Experience",
     icon: Code2,
-    skills: [".NET", "C#", "ASP.NET", "REST APIs", "SQL Server", "Entity Framework", "Production Debugging"],
+    skills: [
+      "C#",
+      "VB.NET",
+      "ASP.NET Core",
+      "ASP.NET MVC",
+      "REST APIs",
+      "Entity Framework Core",
+      "SQL Server",
+      "Stored Procedures",
+      "Query Optimization",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "Git",
+      "Jira",
+      "Postman",
+    ],
   },
   {
-    category: "Web Development",
+    category: "Hireable Web Stack",
     icon: Globe,
-    skills: ["React", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Node.js"],
+    skills: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "PostgreSQL", "Supabase", "Prisma", "Drizzle", "Python", "FastAPI"],
   },
   {
-    category: "Focus Areas",
+    category: "Backend / Production Focus",
+    icon: Server,
+    skills: [
+      "JWT/OAuth",
+      "Clerk",
+      "Dependency Injection",
+      "API Integration",
+      "API Gateways",
+      "Serilog",
+      "Hangfire",
+      "Redis",
+      "Modular Monolith",
+      "Clean Architecture",
+      "SOLID Principles",
+    ],
+  },
+  {
+    category: "Cloud Platforms",
+    icon: Globe,
+    skills: ["Azure App Service", "Azure SQL", "Vercel", "Supabase", "DigitalOcean / VPS Hosting"],
+  },
+  {
+    category: "Infrastructure & Deployment",
+    icon: BriefcaseBusiness,
+    skills: ["Docker", "Nginx", "Linux VPS", "systemd", "GitHub Actions CI/CD", "Environment Variables", "DNS / Custom Domains", "SSL"],
+  },
+];
+
+const services = [
+  {
+    title: "Full Stack Web Application Development",
+    description: "Build practical web applications with API-backed features, usable screens, and maintainable frontend/backend code.",
+    fit: "Best for teams that need business software delivered across both UI and backend concerns.",
+    icon: Code2,
+    technologies: ["React", "TypeScript", ".NET", "SQL Server"],
+  },
+  {
+    title: "Backend API Development",
+    description: "Design, build, and maintain REST APIs, authentication flows, database-backed features, and service integrations.",
+    fit: "Best for teams that need reliable backend delivery, clear contracts, and production-aware development.",
+    icon: Server,
+    technologies: ["ASP.NET Core", "C#", "REST APIs", "SQL Server", "Entity Framework Core"],
+  },
+  {
+    title: "Business Systems and Internal Tools",
+    description: "Create workflow tools, admin modules, dashboards, and reporting screens that support daily operations.",
+    fit: "Best for companies replacing spreadsheets, manual tracking, or disconnected operational processes.",
+    icon: Workflow,
+    technologies: [".NET", "React", "SQL Server", "PostgreSQL"],
+  },
+  {
+    title: "Database-Backed Applications",
+    description: "Model data, write queries, optimize database access, and connect application workflows to reliable storage.",
+    fit: "Best for applications where data quality, reporting, and operational correctness matter.",
+    icon: Database,
+    technologies: ["SQL Server", "Stored Procedures", "Query Optimization", "PostgreSQL"],
+  },
+  {
+    title: "API and Webhook Integrations",
+    description: "Connect systems through REST APIs, webhook flows, background jobs, and practical integration checks.",
+    fit: "Best for teams that need applications to exchange data cleanly with other services.",
+    icon: Code,
+    technologies: ["REST APIs", "API Integration", "API Gateways", "Hangfire", "Postman"],
+  },
+  {
+    title: "Automation Workflows",
+    description: "Design workflow automation that reduces repetitive work, manual data handling, and operational friction.",
+    fit: "Best for teams with recurring business processes that can be simplified through software.",
+    icon: Workflow,
+    technologies: ["Python", "FastAPI", "Docker", "GitHub Actions"],
+  },
+  {
+    title: "AI-Assisted Business Features",
+    description: "Add AI-assisted features that support business workflows, summarize information, or help users work faster.",
+    fit: "Best for teams exploring AI or automation with a business-first, MVP-focused approach.",
     icon: Sparkles,
-    skills: ["Automation Tools", "AI Integration", "Workflow Solutions", "Business Systems", "Internal Tools", "Enterprise Systems"],
+    technologies: ["TypeScript", "Node.js", "Python", "FastAPI", "React"],
+  },
+  {
+    title: "Admin Dashboards and Reporting Tools",
+    description: "Build dashboard views, filters, tables, reports, and admin interfaces for operational visibility.",
+    fit: "Best for businesses that need clearer data and faster daily decision-making.",
+    icon: Globe,
+    technologies: ["React", "TypeScript", "SQL Server", "Tailwind CSS"],
+  },
+  {
+    title: "Bug Fixing and Production Troubleshooting",
+    description: "Investigate failed requests, environment issues, query problems, data mismatches, and release risks.",
+    fit: "Best for teams that need someone comfortable tracing issues across code, APIs, logs, and databases.",
+    icon: Bug,
+    technologies: [".NET", "Serilog", "SQL Server", "Postman"],
+  },
+  {
+    title: "Deployment and CI/CD Setup",
+    description: "Set up practical deployment flows, service hosting, environment configuration, and build pipelines.",
+    fit: "Best for projects that need a more reliable path from development to live environments.",
+    icon: BriefcaseBusiness,
+    technologies: ["Docker", "GitHub Actions", "Vercel", "Azure App Service"],
+  },
+  {
+    title: "Cloud Solutions and Infrastructure Setup",
+    description:
+      "Deploy and configure web applications using cloud platforms, VPS hosting, reverse proxies, custom domains, SSL, and environment-based configuration.",
+    fit: "Best for teams that need applications moved from local development into a usable, maintainable hosted environment.",
+    icon: Globe,
+    technologies: ["Azure App Service", "Azure SQL", "DigitalOcean / VPS Hosting", "Nginx", "Linux VPS", "SSL"],
   },
 ];
 
 const projects = [
   {
-    title: "Enterprise REST API System",
+    title: "Enterprise .NET API Work",
     description:
-      "Production .NET API work for business applications with database-backed features, authentication, and practical error handling.",
+      "Professional backend work on business applications with REST APIs, SQL Server data models, authentication concerns, and production debugging.",
     technologies: [".NET Core", "C#", "SQL Server", "REST API"],
     icon: Server,
   },
@@ -122,36 +264,166 @@ const projects = [
   },
 ];
 
+const targetRoles = [
+  {
+    title: ".NET Backend Developer",
+    summary: "Strongest professional fit.",
+    points: ["ASP.NET Core / C# API development", "SQL Server and EF Core-backed features", "Production issue investigation"],
+  },
+  {
+    title: "Software Developer",
+    summary: "Broad fit for business application teams.",
+    points: ["Maintainable application development", "Feature delivery across existing systems", "Debugging and support for real users"],
+  },
+  {
+    title: "Backend Developer",
+    summary: "Good fit for API and database-heavy work.",
+    points: ["REST API implementation", "Database-backed business logic", "Integrations and background processes"],
+  },
+  {
+    title: "Full-Stack Developer",
+    summary: "Good fit for product teams and internal systems.",
+    points: ["React + TypeScript frontend work", "API integration and contract alignment", "Business workflow implementation"],
+  },
+  {
+    title: "Web Application Developer",
+    summary: "Good fit for practical app delivery across modern stacks.",
+    points: ["Dashboards, admin tools, and forms", "Frontend/backend feature wiring", "Maintainable business application code"],
+  },
+  {
+    title: "API Integration Developer",
+    summary: "Good fit for connecting systems and workflows.",
+    points: ["REST API and webhook integrations", "Contract alignment between services", "Testing and troubleshooting integration flows"],
+  },
+  {
+    title: "Business Systems Developer",
+    summary: "Good fit for operational software.",
+    points: ["Workflow-focused feature development", "Reporting and admin tools", "Business data and process support"],
+  },
+  {
+    title: "Internal Tools Developer",
+    summary: "Good fit for teams improving internal operations.",
+    points: ["Admin panels and internal dashboards", "Data entry and tracking workflows", "Practical tools for non-technical users"],
+  },
+  {
+    title: "Automation Developer",
+    summary: "Good fit for operations-heavy teams.",
+    points: ["Workflow automation", "Process improvement tools", "Recurring task reduction"],
+  },
+  {
+    title: "AI Integration Developer",
+    summary: "Good fit for teams adding AI to existing workflows.",
+    points: ["AI-assisted business features", "MVP-focused experiments", "Useful automation over novelty demos"],
+  },
+  {
+    title: "Cloud / Deployment Support Developer",
+    summary: "Good fit for teams that need practical hosting and release support.",
+    points: ["App hosting and environment setup", "CI/CD and deployment troubleshooting", "Custom domains, SSL, and VPS configuration"],
+  },
+  {
+    title: "Application Support Developer",
+    summary: "Good fit for production support and maintenance.",
+    points: ["Bug investigation", "Log and request tracing", "Database and environment issue diagnosis"],
+  },
+];
+
 const skillIcons: Record<string, LucideIcon> = {
   ".NET": Code2,
   "C#": Code2,
+  "VB.NET": Code2,
   "ASP.NET": Server,
+  "ASP.NET Core": Server,
+  "ASP.NET MVC": Server,
   "SQL Server": Database,
+  "Stored Procedures": Database,
+  "Query Optimization": Database,
   React: Globe,
+  "Next.js": Globe,
   TypeScript: Code2,
-  JavaScript: Code2,
   "Node.js": Server,
-  "AI Integration": Sparkles,
-  "Automation Tools": Workflow,
-  "Workflow Solutions": Workflow,
+  JavaScript: Code2,
+  Python: Code2,
+  FastAPI: Server,
+  Docker: Server,
+  Nginx: Server,
+  "Linux VPS": Server,
+  "GitHub Actions": Workflow,
+  "GitHub Actions CI/CD": Workflow,
+  Vercel: Globe,
+  PostgreSQL: Database,
+  Supabase: Database,
+  "DigitalOcean / VPS Hosting": Globe,
+  Prisma: Database,
+  Drizzle: Database,
+  "JWT/OAuth": Server,
+  Clerk: Server,
+  "API Integration": Workflow,
+  "API Gateways": Server,
+  Hangfire: Workflow,
+  Redis: Database,
+  systemd: Server,
+  "Environment Variables": Code,
+  "DNS / Custom Domains": Globe,
+  SSL: Server,
+  "Azure App Service": Globe,
+  "Azure SQL": Database,
+  "Modular Monolith": Code,
+  "Clean Architecture": Code,
+  "SOLID Principles": Code,
 };
 
 const skillColors: Record<string, string> = {
   ".NET": "text-purple-600 dark:text-purple-400",
   "C#": "text-purple-600 dark:text-purple-400",
+  "VB.NET": "text-purple-600 dark:text-purple-400",
   "ASP.NET": "text-purple-600 dark:text-purple-400",
+  "ASP.NET Core": "text-purple-600 dark:text-purple-400",
+  "ASP.NET MVC": "text-purple-600 dark:text-purple-400",
   "Entity Framework": "text-purple-600 dark:text-purple-400",
+  "Entity Framework Core": "text-purple-600 dark:text-purple-400",
   TypeScript: "text-blue-600 dark:text-blue-400",
   JavaScript: "text-yellow-600 dark:text-yellow-400",
   React: "text-cyan-600 dark:text-cyan-400",
+  "Next.js": "text-slate-700 dark:text-slate-300",
   "Node.js": "text-green-600 dark:text-green-400",
+  Python: "text-blue-600 dark:text-blue-400",
+  FastAPI: "text-emerald-600 dark:text-emerald-400",
   "SQL Server": "text-orange-600 dark:text-orange-400",
+  PostgreSQL: "text-blue-600 dark:text-blue-400",
+  Supabase: "text-emerald-600 dark:text-emerald-400",
+  Prisma: "text-slate-700 dark:text-slate-300",
+  Drizzle: "text-green-600 dark:text-green-400",
   "HTML/CSS": "text-orange-500 dark:text-orange-400",
+  HTML: "text-orange-500 dark:text-orange-400",
+  CSS: "text-blue-600 dark:text-blue-400",
+  Bootstrap: "text-purple-600 dark:text-purple-400",
   "Tailwind CSS": "text-cyan-600 dark:text-cyan-400",
   "REST APIs": "text-green-600 dark:text-green-400",
-  "Automation Tools": "text-emerald-600 dark:text-emerald-400",
-  "AI Integration": "text-violet-600 dark:text-violet-400",
-  "Workflow Solutions": "text-blue-600 dark:text-blue-400",
+  "Stored Procedures": "text-orange-600 dark:text-orange-400",
+  "Query Optimization": "text-orange-600 dark:text-orange-400",
+  "API Integration": "text-emerald-600 dark:text-emerald-400",
+  "API Gateways": "text-emerald-600 dark:text-emerald-400",
+  Docker: "text-blue-600 dark:text-blue-400",
+  Nginx: "text-emerald-600 dark:text-emerald-400",
+  "Linux VPS": "text-slate-700 dark:text-slate-300",
+  "GitHub Actions": "text-slate-700 dark:text-slate-300",
+  "GitHub Actions CI/CD": "text-slate-700 dark:text-slate-300",
+  Vercel: "text-slate-700 dark:text-slate-300",
+  "JWT/OAuth": "text-emerald-600 dark:text-emerald-400",
+  Clerk: "text-violet-600 dark:text-violet-400",
+  Serilog: "text-orange-600 dark:text-orange-400",
+  Hangfire: "text-violet-600 dark:text-violet-400",
+  Redis: "text-red-600 dark:text-red-400",
+  systemd: "text-slate-700 dark:text-slate-300",
+  "Azure App Service": "text-blue-600 dark:text-blue-400",
+  "Azure SQL": "text-blue-600 dark:text-blue-400",
+  "DigitalOcean / VPS Hosting": "text-blue-600 dark:text-blue-400",
+  "Environment Variables": "text-emerald-600 dark:text-emerald-400",
+  "DNS / Custom Domains": "text-cyan-600 dark:text-cyan-400",
+  SSL: "text-emerald-600 dark:text-emerald-400",
+  "Modular Monolith": "text-violet-600 dark:text-violet-400",
+  "Clean Architecture": "text-violet-600 dark:text-violet-400",
+  "SOLID Principles": "text-violet-600 dark:text-violet-400",
 };
 
 const techColors: Record<string, string> = {
@@ -159,13 +431,36 @@ const techColors: Record<string, string> = {
   ".NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "C#": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "ASP.NET": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "ASP.NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "Entity Framework": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "Entity Framework Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   TypeScript: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   React: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
   "Node.js": "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
+  Python: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  FastAPI: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  Docker: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  Nginx: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "Linux VPS": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  "GitHub Actions": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  "GitHub Actions CI/CD": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  Vercel: "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  "Azure App Service": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "Azure SQL": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   "SQL Server": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  PostgreSQL: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "DigitalOcean / VPS Hosting": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "Stored Procedures": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  "Query Optimization": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   "REST API": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "REST APIs": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "API Integration": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "API Gateways": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  Clerk: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  Hangfire: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  Postman: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  Serilog: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  SSL: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "OpenAI API": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
 };
 
@@ -197,7 +492,7 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm transition-colors dark:border-slate-800 dark:bg-slate-950/95">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <button onClick={() => scrollToSection("hero")} className="font-mono text-sm text-slate-900 dark:text-slate-100">
-          dan.dev
+          dbmblc.dev
         </button>
 
         <div className="hidden items-center gap-6 md:flex">
@@ -256,6 +551,115 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
   );
 }
 
+type HelloPhase = "typingWorld" | "deletingWorld" | "typingDan" | "success" | "holding";
+
+const helloPrefix = "Hello ";
+const helloWorld = `${helloPrefix}world`;
+const helloDan = `${helloPrefix}I'm Dan`;
+const helloCommand = "let greeting = \"Hello world\";\ngreeting = greeting.replace(\"world\", \"I'm Dan\");\nconsole.log(greeting);";
+
+function AnimatedHelloIntro() {
+  const [phase, setPhase] = useState<HelloPhase>("typingWorld");
+  const [animatedOutput, setAnimatedOutput] = useState("");
+
+  useEffect(() => {
+    if (phase === "typingWorld") {
+      if (animatedOutput.length < helloWorld.length) {
+        const typingTimer = window.setTimeout(() => {
+          setAnimatedOutput(helloWorld.slice(0, animatedOutput.length + 1));
+        }, 64);
+
+        return () => window.clearTimeout(typingTimer);
+      }
+
+      const pauseTimer = window.setTimeout(() => {
+        setPhase("deletingWorld");
+      }, 850);
+
+      return () => window.clearTimeout(pauseTimer);
+    }
+
+    if (phase === "deletingWorld") {
+      if (animatedOutput.length > helloPrefix.length) {
+        const deletingTimer = window.setTimeout(() => {
+          setAnimatedOutput((current) => current.slice(0, -1));
+        }, 48);
+
+        return () => window.clearTimeout(deletingTimer);
+      }
+
+      const replaceTimer = window.setTimeout(() => {
+        setPhase("typingDan");
+      }, 180);
+
+      return () => window.clearTimeout(replaceTimer);
+    }
+
+    if (phase === "typingDan") {
+      if (animatedOutput.length < helloDan.length) {
+        const typingTimer = window.setTimeout(() => {
+          setAnimatedOutput(helloDan.slice(0, animatedOutput.length + 1));
+        }, 64);
+
+        return () => window.clearTimeout(typingTimer);
+      }
+
+      const holdTimer = window.setTimeout(() => {
+        setPhase("success");
+      }, 650);
+
+      return () => window.clearTimeout(holdTimer);
+    }
+
+    if (phase === "success") {
+      const successTimer = window.setTimeout(() => {
+        setPhase("holding");
+      }, 1800);
+
+      return () => window.clearTimeout(successTimer);
+    }
+
+    if (phase === "holding") {
+      const typingTimer = window.setTimeout(() => {
+        setAnimatedOutput("");
+        setPhase("typingWorld");
+      }, 650);
+
+      return () => window.clearTimeout(typingTimer);
+    }
+  }, [animatedOutput, phase]);
+
+  return (
+    <div className="mb-8">
+      <div className="mb-6 overflow-hidden rounded-lg border border-slate-200 bg-white/90 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
+        <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3 dark:border-slate-800">
+          <Terminal className="size-4 text-emerald-600 dark:text-emerald-400" />
+          <p className="font-mono text-xs text-slate-500 dark:text-slate-400">intro.ts</p>
+        </div>
+        <div className="space-y-3 px-4 py-4 font-mono text-sm">
+          <pre className="whitespace-pre-wrap text-slate-600 dark:text-slate-400">{helloCommand}</pre>
+          <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400" aria-live="polite">
+            <span className="text-slate-400">&gt;</span>
+            <span>{animatedOutput}</span>
+            <span className="h-5 w-2 animate-pulse bg-emerald-600 dark:bg-emerald-400" aria-hidden="true" />
+          </div>
+          {(phase === "success" || phase === "holding") && (
+            <div className="flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
+              <span className="text-slate-400">&gt;</span>
+              <span>return Success(200, "OK");</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <h1 className="min-h-[7.5rem] text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:min-h-[10.5rem] md:text-7xl">
+        {animatedOutput}
+       <span className="sr-only">Software Engineer | Web Applications, APIs, Cloud & AI Automation</span>
+      </h1>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20 transition-colors">
@@ -269,47 +673,82 @@ function Hero() {
       />
 
       <div className="relative z-10 mx-auto max-w-3xl">
-        <div className="mb-8">
-          <div className="mb-6 flex items-center gap-2">
-            <Terminal className="size-5 text-slate-500 dark:text-slate-400" />
-            <p className="font-mono text-sm text-slate-500 dark:text-slate-400">whoami</p>
+        <div className="mb-6">
+          <AnimatedHelloIntro />
+          <p className="mb-6 text-xl text-slate-600 dark:text-slate-300 md:text-2xl">
+            Software Engineer | Web Applications, APIs, Cloud & AI Automation
+          </p>
+          <div className="mb-8 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/40 dark:text-emerald-300">
+              <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
+              Open to hire
+            </span>
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+              Full-time
+            </span>
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+              Part-time
+            </span>
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+              Freelance
+            </span>
           </div>
-
-          <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-7xl">
-            Danilo Mabulac
-          </h1>
-          <p className="mb-6 text-xl text-slate-600 dark:text-slate-300 md:text-2xl">Software Developer</p>
         </div>
 
         <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          <p>
+            I specialize in web application development, with professional services spanning cloud solutions,
+            AI-assisted automation, and deployment infrastructure for practical business systems.
+          </p>
           <p>
             Professional experience in{" "}
             <span className="rounded bg-purple-100 px-2 py-1 font-mono text-sm text-purple-700 dark:bg-purple-950/50 dark:text-purple-300">
               .NET
             </span>{" "}
-            web development, enterprise systems, REST APIs, and SQL Server.
-          </p>
-          <p>
-            I build practical automation tools, AI-assisted features, and workflow solutions that solve real operational
-            problems.
+            web development, REST APIs, SQL databases, production debugging, and enterprise systems.
           </p>
         </div>
 
-        <div className="mt-12 flex items-center gap-6">
+        <div className="mt-12 flex flex-wrap items-center gap-3">
           <button
             onClick={() => scrollToSection("projects")}
-            className="group flex items-center gap-2 pb-1 text-sm text-slate-900 transition-colors hover:text-slate-600 dark:text-slate-100 dark:hover:text-slate-400"
+            className="group flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
           >
-            View work
+            View Selected Work
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </button>
-          <span className="text-slate-300 dark:text-slate-700">|</span>
+          <a
+            href="/Danilo-Mabulac-Jr-Resume.pdf"
+            download
+            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+          >
+            <Download className="size-4" />
+            Download Resume
+          </a>
           <button
             onClick={() => scrollToSection("contact")}
-            className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
           >
-            Get in touch
+            Contact Me
           </button>
+          <a
+            href="https://github.com/danilomabulac"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+          >
+            <Github className="size-4" />
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/dbmabulac"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+          >
+            <Linkedin className="size-4" />
+            LinkedIn
+          </a>
         </div>
       </div>
     </section>
@@ -371,14 +810,14 @@ function About() {
 
         <div className="max-w-3xl space-y-4 leading-relaxed text-slate-600 dark:text-slate-400">
           <p>
-            My professional background is in .NET web development, where I work with enterprise systems, REST APIs, SQL
-            Server databases, and production debugging. I focus on building reliable, maintainable solutions for real
-            business requirements.
+            I'm a Software Developer with professional experience building, maintaining, and debugging enterprise web
+            applications. My background includes .NET web development, REST APIs, SQL Server, production issue
+            investigation, and business workflow support.
           </p>
           <p>
-            Outside of my professional work, I develop practical web applications and business systems including
-            automation tools, AI-assisted features, workflow solutions, and internal tools. My goal is to create
-            software that solves real operational problems, not just tutorial projects.
+            I focus on practical software: systems that help businesses manage data, automate workflows, improve
+            operations, and support real users. My core strength is web application development, with additional
+            capability in cloud deployment, infrastructure setup, CI/CD, and AI-assisted automation.
           </p>
         </div>
       </div>
@@ -392,7 +831,7 @@ function Skills() {
       <div className="mx-auto max-w-5xl">
         <SectionLabel>skills</SectionLabel>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category) => {
             const CategoryIcon = category.icon;
             return (
@@ -416,6 +855,59 @@ function Skills() {
                       </div>
                     );
                   })}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section id="services" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
+      <div className="mx-auto max-w-5xl">
+        <SectionLabel>services i can offer</SectionLabel>
+
+        <div className="mb-10 max-w-3xl space-y-4 text-slate-600 dark:text-slate-400">
+          <p>
+            I can help build and support practical software across backend APIs, web applications, business systems,
+            cloud hosting, infrastructure setup, automation, integrations, dashboards, troubleshooting, deployment, and
+            AI-assisted features.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {services.map((service) => {
+            const Icon = service.icon;
+            return (
+              <article
+                key={service.title}
+                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
+              >
+                <div className="mb-4 flex items-start gap-3">
+                  <div className="rounded-lg bg-slate-100 p-2 text-slate-700 transition-transform group-hover:scale-110 dark:bg-slate-800 dark:text-slate-300">
+                    <Icon className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-lg text-slate-900 dark:text-slate-100">{service.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{service.description}</p>
+                  </div>
+                </div>
+                <p className="mb-4 border-l-2 border-slate-200 pl-3 text-sm leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400">
+                  {service.fit}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {service.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className={`rounded-md px-3 py-1.5 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </article>
             );
@@ -488,7 +980,57 @@ function Projects() {
   );
 }
 
+function TargetRoles() {
+  return (
+    <section id="roles" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
+      <div className="mx-auto max-w-5xl">
+        <SectionLabel>target roles</SectionLabel>
+
+        <p className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
+          These are the roles where my professional .NET background and broader web application skills map well to real
+          job openings.
+        </p>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {targetRoles.map((role) => (
+            <article
+              key={role.title}
+              className="rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <BriefcaseBusiness className="size-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg text-slate-900 dark:text-slate-100">{role.title}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{role.summary}</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {role.points.map((point) => (
+                  <div key={point} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
+  const [copiedContact, setCopiedContact] = useState<string | null>(null);
+
+  const handleCopyContact = async (label: string, value: string) => {
+    await navigator.clipboard.writeText(value);
+    setCopiedContact(label);
+    window.setTimeout(() => setCopiedContact(null), 1800);
+  };
+
   return (
     <section id="contact" className="relative overflow-hidden bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
       <div className="relative z-10 mx-auto max-w-5xl">
@@ -496,17 +1038,52 @@ function Contact() {
 
         <div className="max-w-2xl">
           <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
-            Open to discussing developer roles, practical software projects, or collaborations on business systems.
+            I'm open to full-time and part-time software development roles, freelance work, and project-based
+            opportunities involving web applications, APIs, business systems, cloud deployment, infrastructure setup,
+            automation, and AI-assisted tools.
           </p>
 
           <div className="space-y-3">
             {contacts.map((contact) => {
               const Icon = contact.icon;
               const isExternal = contact.href.startsWith("http");
+              const copyValue = "copyValue" in contact ? contact.copyValue : undefined;
+
+              if (copyValue) {
+                return (
+                  <div
+                    key={contact.label}
+                    className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
+                  >
+                    <div
+                      className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                    >
+                      <Icon className="size-5" />
+                    </div>
+                    <a href={contact.href} className="min-w-0 flex-1">
+                      <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
+                      <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                        {contact.value}
+                      </span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyContact(contact.label, copyValue)}
+                      className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                      aria-label={`Copy ${contact.label.toLowerCase()}`}
+                    >
+                      <Copy className="size-4" />
+                      {copiedContact === contact.label ? "Copied" : "Copy"}
+                    </button>
+                  </div>
+                );
+              }
+
               return (
                 <a
                   key={contact.label}
                   href={contact.href}
+                  download={contact.label === "Resume" ? true : undefined}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
@@ -522,7 +1099,6 @@ function Contact() {
                       {contact.value}
                     </span>
                   </div>
-                  <Send className="size-4 text-slate-400 transition-all group-hover:translate-x-1 group-hover:text-purple-600 dark:text-slate-600 dark:group-hover:text-purple-400" />
                 </a>
               );
             })}
@@ -537,7 +1113,7 @@ function Footer() {
   return (
     <footer className="border-t border-slate-200 py-12 transition-colors dark:border-slate-800">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-        <p className="font-mono text-sm text-slate-500 dark:text-slate-400">&copy; 2026 Dan</p>
+        <p className="font-mono text-sm text-slate-500 dark:text-slate-400">&copy; 2026 dbmblc</p>
         <div className="flex gap-6">
           {contacts.map((contact) => {
             const Icon = contact.icon;
@@ -546,6 +1122,7 @@ function Footer() {
               <a
                 key={contact.label}
                 href={contact.href}
+                download={contact.label === "Resume" ? true : undefined}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
                 className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
@@ -581,7 +1158,9 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Services />
         <Projects />
+        <TargetRoles />
         <Contact />
       </main>
       <Footer />
