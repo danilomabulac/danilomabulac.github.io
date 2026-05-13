@@ -817,7 +817,7 @@ function Hero() {
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </button>
           <a
-            href="public/Danilo-Mabulac-Jr-Resume.pdf"
+            href="/Danilo-Mabulac-Jr-Resume.pdf"
             download
             className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
           >
