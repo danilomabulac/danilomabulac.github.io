@@ -1015,7 +1015,7 @@ function Skills() {
   );
 }
 
-function Services() {
+function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
   return (
     <section id="services" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
       <div className="mx-auto max-w-5xl">
@@ -1027,6 +1027,14 @@ function Services() {
             cloud hosting, infrastructure setup, automation, integrations, dashboards, troubleshooting, deployment, and
             AI-assisted features.
           </p>
+          <button
+            type="button"
+            onClick={onOpenMessage}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+          >
+            Interested in a service? Leave me a message
+            <ArrowRight className="size-4" />
+          </button>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -1065,6 +1073,154 @@ function Services() {
         </div>
       </div>
     </section>
+  );
+}
+
+function MessageFormModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [state, handleSubmit] = useForm(resumeRequestFormId);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/60 px-4 py-8 backdrop-blur-sm">
+      <div className="w-full max-w-lg rounded-lg border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950">
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-5 dark:border-slate-800">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Leave Me a Message</h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+              Tell me about the role, service, automation, or project you are interested in.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
+            aria-label="Close message form"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        {state.succeeded ? (
+          <div className="px-6 py-8">
+            <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+              <CheckCircle2 className="size-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">Message sent</h3>
+            <p className="mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              Thanks for the message. I will review it and get back to you.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4 px-6 py-6">
+            <input type="hidden" name="form_type" value="General message" />
+            <div>
+              <label htmlFor="message-name" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Name
+              </label>
+              <input
+                id="message-name"
+                name="name"
+                type="text"
+                required
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="name" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <div>
+              <label htmlFor="message-email" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Email
+              </label>
+              <input
+                id="message-email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="email" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <div>
+              <label htmlFor="message-topic" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Interested In
+              </label>
+              <select
+                id="message-topic"
+                name="interested_in"
+                required
+                defaultValue="Software development role"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              >
+                <option>Software development role</option>
+                <option>Freelance / project work</option>
+                <option>Web application development</option>
+                <option>Automation or AI integration</option>
+                <option>Cloud deployment or infrastructure</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="message-body" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Message
+              </label>
+              <textarea
+                id="message-body"
+                name="message"
+                required
+                rows={5}
+                placeholder="Share a quick note about what you need or what role you are hiring for."
+                className="w-full resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="message" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <ValidationError errors={state.errors} className="text-sm text-red-600 dark:text-red-400" />
+
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+              >
+                {state.submitting ? "Sending..." : "Send Message"}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -1378,7 +1534,13 @@ function ResumeRequestModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   );
 }
 
-function Contact({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
+function Contact({
+  onOpenResumeRequest,
+  onOpenMessage,
+}: {
+  onOpenResumeRequest: () => void;
+  onOpenMessage: () => void;
+}) {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
 
   const handleCopyContact = async (label: string, value: string) => {
@@ -1402,6 +1564,14 @@ function Contact({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
             Have a system, workflow, or product idea you want to build? Send me a message and I can help scope the MVP,
             identify the first useful release, and turn it into a working application.
           </p>
+          <button
+            type="button"
+            onClick={onOpenMessage}
+            className="mb-8 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+          >
+            Send Me an Email Here
+            <ArrowRight className="size-4" />
+          </button>
 
           <div className="space-y-3">
             {contacts.map((contact) => {
@@ -1537,6 +1707,7 @@ function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeRequestOpen, setResumeRequestOpen] = useState(false);
+  const [messageFormOpen, setMessageFormOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -1556,13 +1727,17 @@ export default function App() {
         <About />
         <WhoIHelp />
         <Skills />
-        <Services />
+        <Services onOpenMessage={() => setMessageFormOpen(true)} />
         <Projects />
         <TargetRoles />
-        <Contact onOpenResumeRequest={() => setResumeRequestOpen(true)} />
+        <Contact
+          onOpenResumeRequest={() => setResumeRequestOpen(true)}
+          onOpenMessage={() => setMessageFormOpen(true)}
+        />
       </main>
       <Footer onOpenResumeRequest={() => setResumeRequestOpen(true)} />
       <ResumeRequestModal isOpen={resumeRequestOpen} onClose={() => setResumeRequestOpen(false)} />
+      <MessageFormModal isOpen={messageFormOpen} onClose={() => setMessageFormOpen(false)} />
     </div>
   );
 }
