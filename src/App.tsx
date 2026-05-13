@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -25,6 +26,8 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const resumeRequestFormId = "mgodqrzn";
 
 const navItems = [
   { label: "about", id: "about" },
@@ -69,8 +72,8 @@ const contacts = [
   },
   {
     label: "Resume",
-    value: "Download resume",
-    href: "/Danilo-Mabulac-Jr-Resume.pdf",
+    value: "Request resume",
+    href: "#resume-request",
     icon: Download,
     accent: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950/50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
   },
@@ -759,7 +762,7 @@ function AnimatedHelloIntro() {
   );
 }
 
-function Hero() {
+function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   return (
     <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20 transition-colors">
       <div
@@ -808,46 +811,57 @@ function Hero() {
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-3">
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="group flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
-          >
-            View Selected Work
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-          </button>
-          <a
-            href="/Danilo-Mabulac-Jr-Resume.pdf"
-            download
-            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
-          >
-            <Download className="size-4" />
-            Download Resume
-          </a>
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
-          >
-            Contact Me
-          </button>
-          <a
-            href="https://github.com/danilomabulac"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
-          >
-            <Github className="size-4" />
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/dbmabulac"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
-          >
-            <Linkedin className="size-4" />
-            LinkedIn
-          </a>
+        <div className="mt-12 space-y-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="group flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            >
+              Discuss a Role
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </button>
+            <button
+              onClick={() => scrollToSection("services")}
+              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+            >
+              Inquire About Services
+            </button>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+            >
+              View Case Studies
+            </button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpenResumeRequest}
+              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+            >
+              <Download className="size-4" />
+              Request Resume
+            </button>
+            <a
+              href="https://github.com/danilomabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+            >
+              <Github className="size-4" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dbmabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+            >
+              <Linkedin className="size-4" />
+              LinkedIn
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -1205,7 +1219,166 @@ function TargetRoles() {
   );
 }
 
-function Contact() {
+function ResumeRequestModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [state, handleSubmit] = useForm(resumeRequestFormId);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/60 px-4 py-8 backdrop-blur-sm">
+      <div className="w-full max-w-lg rounded-lg border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950">
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-5 dark:border-slate-800">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Request Resume</h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+              Leave your email and a short note. I will send my CV directly to your inbox.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
+            aria-label="Close resume request form"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        {state.succeeded ? (
+          <div className="px-6 py-8">
+            <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+              <CheckCircle2 className="size-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">Request sent</h3>
+            <p className="mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              Thanks for reaching out. I received your request and will reply with my resume if the opportunity is a fit.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4 px-6 py-6">
+            <input type="hidden" name="form_type" value="Resume request" />
+            <div>
+              <label htmlFor="resume-name" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Name
+              </label>
+              <input
+                id="resume-name"
+                name="name"
+                type="text"
+                required
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="name" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <div>
+              <label htmlFor="resume-email" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Email
+              </label>
+              <input
+                id="resume-email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="email" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <div>
+              <label htmlFor="resume-company" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Company / Organization
+              </label>
+              <input
+                id="resume-company"
+                name="company"
+                type="text"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="resume-inquiry-type" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Inquiry Type
+              </label>
+              <select
+                id="resume-inquiry-type"
+                name="inquiry_type"
+                required
+                defaultValue="Request Resume"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              >
+                <option>Hiring / Job Opportunity</option>
+                <option>Freelance / Project Work</option>
+                <option>Automation or AI Integration</option>
+                <option>Request Resume</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="resume-message" className="mb-2 block text-sm text-slate-700 dark:text-slate-300">
+                Message
+              </label>
+              <textarea
+                id="resume-message"
+                name="message"
+                required
+                rows={4}
+                placeholder="Tell me briefly about the role, project, or opportunity."
+                className="w-full resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500"
+              />
+              <ValidationError field="message" errors={state.errors} className="mt-1 text-sm text-red-600 dark:text-red-400" />
+            </div>
+
+            <ValidationError errors={state.errors} className="text-sm text-red-600 dark:text-red-400" />
+
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+              >
+                {state.submitting ? "Sending..." : "Send Request"}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Contact({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
 
   const handleCopyContact = async (label: string, value: string) => {
@@ -1235,6 +1408,7 @@ function Contact() {
               const Icon = contact.icon;
               const isExternal = contact.href.startsWith("http");
               const copyValue = "copyValue" in contact ? contact.copyValue : undefined;
+              const isResume = contact.label === "Resume";
 
               if (copyValue) {
                 return (
@@ -1266,11 +1440,33 @@ function Contact() {
                 );
               }
 
+              if (isResume) {
+                return (
+                  <button
+                    key={contact.label}
+                    type="button"
+                    onClick={onOpenResumeRequest}
+                    className="group flex w-full items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 text-left transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
+                  >
+                    <div
+                      className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                    >
+                      <Icon className="size-5" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
+                      <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                        {contact.value}
+                      </span>
+                    </div>
+                  </button>
+                );
+              }
+
               return (
                 <a
                   key={contact.label}
                   href={contact.href}
-                  download={contact.label === "Resume" ? true : undefined}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
@@ -1296,7 +1492,7 @@ function Contact() {
   );
 }
 
-function Footer() {
+function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   return (
     <footer className="border-t border-slate-200 py-12 transition-colors dark:border-slate-800">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
@@ -1305,11 +1501,24 @@ function Footer() {
           {contacts.map((contact) => {
             const Icon = contact.icon;
             const isExternal = contact.href.startsWith("http");
+            if (contact.label === "Resume") {
+              return (
+                <button
+                  key={contact.label}
+                  type="button"
+                  onClick={onOpenResumeRequest}
+                  className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                  title={contact.label}
+                >
+                  <Icon className="size-5" />
+                </button>
+              );
+            }
+
             return (
               <a
                 key={contact.label}
                 href={contact.href}
-                download={contact.label === "Resume" ? true : undefined}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
                 className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
@@ -1327,6 +1536,7 @@ function Footer() {
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resumeRequestOpen, setResumeRequestOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -1342,16 +1552,17 @@ export default function App() {
         onToggleMenu={() => setMobileMenuOpen((current) => !current)}
       />
       <main>
-        <Hero />
+        <Hero onOpenResumeRequest={() => setResumeRequestOpen(true)} />
         <About />
         <WhoIHelp />
         <Skills />
         <Services />
         <Projects />
         <TargetRoles />
-        <Contact />
+        <Contact onOpenResumeRequest={() => setResumeRequestOpen(true)} />
       </main>
-      <Footer />
+      <Footer onOpenResumeRequest={() => setResumeRequestOpen(true)} />
+      <ResumeRequestModal isOpen={resumeRequestOpen} onClose={() => setResumeRequestOpen(false)} />
     </div>
   );
 }
