@@ -28,6 +28,7 @@ import type { LucideIcon } from "lucide-react";
 
 const navItems = [
   { label: "about", id: "about" },
+  { label: "clients", id: "clients" },
   { label: "skills", id: "skills" },
   { label: "services", id: "services" },
   { label: "work", id: "projects" },
@@ -118,6 +119,8 @@ const skillCategories: SkillCategory[] = [
       "Dependency Injection",
       "API Integration",
       "API Gateways",
+      "Webhooks",
+      "Background Jobs",
       "Serilog",
       "Hangfire",
       "Redis",
@@ -134,13 +137,23 @@ const skillCategories: SkillCategory[] = [
   {
     category: "Infrastructure & Deployment",
     icon: BriefcaseBusiness,
-    skills: ["Docker", "Nginx", "Linux VPS", "systemd", "GitHub Actions CI/CD", "Environment Variables", "DNS / Custom Domains", "SSL"],
+    skills: ["Docker", "Nginx", "Linux", "Linux VPS", "systemd", "GitHub Actions CI/CD", "Environment Variables", "DNS / Custom Domains", "SSL"],
+  },
+  {
+    category: "AI & Automation",
+    icon: Sparkles,
+    skills: ["OpenAI API", "DeepSeek", "LLM Integration", "Prompt Engineering", "AI Workflow Automation", "API-based Automation"],
+  },
+  {
+    category: "Automation Platforms",
+    icon: Workflow,
+    skills: ["n8n", "Make.com", "Zapier", "API-based Workflow Automation"],
   },
 ];
 
 const services = [
   {
-    title: "Full Stack Web Application Development",
+    title: "Business Web Application Development",
     description: "Build practical web applications with API-backed features, usable screens, and maintainable frontend/backend code.",
     fit: "Best for teams that need business software delivered across both UI and backend concerns.",
     icon: Code2,
@@ -172,14 +185,14 @@ const services = [
     description: "Connect systems through REST APIs, webhook flows, background jobs, and practical integration checks.",
     fit: "Best for teams that need applications to exchange data cleanly with other services.",
     icon: Code,
-    technologies: ["REST APIs", "API Integration", "API Gateways", "Hangfire", "Postman"],
+    technologies: ["REST APIs", "API Integration", "API Gateways", "Webhooks", "Background Jobs", "Hangfire", "Postman"],
   },
   {
     title: "Automation Workflows",
     description: "Design workflow automation that reduces repetitive work, manual data handling, and operational friction.",
     fit: "Best for teams with recurring business processes that can be simplified through software.",
     icon: Workflow,
-    technologies: ["Python", "FastAPI", "Docker", "GitHub Actions"],
+    technologies: ["Python", "FastAPI", "Webhooks", "API-based Automation", "n8n", "Make.com", "Zapier"],
   },
   {
     title: "AI-Assisted Business Features",
@@ -189,7 +202,7 @@ const services = [
     technologies: ["TypeScript", "Node.js", "Python", "FastAPI", "React"],
   },
   {
-    title: "Admin Dashboards and Reporting Tools",
+    title: "Admin Dashboard / Reporting System",
     description: "Build dashboard views, filters, tables, reports, and admin interfaces for operational visibility.",
     fit: "Best for businesses that need clearer data and faster daily decision-making.",
     icon: Globe,
@@ -203,7 +216,7 @@ const services = [
     technologies: [".NET", "Serilog", "SQL Server", "Postman"],
   },
   {
-    title: "Deployment and CI/CD Setup",
+    title: "Cloud Deployment & CI/CD Setup",
     description: "Set up practical deployment flows, service hosting, environment configuration, and build pipelines.",
     fit: "Best for projects that need a more reliable path from development to live environments.",
     icon: BriefcaseBusiness,
@@ -219,48 +232,94 @@ const services = [
   },
 ];
 
-const projects = [
+const audiences = [
   {
-    title: "Enterprise .NET API Work",
-    description:
-      "Professional backend work on business applications with REST APIs, SQL Server data models, authentication concerns, and production debugging.",
-    technologies: [".NET Core", "C#", "SQL Server", "REST API"],
-    icon: Server,
+    title: "Small Businesses",
+    description: "Teams that need internal systems, dashboards, ordering tools, inventory workflows, or reporting without overbuilding.",
+    icon: BriefcaseBusiness,
   },
   {
-    title: "Business Workflow Automation",
-    description:
-      "Internal workflow tools that reduce manual steps, align frontend screens with backend contracts, and make daily operations easier to run.",
-    technologies: [".NET", "TypeScript", "React", "SQL Server"],
-    icon: Workflow,
-  },
-  {
-    title: "AI-Assisted Feature Experiments",
-    description:
-      "Small, practical AI-assisted features and product experiments focused on useful workflow support instead of novelty demos.",
-    technologies: ["React", "Node.js", "OpenAI API", "TypeScript"],
+    title: "Startups and MVPs",
+    description: "Founders who need a practical first version of a web app, SaaS workflow, API, or operations platform.",
     icon: Sparkles,
   },
   {
-    title: "Internal Dashboard System",
-    description:
-      "Dashboard and admin interfaces for tracking operational data, reviewing records, and giving users clearer actions.",
-    technologies: ["React", "ASP.NET", "SQL Server"],
+    title: "Companies Hiring Developers",
+    description: "Engineering teams looking for .NET, backend, full-stack, API integration, or application support capability.",
     icon: Code2,
   },
   {
-    title: "Data Integration Pipeline",
-    description:
-      "Backend-oriented data flow work involving database changes, API responses, and verification against real application behavior.",
-    technologies: [".NET", "SQL Server", "REST APIs", "Entity Framework"],
+    title: "Operations-Heavy Teams",
+    description: "Businesses with manual tracking, spreadsheets, repeated admin work, or disconnected tools that need automation.",
+    icon: Workflow,
+  },
+  {
+    title: "Teams Exploring AI Automation",
+    description: "Organizations that want useful AI-assisted features for workflows, summaries, notifications, or business support.",
+    icon: Sparkles,
+  },
+];
+
+const projects = [
+  {
+    title: "Business Operations SaaS Case Study",
+    subtitle: "Cloud workspace for water refilling operations",
+    problem: "Water refilling stations need clearer workflows for customers, products, orders, payments, inventory, and daily operations.",
+    contribution:
+      "Designed the public case-study story around a modular business system with API-backed workflows, operational dashboards, auth/tenancy thinking, and deployment considerations.",
+    result:
+      "Shows how I approach real business software: practical modules, maintainable backend boundaries, data ownership, and operations-focused UX.",
+    technologies: [".NET", "React", "PostgreSQL", "REST APIs", "Cloud Deployment"],
+    href: "https://github.com/danilomabulac/aquatrack-case-study",
     icon: Database,
   },
   {
-    title: "Production Debugging Tooling",
-    description:
-      "Debugging habits and utilities around logs, requests, environment settings, build checks, and release-risk review.",
-    technologies: [".NET", "C#", "SQL Server", "React"],
-    icon: Bug,
+    title: "Career Workspace SaaS Case Study",
+    subtitle: "Job application tracker with AI mentor support",
+    problem: "Job seekers need one workspace to track applications, statuses, follow-ups, notes, momentum, and guidance without relying on scattered spreadsheets.",
+    contribution:
+      "Framed the product as a career workspace that can start personal and grow into a SaaS-style tool with structured tracking, reminders, reporting, and DeepSeek-powered AI mentor support.",
+    result:
+      "Demonstrates my ability to turn a personal productivity pain into a practical product concept with SaaS and AI-assisted coaching potential.",
+    technologies: ["Next.js", "TypeScript", "Supabase", "Clerk", "DeepSeek"],
+    href: "https://github.com/danilomabulac/huntly-case-study",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Notification Infrastructure Case Study",
+    subtitle: "Lightweight notification service for existing applications",
+    problem: "Applications often need notification workflows without building a full notification platform from scratch.",
+    contribution:
+      "Documented an event-based notification service model with applications, subscribers, templates, API keys, inbox state, and integration safety.",
+    result:
+      "Highlights API design, platform thinking, auth boundaries, integration workflows, and infrastructure-style product development.",
+    technologies: ["FastAPI", "Next.js", "PostgreSQL", "Clerk", "API Integration"],
+    href: "https://github.com/danilomabulac/signalkit-case-study",
+    icon: Server,
+  },
+  {
+    title: "Production Deployment Pipeline Case Study",
+    subtitle: "From local web app to live VPS deployment",
+    problem:
+      "Small teams and client projects often need a reliable path from local development to a hosted application with domains, SSL, environment configuration, and repeatable releases.",
+    contribution:
+      "Plan a production-style deployment flow using Docker, Nginx, Linux VPS hosting, systemd services, GitHub Actions, environment variables, DNS, SSL, and basic logs.",
+    result:
+      "Shows that I can support the full delivery path: not only building the app, but preparing it to run in a real hosted environment.",
+    technologies: ["Docker", "Nginx", "Linux VPS", "systemd", "GitHub Actions CI/CD", "SSL"],
+    icon: Globe,
+  },
+  {
+    title: "AI Workflow Automation Case Study",
+    subtitle: "Turning messages or documents into actionable work",
+    problem:
+      "Businesses receive repeated messages, documents, notes, or requests that still require manual review, summarization, routing, and follow-up.",
+    contribution:
+      "Design an AI-assisted workflow with structured input capture, LLM-powered summarization or extraction, human review, task creation, history, and API integration points.",
+    result:
+      "Demonstrates practical AI integration focused on business value: reducing repetitive work while keeping users in control of the workflow.",
+    technologies: ["OpenAI API", "TypeScript", "Node.js", "Python", "FastAPI", "Workflow Automation"],
+    icon: Sparkles,
   },
 ];
 
@@ -345,6 +404,7 @@ const skillIcons: Record<string, LucideIcon> = {
   Python: Code2,
   FastAPI: Server,
   Docker: Server,
+  Linux: Server,
   Nginx: Server,
   "Linux VPS": Server,
   "GitHub Actions": Workflow,
@@ -359,12 +419,24 @@ const skillIcons: Record<string, LucideIcon> = {
   Clerk: Server,
   "API Integration": Workflow,
   "API Gateways": Server,
+  Webhooks: Workflow,
+  "Background Jobs": Workflow,
   Hangfire: Workflow,
   Redis: Database,
   systemd: Server,
   "Environment Variables": Code,
   "DNS / Custom Domains": Globe,
   SSL: Server,
+  "OpenAI API": Sparkles,
+  DeepSeek: Sparkles,
+  "LLM Integration": Sparkles,
+  "Prompt Engineering": Sparkles,
+  "AI Workflow Automation": Sparkles,
+  "API-based Automation": Workflow,
+  n8n: Workflow,
+  "Make.com": Workflow,
+  Zapier: Workflow,
+  "API-based Workflow Automation": Workflow,
   "Azure App Service": Globe,
   "Azure SQL": Database,
   "Modular Monolith": Code,
@@ -403,7 +475,20 @@ const skillColors: Record<string, string> = {
   "Query Optimization": "text-orange-600 dark:text-orange-400",
   "API Integration": "text-emerald-600 dark:text-emerald-400",
   "API Gateways": "text-emerald-600 dark:text-emerald-400",
+  Webhooks: "text-emerald-600 dark:text-emerald-400",
+  "Background Jobs": "text-violet-600 dark:text-violet-400",
+  "Cloud Deployment": "text-blue-600 dark:text-blue-400",
+  "Workflow Automation": "text-emerald-600 dark:text-emerald-400",
+  "AI Workflow Automation": "text-violet-600 dark:text-violet-400",
+  "LLM Integration": "text-violet-600 dark:text-violet-400",
+  "Prompt Engineering": "text-violet-600 dark:text-violet-400",
+  "API-based Automation": "text-emerald-600 dark:text-emerald-400",
+  "API-based Workflow Automation": "text-emerald-600 dark:text-emerald-400",
+  n8n: "text-orange-600 dark:text-orange-400",
+  "Make.com": "text-violet-600 dark:text-violet-400",
+  Zapier: "text-orange-600 dark:text-orange-400",
   Docker: "text-blue-600 dark:text-blue-400",
+  Linux: "text-slate-700 dark:text-slate-300",
   Nginx: "text-emerald-600 dark:text-emerald-400",
   "Linux VPS": "text-slate-700 dark:text-slate-300",
   "GitHub Actions": "text-slate-700 dark:text-slate-300",
@@ -440,6 +525,7 @@ const techColors: Record<string, string> = {
   Python: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   FastAPI: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   Docker: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  Linux: "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   Nginx: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "Linux VPS": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   "GitHub Actions": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
@@ -456,7 +542,20 @@ const techColors: Record<string, string> = {
   "REST APIs": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "API Integration": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "API Gateways": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  Webhooks: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "Background Jobs": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "Cloud Deployment": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "Workflow Automation": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "AI Workflow Automation": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "LLM Integration": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "Prompt Engineering": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "API-based Automation": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "API-based Workflow Automation": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  n8n: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  "Make.com": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  Zapier: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   Clerk: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  DeepSeek: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Hangfire: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Postman: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   Serilog: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
@@ -697,8 +796,8 @@ function Hero() {
 
         <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           <p>
-            I specialize in web application development, with professional services spanning cloud solutions,
-            AI-assisted automation, and deployment infrastructure for practical business systems.
+            I build web applications, APIs, dashboards, automations, and cloud-deployed business systems for teams that
+            need practical software delivered end to end.
           </p>
           <p>
             Professional experience in{" "}
@@ -718,7 +817,7 @@ function Hero() {
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </button>
           <a
-            href="/Danilo-Mabulac-Jr-Resume.pdf"
+            href="public/Danilo-Mabulac-Jr-Resume.pdf"
             download
             className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
           >
@@ -825,9 +924,46 @@ function About() {
   );
 }
 
+function WhoIHelp() {
+  return (
+    <section id="clients" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
+      <div className="mx-auto max-w-5xl">
+        <SectionLabel>who i help</SectionLabel>
+
+        <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
+          <p>
+            I work best with people who need practical software for operations, data, workflows, integrations, and
+            product ideas that need to move from rough concept to working system.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {audiences.map((audience) => {
+            const Icon = audience.icon;
+            return (
+              <article
+                key={audience.title}
+                className="rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    <Icon className="size-5" />
+                  </div>
+                  <h3 className="text-slate-900 dark:text-slate-100">{audience.title}</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{audience.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Skills() {
   return (
-    <section id="skills" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
+    <section id="skills" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
       <div className="mx-auto max-w-5xl">
         <SectionLabel>skills</SectionLabel>
 
@@ -869,7 +1005,7 @@ function Services() {
   return (
     <section id="services" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
       <div className="mx-auto max-w-5xl">
-        <SectionLabel>services i can offer</SectionLabel>
+        <SectionLabel>what i can build</SectionLabel>
 
         <div className="mb-10 max-w-3xl space-y-4 text-slate-600 dark:text-slate-400">
           <p>
@@ -922,7 +1058,15 @@ function Projects() {
   return (
     <section id="projects" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
       <div className="mx-auto max-w-5xl">
-        <SectionLabel>selected work</SectionLabel>
+        <SectionLabel>selected case studies</SectionLabel>
+
+        <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
+          <p>
+            These public case studies are written to show product thinking, architecture decisions, business value, and
+            implementation approach without exposing private source code, secrets, production configuration, or customer
+            data.
+          </p>
+        </div>
 
         <div className="space-y-8">
           {projects.map((project) => {
@@ -937,20 +1081,32 @@ function Projects() {
                     <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                       <Icon className="size-5" />
                     </div>
-                    <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
-                      {project.title}
-                    </h3>
+                    <div>
+                      <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">{project.subtitle}</p>
+                    </div>
                   </div>
                   <div className="flex gap-2">
-                    <a
-                      href="https://github.com/danilomabulac"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                      title="View GitHub"
-                    >
-                      <Github className="size-4" />
-                    </a>
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                        title="View GitHub case study"
+                      >
+                        <Github className="size-4" />
+                      </a>
+                    ) : (
+                      <span
+                        className="rounded-lg p-2 text-slate-400 transition-all dark:text-slate-600"
+                        title="GitHub link coming soon"
+                      >
+                        <Github className="size-4" />
+                      </span>
+                    )}
                     <a
                       href="#contact"
                       className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
@@ -960,7 +1116,20 @@ function Projects() {
                     </a>
                   </div>
                 </div>
-                <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.description}</p>
+                <div className="mb-5 grid gap-4 md:grid-cols-3">
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Problem</h4>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.problem}</p>
+                  </div>
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Contribution</h4>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.contribution}</p>
+                  </div>
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Value</h4>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
+                  </div>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
@@ -970,6 +1139,20 @@ function Projects() {
                       {tech}
                     </span>
                   ))}
+                  {project.href ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                    >
+                      View GitHub case study
+                    </a>
+                  ) : (
+                    <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                      GitHub link coming soon
+                    </span>
+                  )}
                 </div>
               </article>
             );
@@ -1041,6 +1224,10 @@ function Contact() {
             I'm open to full-time and part-time software development roles, freelance work, and project-based
             opportunities involving web applications, APIs, business systems, cloud deployment, infrastructure setup,
             automation, and AI-assisted tools.
+          </p>
+          <p className="mb-8 text-slate-600 dark:text-slate-400">
+            Have a system, workflow, or product idea you want to build? Send me a message and I can help scope the MVP,
+            identify the first useful release, and turn it into a working application.
           </p>
 
           <div className="space-y-3">
@@ -1157,6 +1344,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <WhoIHelp />
         <Skills />
         <Services />
         <Projects />
