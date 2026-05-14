@@ -284,8 +284,9 @@ const projects = [
       "Framed the product as a career workspace that can start personal and grow into a SaaS-style tool with structured tracking, reminders, reporting, and DeepSeek-powered AI mentor support.",
     result:
       "Demonstrates my ability to turn a personal productivity pain into a practical product concept with SaaS and AI-assisted coaching potential.",
-    technologies: ["Next.js", "TypeScript", "Supabase", "Clerk", "DeepSeek"],
+    technologies: ["Next.js", "TypeScript", "Supabase", "Prisma", "Clerk", "DeepSeek"],
     href: "https://github.com/danilomabulac/huntly-case-study",
+    demoHref: "https://huntly-application-tracker.vercel.app/",
     icon: BriefcaseBusiness,
   },
   {
@@ -313,15 +314,17 @@ const projects = [
     icon: Globe,
   },
   {
-    title: "AI Workflow Automation Case Study",
-    subtitle: "Turning messages or documents into actionable work",
+    title: "AI Client Intake Automation Case Study",
+    subtitle: "IntakeFlow demo for turning inquiries into reviewable work",
     problem:
-      "Businesses receive repeated messages, documents, notes, or requests that still require manual review, summarization, routing, and follow-up.",
+      "Businesses receive repeated inquiries, messages, and requests that need triage, summarization, routing, and follow-up before someone can act on them.",
     contribution:
-      "Design an AI-assisted workflow with structured input capture, LLM-powered summarization or extraction, human review, task creation, history, and API integration points.",
+      "Built a public IntakeFlow demo that captures structured intake, uses AI to summarize or extract context, supports human review, creates actionable tasks, and exposes integration points for business workflows.",
     result:
-      "Demonstrates practical AI integration focused on business value: reducing repetitive work while keeping users in control of the workflow.",
-    technologies: ["OpenAI API", "TypeScript", "Node.js", "Python", "FastAPI", "Workflow Automation"],
+      "Shows how AI can reduce manual intake work while keeping people in control of review, decisions, and follow-up.",
+    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Route Handlers", "External AI/Webhook", "Vercel"],
+    href: "https://github.com/danilomabulac/intakeflow-case-study",
+    demoHref: "https://intakeflow-demo.vercel.app/",
     icon: Sparkles,
   },
 ];
@@ -522,8 +525,12 @@ const techColors: Record<string, string> = {
   "ASP.NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "Entity Framework": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "Entity Framework Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  "Next.js": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   TypeScript: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   React: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  "Tailwind CSS": "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  "Route Handlers": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "External AI/Webhook": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   "Node.js": "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
   Python: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   FastAPI: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
@@ -1259,6 +1266,25 @@ function Projects() {
                     </div>
                   </div>
                   <div className="flex gap-2">
+                    {project.demoHref ? (
+                      <a
+                        href={project.demoHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                        title="View live demo"
+                      >
+                        <ExternalLink className="size-4" />
+                      </a>
+                    ) : (
+                      <a
+                        href="#contact"
+                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                        title="Ask about this project"
+                      >
+                        <ExternalLink className="size-4" />
+                      </a>
+                    )}
                     {project.href ? (
                       <a
                         href={project.href}
@@ -1277,13 +1303,6 @@ function Projects() {
                         <Github className="size-4" />
                       </span>
                     )}
-                    <a
-                      href="#contact"
-                      className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                      title="Ask about this project"
-                    >
-                      <ExternalLink className="size-4" />
-                    </a>
                   </div>
                 </div>
                 <div className="mb-5 grid gap-4 md:grid-cols-3">
@@ -1300,29 +1319,46 @@ function Projects() {
                     <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.href ? (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-                    >
-                      View GitHub case study
-                    </a>
-                  ) : (
-                    <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
-                      GitHub link coming soon
-                    </span>
-                  )}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-3 dark:border-slate-800">
+                    {project.demoHref ? (
+                      <a
+                        href={project.demoHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
+                      >
+                        View live demo
+                      </a>
+                    ) : null}
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                      >
+                        View GitHub case study
+                      </a>
+                    ) : (
+                      <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                        GitHub link coming soon
+                      </span>
+                    )}
+                  </div>
                 </div>
               </article>
             );
