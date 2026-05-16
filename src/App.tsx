@@ -5,6 +5,9 @@ import {
   BriefcaseBusiness,
   Bug,
   CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Code,
   Code2,
   Copy,
@@ -135,7 +138,7 @@ const skillCategories: SkillCategory[] = [
   {
     category: "Cloud Platforms",
     icon: Globe,
-    skills: ["Azure App Service", "Azure SQL", "Vercel", "Supabase", "DigitalOcean / VPS Hosting"],
+    skills: ["Azure App Service", "Azure SQL", "Vercel", "Railway", "Supabase", "DigitalOcean / VPS Hosting"],
   },
   {
     category: "Infrastructure & Deployment",
@@ -160,70 +163,70 @@ const services = [
     description: "Build practical web applications with API-backed features, usable screens, and maintainable frontend/backend code.",
     fit: "Best for teams that need business software delivered across both UI and backend concerns.",
     icon: Code2,
-    technologies: ["React", "TypeScript", ".NET", "SQL Server"],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "ASP.NET Core", "SQL Server", "PostgreSQL"],
   },
   {
     title: "Backend API Development",
     description: "Design, build, and maintain REST APIs, authentication flows, database-backed features, and service integrations.",
     fit: "Best for teams that need reliable backend delivery, clear contracts, and production-aware development.",
     icon: Server,
-    technologies: ["ASP.NET Core", "C#", "REST APIs", "SQL Server", "Entity Framework Core"],
+    technologies: ["ASP.NET Core", "C#", "REST APIs", "Entity Framework Core", "SQL Server", "JWT/OAuth", "API Gateways"],
   },
   {
     title: "Business Systems and Internal Tools",
     description: "Create workflow tools, admin modules, dashboards, and reporting screens that support daily operations.",
     fit: "Best for companies replacing spreadsheets, manual tracking, or disconnected operational processes.",
     icon: Workflow,
-    technologies: [".NET", "React", "SQL Server", "PostgreSQL"],
+    technologies: [".NET", "React", "TypeScript", "SQL Server", "PostgreSQL", "Background Jobs", "Tailwind CSS"],
   },
   {
     title: "Database-Backed Applications",
     description: "Model data, write queries, optimize database access, and connect application workflows to reliable storage.",
     fit: "Best for applications where data quality, reporting, and operational correctness matter.",
     icon: Database,
-    technologies: ["SQL Server", "Stored Procedures", "Query Optimization", "PostgreSQL"],
+    technologies: ["SQL Server", "PostgreSQL", "Azure SQL", "Entity Framework Core", "Stored Procedures", "Query Optimization"],
   },
   {
     title: "API and Webhook Integrations",
     description: "Connect systems through REST APIs, webhook flows, background jobs, and practical integration checks.",
     fit: "Best for teams that need applications to exchange data cleanly with other services.",
     icon: Code,
-    technologies: ["REST APIs", "API Integration", "API Gateways", "Webhooks", "Background Jobs", "Hangfire", "Postman"],
+    technologies: ["REST APIs", "API Integration", "API Gateways", "Webhooks", "Background Jobs", "Payment Gateways", "Postman"],
   },
   {
     title: "Automation Workflows",
     description: "Design workflow automation that reduces repetitive work, manual data handling, and operational friction.",
     fit: "Best for teams with recurring business processes that can be simplified through software.",
     icon: Workflow,
-    technologies: ["Python", "FastAPI", "Webhooks", "API-based Automation", "n8n", "Make.com", "Zapier"],
+    technologies: ["n8n", "Make.com", "Zapier", "Webhooks", "API-based Workflow Automation", "Postman"],
   },
   {
     title: "AI-Assisted Business Features",
     description: "Add AI-assisted features that support business workflows, summarize information, or help users work faster.",
     fit: "Best for teams exploring AI or automation with a business-first, MVP-focused approach.",
     icon: Sparkles,
-    technologies: ["TypeScript", "Node.js", "Python", "FastAPI", "React"],
+    technologies: ["OpenAI API", "DeepSeek", "LLM Integration", "Prompt Engineering", "TypeScript", "Python", "FastAPI"],
   },
   {
     title: "Admin Dashboard / Reporting System",
     description: "Build dashboard views, filters, tables, reports, and admin interfaces for operational visibility.",
     fit: "Best for businesses that need clearer data and faster daily decision-making.",
     icon: Globe,
-    technologies: ["React", "TypeScript", "SQL Server", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "SQL Server", "PostgreSQL"],
   },
   {
     title: "Bug Fixing and Production Troubleshooting",
     description: "Investigate failed requests, environment issues, query problems, data mismatches, and release risks.",
     fit: "Best for teams that need someone comfortable tracing issues across code, APIs, logs, and databases.",
     icon: Bug,
-    technologies: [".NET", "Serilog", "SQL Server", "Postman"],
+    technologies: [".NET", "Serilog", "SQL Server", "Postman", "Query Optimization", "REST APIs"],
   },
   {
     title: "Cloud Deployment & CI/CD Setup",
     description: "Set up practical deployment flows, service hosting, environment configuration, and build pipelines.",
     fit: "Best for projects that need a more reliable path from development to live environments.",
     icon: BriefcaseBusiness,
-    technologies: ["Docker", "GitHub Actions", "Vercel", "Azure App Service"],
+    technologies: ["Docker", "GitHub Actions CI/CD", "Vercel", "Railway", "Azure App Service", "Environment Variables"],
   },
   {
     title: "Cloud Solutions and Infrastructure Setup",
@@ -231,7 +234,7 @@ const services = [
       "Deploy and configure web applications using cloud platforms, VPS hosting, reverse proxies, custom domains, SSL, and environment-based configuration.",
     fit: "Best for teams that need applications moved from local development into a usable, maintainable hosted environment.",
     icon: Globe,
-    technologies: ["Azure App Service", "Azure SQL", "DigitalOcean / VPS Hosting", "Nginx", "Linux VPS", "SSL"],
+    technologies: ["Azure App Service", "Azure SQL", "Supabase", "DigitalOcean / VPS Hosting", "Nginx", "Linux VPS", "DNS / Custom Domains", "SSL"],
   },
 ];
 
@@ -265,19 +268,37 @@ const audiences = [
 
 const projects = [
   {
-    title: "Business Operations SaaS Case Study",
+    category: "private-professional-work",
+    title: "Business Operations SaaS Application",
     subtitle: "Cloud workspace for water refilling operations",
     problem: "Water refilling stations need clearer workflows for customers, products, orders, payments, inventory, and daily operations.",
     contribution:
       "Designed the public case-study story around a modular business system with API-backed workflows, operational dashboards, auth/tenancy thinking, and deployment considerations.",
     result:
       "Shows how I approach real business software: practical modules, maintainable backend boundaries, data ownership, and operations-focused UX.",
-    technologies: [".NET", "React", "PostgreSQL", "REST APIs", "Cloud Deployment"],
+    technologies: [".NET", "Entity Framework Core", "React", "PostgreSQL", "Clerk", "JWT/OAuth", "Payment Gateways", "REST APIs", "Cloud Deployment"],
     href: "https://github.com/danilomabulac/aquatrack-case-study",
     icon: Database,
+    privateLabel: "Request a demo",
   },
   {
-    title: "Career Workspace SaaS Case Study",
+    category: "live-demos",
+    title: "AI Travel Itinerary Planner Application",
+    subtitle: "A smart trip-planning demo for generating map-ready day itineraries",
+    problem:
+      "Planning a local trip often involves jumping between maps, reviews, opening hours, and scattered recommendations. Users need a faster way to turn a travel idea into a usable plan.",
+    contribution:
+      "Designed a frontend experience where users can enter a location and travel vibe, generate a structured itinerary, review suggested stops, and prepare the flow for map and place validation through an external API.",
+    result:
+      "Demonstrates practical AI product thinking: turning a natural language prompt into a useful travel workflow with structured output, validation points, and a mobile-friendly planning experience.",
+    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Leaflet", "PWA", ".NET API", "Google Maps API", "Google Places API", "Gemini", "DeepSeek", "Grok", "Supabase", "Vercel", "Railway"],
+    demoHref: "https://gala-tayo.vercel.app/",
+    icon: Globe,
+    caseStudyLabel: "Case study coming soon",
+  },
+  {
+    category: "live-demos",
+    title: "Career Workspace SaaS Application",
     subtitle: "Job application tracker with AI mentor support",
     problem: "Job seekers need one workspace to track applications, statuses, follow-ups, notes, momentum, and guidance without relying on scattered spreadsheets.",
     contribution:
@@ -290,6 +311,7 @@ const projects = [
     icon: BriefcaseBusiness,
   },
   {
+    category: "live-demos",
     title: "Notification Infrastructure Case Study",
     subtitle: "Lightweight notification service for existing applications",
     problem: "Applications often need notification workflows without building a full notification platform from scratch.",
@@ -297,11 +319,13 @@ const projects = [
       "Documented an event-based notification service model with applications, subscribers, templates, API keys, inbox state, and integration safety.",
     result:
       "Highlights API design, platform thinking, auth boundaries, integration workflows, and infrastructure-style product development.",
-    technologies: ["FastAPI", "Next.js", "PostgreSQL", "Clerk", "API Integration"],
+    technologies: ["FastAPI", "Next.js", "PostgreSQL", "Clerk", "Railway", "API Integration"],
     href: "https://github.com/danilomabulac/signalkit-case-study",
+    demoHref: "http://signalkit-webapp-nextjs.vercel.app/",
     icon: Server,
   },
   {
+    category: "deployment-infrastructure",
     title: "Production Deployment Pipeline Case Study",
     subtitle: "From local web app to live VPS deployment",
     problem:
@@ -314,6 +338,7 @@ const projects = [
     icon: Globe,
   },
   {
+    category: "automation-workflows",
     title: "AI Client Intake Automation Case Study",
     subtitle: "IntakeFlow demo for turning inquiries into reviewable work",
     problem:
@@ -326,6 +351,76 @@ const projects = [
     href: "https://github.com/danilomabulac/intakeflow-case-study",
     demoHref: "https://intakeflow-demo.vercel.app/",
     icon: Sparkles,
+  },
+  {
+    category: "private-professional-work",
+    title: "Enterprise .NET Systems",
+    subtitle: "Professional work on private business applications",
+    problem:
+      "Enterprise teams need stable systems that support real users, business workflows, production fixes, and ongoing feature delivery.",
+    contribution:
+      "Built, maintained, debugged, and enhanced private web applications across UI, API, and database layers while working with production issues and business requirements.",
+    result:
+      "Represents professional experience with maintainable business software, REST APIs, SQL-backed workflows, and production support.",
+    technologies: ["C#", "ASP.NET Core", "ASP.NET MVC", "SQL Server", "REST APIs", "Entity Framework Core"],
+    icon: Code2,
+    privateLabel: "Request a work summary",
+  },
+  {
+    category: "private-professional-work",
+    title: "Client Web & Windows Applications",
+    subtitle: "Independent work with international client support",
+    problem:
+      "Clients often need practical improvements, troubleshooting, and support for existing web or Windows applications without exposing their private source code.",
+    contribution:
+      "Handled client interaction, issue clarification, application support, and practical fixes for web and Windows-based systems outside full-time roles.",
+    result:
+      "Shows communication, debugging, and delivery experience in client-facing software work while keeping private implementation details protected.",
+    technologies: [".NET", "SQL Server", "JavaScript", "HTML", "CSS", "Postman", "Git"],
+    icon: BriefcaseBusiness,
+    privateLabel: "Request a work summary",
+  },
+  {
+    category: "automation-workflows",
+    title: "File Processing Automation Workflow",
+    subtitle: "n8n webhook for extracting structured data from uploaded files",
+    problem:
+      "Teams receive PDFs, spreadsheets, and documents that still require manual extraction before data can be reviewed or used by another system.",
+    contribution:
+      "Built and tested an n8n webhook workflow that accepts a file plus a process type, routes the request, extracts file content, and returns structured output through an API-style response.",
+    result:
+      "Demonstrates practical workflow automation with webhooks, file extraction, Postman testing, and a foundation for reusable document-processing services.",
+    technologies: ["n8n", "Webhooks", "API-based Workflow Automation", "Postman", "PDF Extraction"],
+    icon: Workflow,
+    privateLabel: "Request workflow demo",
+  },
+];
+
+const projectSections = [
+  {
+    id: "live-demos",
+    title: "Live Product Demos",
+    description: "Working applications that visitors can open and try. Public source may stay private, with case-study repos used for explanation.",
+  },
+  {
+    id: "public-case-studies",
+    title: "Public Case Studies",
+    description: "Public write-ups and GitHub case-study repos for projects where the sanitized case-study artifact is the main proof.",
+  },
+  {
+    id: "private-professional-work",
+    title: "Private / Professional Work",
+    description: "Real products, professional work, and client-style systems that can be discussed without exposing private source code or production details.",
+  },
+  {
+    id: "automation-workflows",
+    title: "Automation & AI Workflows",
+    description: "Workflow automation, file processing, AI-assisted intake, and integration-focused systems.",
+  },
+  {
+    id: "deployment-infrastructure",
+    title: "Deployment & Infrastructure",
+    description: "Hosting, VPS deployment, CI/CD, domains, SSL, and production-style delivery paths.",
   },
 ];
 
@@ -394,6 +489,7 @@ const targetRoles = [
 
 const skillIcons: Record<string, LucideIcon> = {
   ".NET": Code2,
+  ".NET API": Server,
   "C#": Code2,
   "VB.NET": Code2,
   "ASP.NET": Server,
@@ -403,6 +499,7 @@ const skillIcons: Record<string, LucideIcon> = {
   "Stored Procedures": Database,
   "Query Optimization": Database,
   React: Globe,
+  Leaflet: Globe,
   "Next.js": Globe,
   TypeScript: Code2,
   "Node.js": Server,
@@ -416,6 +513,7 @@ const skillIcons: Record<string, LucideIcon> = {
   "GitHub Actions": Workflow,
   "GitHub Actions CI/CD": Workflow,
   Vercel: Globe,
+  Railway: Globe,
   PostgreSQL: Database,
   Supabase: Database,
   "DigitalOcean / VPS Hosting": Globe,
@@ -425,6 +523,7 @@ const skillIcons: Record<string, LucideIcon> = {
   Clerk: Server,
   "API Integration": Workflow,
   "API Gateways": Server,
+  "Payment Gateways": Workflow,
   Webhooks: Workflow,
   "Background Jobs": Workflow,
   Hangfire: Workflow,
@@ -434,7 +533,12 @@ const skillIcons: Record<string, LucideIcon> = {
   "DNS / Custom Domains": Globe,
   SSL: Server,
   "OpenAI API": Sparkles,
+  "Google Maps API": Globe,
+  "Google Places API": Globe,
+  Gemini: Sparkles,
   DeepSeek: Sparkles,
+  Grok: Sparkles,
+  PWA: Globe,
   "LLM Integration": Sparkles,
   "Prompt Engineering": Sparkles,
   "AI Workflow Automation": Sparkles,
@@ -452,6 +556,7 @@ const skillIcons: Record<string, LucideIcon> = {
 
 const skillColors: Record<string, string> = {
   ".NET": "text-purple-600 dark:text-purple-400",
+  ".NET API": "text-purple-600 dark:text-purple-400",
   "C#": "text-purple-600 dark:text-purple-400",
   "VB.NET": "text-purple-600 dark:text-purple-400",
   "ASP.NET": "text-purple-600 dark:text-purple-400",
@@ -462,6 +567,7 @@ const skillColors: Record<string, string> = {
   TypeScript: "text-blue-600 dark:text-blue-400",
   JavaScript: "text-yellow-600 dark:text-yellow-400",
   React: "text-cyan-600 dark:text-cyan-400",
+  Leaflet: "text-emerald-600 dark:text-emerald-400",
   "Next.js": "text-slate-700 dark:text-slate-300",
   "Node.js": "text-green-600 dark:text-green-400",
   Python: "text-blue-600 dark:text-blue-400",
@@ -500,8 +606,10 @@ const skillColors: Record<string, string> = {
   "GitHub Actions": "text-slate-700 dark:text-slate-300",
   "GitHub Actions CI/CD": "text-slate-700 dark:text-slate-300",
   Vercel: "text-slate-700 dark:text-slate-300",
+  Railway: "text-slate-700 dark:text-slate-300",
   "JWT/OAuth": "text-emerald-600 dark:text-emerald-400",
   Clerk: "text-violet-600 dark:text-violet-400",
+  "Payment Gateways": "text-emerald-600 dark:text-emerald-400",
   Serilog: "text-orange-600 dark:text-orange-400",
   Hangfire: "text-violet-600 dark:text-violet-400",
   Redis: "text-red-600 dark:text-red-400",
@@ -512,6 +620,11 @@ const skillColors: Record<string, string> = {
   "Environment Variables": "text-emerald-600 dark:text-emerald-400",
   "DNS / Custom Domains": "text-cyan-600 dark:text-cyan-400",
   SSL: "text-emerald-600 dark:text-emerald-400",
+  "Google Maps API": "text-blue-600 dark:text-blue-400",
+  "Google Places API": "text-blue-600 dark:text-blue-400",
+  Gemini: "text-violet-600 dark:text-violet-400",
+  Grok: "text-violet-600 dark:text-violet-400",
+  PWA: "text-cyan-600 dark:text-cyan-400",
   "Modular Monolith": "text-violet-600 dark:text-violet-400",
   "Clean Architecture": "text-violet-600 dark:text-violet-400",
   "SOLID Principles": "text-violet-600 dark:text-violet-400",
@@ -520,6 +633,7 @@ const skillColors: Record<string, string> = {
 const techColors: Record<string, string> = {
   ".NET": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   ".NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
+  ".NET API": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "C#": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "ASP.NET": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
   "ASP.NET Core": "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800",
@@ -528,7 +642,9 @@ const techColors: Record<string, string> = {
   "Next.js": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   TypeScript: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   React: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  Leaflet: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "Tailwind CSS": "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  PWA: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
   "Route Handlers": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "External AI/Webhook": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   "Node.js": "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
@@ -541,6 +657,7 @@ const techColors: Record<string, string> = {
   "GitHub Actions": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   "GitHub Actions CI/CD": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   Vercel: "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  Railway: "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   "Azure App Service": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   "Azure SQL": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   "SQL Server": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
@@ -565,12 +682,17 @@ const techColors: Record<string, string> = {
   "Make.com": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Zapier: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   Clerk: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "Payment Gateways": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   DeepSeek: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Hangfire: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Postman: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   Serilog: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   SSL: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "OpenAI API": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  "Google Maps API": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "Google Places API": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  Gemini: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
+  Grok: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
 };
 
 function scrollToSection(sectionId: string) {
@@ -1064,15 +1186,18 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
                 <p className="mb-4 border-l-2 border-slate-200 pl-3 text-sm leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400">
                   {service.fit}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {service.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className={`rounded-md px-3 py-1.5 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="border-t border-slate-100 pt-4 dark:border-slate-800">
+                  <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Relevant stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {service.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className={`rounded-md px-3 py-1.5 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </article>
             );
@@ -1232,135 +1357,236 @@ function MessageFormModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 }
 
 function Projects() {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections((current) => ({
+      ...current,
+      [sectionId]: !current[sectionId],
+    }));
+  };
+
+  const scrollProjectSection = (sectionId: string, direction: -1 | 1) => {
+    const carousel = document.getElementById(`project-carousel-${sectionId}`);
+    if (!carousel) return;
+
+    carousel.scrollBy({
+      left: direction * Math.max(carousel.clientWidth * 0.9, 320),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="projects" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
       <div className="mx-auto max-w-5xl">
-        <SectionLabel>selected case studies</SectionLabel>
+        <SectionLabel>projects & case studies</SectionLabel>
 
         <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
           <p>
-            These public case studies are written to show product thinking, architecture decisions, business value, and
-            implementation approach without exposing private source code, secrets, production configuration, or customer
-            data.
+            Work is grouped by what visitors can safely access: live demos, public case studies, private professional
+            work, automation workflows, and deployment/infrastructure proof. Public links stay separate from private
+            source code, secrets, production configuration, and customer data.
           </p>
         </div>
 
-        <div className="space-y-8">
-          {projects.map((project) => {
-            const Icon = project.icon;
+        <div className="mb-6 flex flex-wrap items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900/40">
+          <span className="rounded-md border border-rose-200 bg-rose-50 px-2 py-1 font-mono text-xs text-rose-600 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300">
+            More demos and case studies coming soon
+          </span>
+          <span className="text-sm text-slate-600 dark:text-slate-400">
+            Public links are added as projects are cleaned up, deployed, and safe to share.
+          </span>
+        </div>
+
+        <div className="space-y-5">
+          {projectSections.map((section) => {
+            const sectionProjects = projects.filter((project) => project.category === section.id);
+            const isOpen = openSections[section.id] ?? false;
+
+            if (sectionProjects.length === 0) return null;
+
             return (
-              <article
-                key={project.title}
-                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
-              >
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                      <Icon className="size-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">{project.subtitle}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    {project.demoHref ? (
-                      <a
-                        href={project.demoHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                        title="View live demo"
-                      >
-                        <ExternalLink className="size-4" />
-                      </a>
-                    ) : (
-                      <a
-                        href="#contact"
-                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                        title="Ask about this project"
-                      >
-                        <ExternalLink className="size-4" />
-                      </a>
-                    )}
-                    {project.href ? (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                        title="View GitHub case study"
-                      >
-                        <Github className="size-4" />
-                      </a>
-                    ) : (
-                      <span
-                        className="rounded-lg p-2 text-slate-400 transition-all dark:text-slate-600"
-                        title="GitHub link coming soon"
-                      >
-                        <Github className="size-4" />
+              <div key={section.id} className="rounded-lg border border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-900/30">
+                <button
+                  type="button"
+                  onClick={() => toggleSection(section.id)}
+                  className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white dark:hover:bg-slate-900/60"
+                  aria-expanded={isOpen}
+                >
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{section.title}</h3>
+                      <span className="rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
+                        {sectionProjects.length} {sectionProjects.length === 1 ? "item" : "items"}
                       </span>
-                    )}
+                    </div>
+                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">{section.description}</p>
                   </div>
-                </div>
-                <div className="mb-5 grid gap-4 md:grid-cols-3">
-                  <div>
-                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Problem</h4>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.problem}</p>
-                  </div>
-                  <div>
-                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Contribution</h4>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.contribution}</p>
-                  </div>
-                  <div>
-                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Value</h4>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                  <ChevronDown className={`mt-1 size-5 flex-none text-slate-500 transition-transform dark:text-slate-400 ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {isOpen ? (
+                  <div className="border-t border-slate-200 p-5 dark:border-slate-800">
+                    {sectionProjects.length > 1 ? (
+                      <div className="mb-4 flex justify-end gap-2">
+                        <button
+                          type="button"
+                          onClick={() => scrollProjectSection(section.id, -1)}
+                          className="rounded-lg border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                          aria-label={`Scroll ${section.title} left`}
+                          title="Previous"
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          <ChevronLeft className="size-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => scrollProjectSection(section.id, 1)}
+                          className="rounded-lg border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                          aria-label={`Scroll ${section.title} right`}
+                          title="Next"
+                        >
+                          <ChevronRight className="size-4" />
+                        </button>
+                      </div>
+                    ) : null}
+                    <div
+                      id={`project-carousel-${section.id}`}
+                      className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:thin]"
+                    >
+                    {sectionProjects.map((project) => {
+                      const Icon = project.icon;
+                      return (
+                        <article
+                          key={project.title}
+                          className="group w-full flex-none snap-start rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50 md:w-[calc(100%-3rem)]"
+                        >
+                          <div className="mb-4 flex items-start justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                                <Icon className="size-5" />
+                              </div>
+                              <div>
+                                <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                                  {project.title}
+                                </h3>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">{project.subtitle}</p>
+                              </div>
+                            </div>
+                            <div className="flex gap-2">
+                              {project.demoHref ? (
+                                <a
+                                  href={project.demoHref}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                                  title="View live demo"
+                                >
+                                  <ExternalLink className="size-4" />
+                                </a>
+                              ) : (
+                                <a
+                                  href="#contact"
+                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                                  title="Ask about this project"
+                                >
+                                  <ExternalLink className="size-4" />
+                                </a>
+                              )}
+                              {project.href ? (
+                                <a
+                                  href={project.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                                  title="View GitHub case study"
+                                >
+                                  <Github className="size-4" />
+                                </a>
+                              ) : (
+                                <span
+                                  className="rounded-lg p-2 text-slate-400 transition-all dark:text-slate-600"
+                                  title={project.privateLabel ?? "GitHub link coming soon"}
+                                >
+                                  <Github className="size-4" />
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="mb-5 grid gap-4 md:grid-cols-3">
+                            <div>
+                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Problem</h4>
+                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.problem}</p>
+                            </div>
+                            <div>
+                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Contribution</h4>
+                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.contribution}</p>
+                            </div>
+                            <div>
+                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Value</h4>
+                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
+                            </div>
+                          </div>
+                          <div className="space-y-3">
+                            <div>
+                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Stack</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                  <span
+                                    key={tech}
+                                    className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-3 dark:border-slate-800">
+                              {project.demoHref ? (
+                                <a
+                                  href={project.demoHref}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
+                                >
+                                  View live demo
+                                </a>
+                              ) : (
+                                project.privateLabel ? (
+                                  <a
+                                    href="#contact"
+                                    className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
+                                  >
+                                    {project.privateLabel}
+                                  </a>
+                                ) : (
+                                  <span className="rounded-md border border-rose-100 bg-rose-50/60 px-3 py-1.5 font-mono text-xs text-rose-500 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-400">
+                                    Live demo soon
+                                  </span>
+                                )
+                              )}
+                              {project.href ? (
+                                <a
+                                  href={project.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                                >
+                                  View GitHub case study
+                                </a>
+                              ) : project.privateLabel || project.demoHref ? null : (
+                                <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                                  {project.caseStudyLabel ?? "GitHub link coming soon"}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </article>
+                      );
+                    })}
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-3 dark:border-slate-800">
-                    {project.demoHref ? (
-                      <a
-                        href={project.demoHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
-                      >
-                        View live demo
-                      </a>
-                    ) : null}
-                    {project.href ? (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-                      >
-                        View GitHub case study
-                      </a>
-                    ) : (
-                      <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
-                        GitHub link coming soon
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </article>
+                ) : null}
+              </div>
             );
           })}
         </div>
