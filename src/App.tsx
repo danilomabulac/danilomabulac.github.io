@@ -33,11 +33,11 @@ import type { LucideIcon } from "lucide-react";
 const resumeRequestFormId = "mgodqrzn";
 
 const navItems = [
-  { label: "about", id: "about" },
+  { label: "work", id: "projects" },
+  { label: "services", id: "services" },
   { label: "clients", id: "clients" },
   { label: "skills", id: "skills" },
-  { label: "services", id: "services" },
-  { label: "work", id: "projects" },
+  { label: "about", id: "about" },
   { label: "roles", id: "roles" },
   { label: "contact", id: "contact" },
 ];
@@ -90,78 +90,61 @@ type SkillCategory = {
 
 const skillCategories: SkillCategory[] = [
   {
-    category: "Professional Experience",
+    category: "Enterprise Backend Mastery",
     icon: Code2,
     skills: [
       "C#",
-      "VB.NET",
+      ".NET 10 / ASP.NET Core",
       "ASP.NET Core",
       "ASP.NET MVC",
-      "REST APIs",
+      "REST Web APIs",
       "Entity Framework Core",
       "SQL Server",
+      "PostgreSQL",
       "Stored Procedures",
-      "Query Optimization",
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Bootstrap",
-      "Git",
-      "Jira",
-      "Postman",
-    ],
-  },
-  {
-    category: "Hireable Web Stack",
-    icon: Globe,
-    skills: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "PostgreSQL", "Supabase", "Prisma", "Drizzle", "Python", "FastAPI"],
-  },
-  {
-    category: "Backend / Production Focus",
-    icon: Server,
-    skills: [
-      "JWT/OAuth",
-      "Clerk",
+      "Advanced Query Optimization",
+      "ADO.NET",
       "Dependency Injection",
-      "API Integration",
-      "API Gateways",
-      "Webhooks",
-      "Background Jobs",
-      "Serilog",
-      "Hangfire",
-      "Redis",
-      "Modular Monolith",
-      "Clean Architecture",
+      "JWT/OAuth",
+      "Clean Architecture Monoliths",
       "SOLID Principles",
     ],
   },
   {
-    category: "Cloud Platforms",
+    category: "Fast Frontend Engineering",
     icon: Globe,
-    skills: ["Azure App Service", "Azure SQL", "Vercel", "Railway", "Supabase", "DigitalOcean / VPS Hosting"],
+    skills: ["React", "Next.js (App Router)", "TypeScript", "Node.js", "Tailwind CSS", "JavaScript (ES6+)", "HTML5 / CSS3", "Bootstrap Framework", "Responsive Mobile-First Design (PWA)"],
   },
   {
-    category: "Infrastructure & Deployment",
-    icon: BriefcaseBusiness,
-    skills: ["Docker", "Nginx", "Linux", "Linux VPS", "systemd", "GitHub Actions CI/CD", "Environment Variables", "DNS / Custom Domains", "SSL"],
+    category: "Production Ops & Infrastructure",
+    icon: Server,
+    skills: [
+      "Docker Containerization",
+      "Nginx Reverse Proxy Setup",
+      "Linux / Ubuntu VPS Management",
+      "systemd Process Monitoring",
+      "GitHub Actions CI/CD Pipelines",
+      "SSL Configuration",
+      "DNS Routing",
+      "Environment Variable Matrix Management",
+      "Postman API Automation",
+      "Serilog Error Logging",
+      "Hangfire Asynchronous Background Tasks",
+      "Redis Caching",
+    ],
   },
   {
-    category: "AI & Automation",
+    category: "AI Integration & Workflow Automation",
     icon: Sparkles,
-    skills: ["OpenAI API", "DeepSeek", "LLM Integration", "Prompt Engineering", "AI Workflow Automation", "API-based Automation"],
-  },
-  {
-    category: "Automation Platforms",
-    icon: Workflow,
-    skills: ["n8n", "Make.com", "Zapier", "API-based Workflow Automation"],
+    skills: ["DeepSeek API Core Integration", "OpenAI Suite", "Advanced Prompt Engineering Architecture", "n8n Deployment", "Make.com Nodes", "Zapier Logic", "Custom Structural Webhooks"],
   },
 ];
 
 const services = [
   {
     title: "Business Web Application Development",
-    description: "Build practical web applications with API-backed features, usable screens, and maintainable frontend/backend code.",
-    fit: "Best for teams that need business software delivered across both UI and backend concerns.",
+    description: "Build decoupled web applications that connect modern React or Next.js interfaces to reliable backend APIs.",
+    fit: "Best for teams that need production-ready MVPs or business systems delivered across UI, API, and database layers.",
     icon: Code2,
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "ASP.NET Core", "SQL Server", "PostgreSQL"],
   },
@@ -174,8 +157,8 @@ const services = [
   },
   {
     title: "Business Systems and Internal Tools",
-    description: "Create workflow tools, admin modules, dashboards, and reporting screens that support daily operations.",
-    fit: "Best for companies replacing spreadsheets, manual tracking, or disconnected operational processes.",
+    description: "Create workflow tools, admin modules, dashboards, and reporting screens that organize daily operations into one usable system.",
+    fit: "Best for companies replacing manual paperwork, spreadsheet tracking, or disconnected operational processes.",
     icon: Workflow,
     technologies: [".NET", "React", "TypeScript", "SQL Server", "PostgreSQL", "Background Jobs", "Tailwind CSS"],
   },
@@ -195,7 +178,7 @@ const services = [
   },
   {
     title: "Automation Workflows",
-    description: "Design workflow automation that reduces repetitive work, manual data handling, and operational friction.",
+    description: "Design automated workflow channels that reduce repetitive work, manual data handling, and operational friction.",
     fit: "Best for teams with recurring business processes that can be simplified through software.",
     icon: Workflow,
     technologies: ["n8n", "Make.com", "Zapier", "Webhooks", "API-based Workflow Automation", "Postman"],
@@ -223,7 +206,7 @@ const services = [
   },
   {
     title: "Cloud Deployment & CI/CD Setup",
-    description: "Set up practical deployment flows, service hosting, environment configuration, and build pipelines.",
+    description: "Set up practical deployment flows, service hosting, environment configuration, build pipelines, and live release paths.",
     fit: "Best for projects that need a more reliable path from development to live environments.",
     icon: BriefcaseBusiness,
     technologies: ["Docker", "GitHub Actions CI/CD", "Vercel", "Railway", "Azure App Service", "Environment Variables"],
@@ -246,12 +229,12 @@ const audiences = [
   },
   {
     title: "Startups and MVPs",
-    description: "Founders who need a practical first version of a web app, SaaS workflow, API, or operations platform.",
+    description: "Founders who need a functional first version of a web app, SaaS workflow, API, or operations platform.",
     icon: Sparkles,
   },
   {
-    title: "Companies Hiring Developers",
-    description: "Engineering teams looking for .NET, backend, full-stack, API integration, or application support capability.",
+    title: "Software Development Agencies",
+    description: "Teams with a clear backlog, structured tickets, or client project work that needs reliable execution support.",
     icon: Code2,
   },
   {
@@ -266,59 +249,123 @@ const audiences = [
   },
 ];
 
-const projects = [
+const capabilityHighlights = [
+  {
+    title: "Production-Ready MVPs",
+    description: "Turn clear requirements, tickets, or wireframes into working web applications with frontend, backend, database, and deployment covered.",
+    icon: Sparkles,
+  },
+  {
+    title: "Decoupled Web Systems",
+    description: "Build React or Next.js interfaces connected to typed .NET, FastAPI, or integration-focused backend APIs.",
+    icon: Code2,
+  },
+  {
+    title: "Automation & AI Workflows",
+    description: "Design intake, file-processing, webhook, and AI-assisted workflows that reduce manual operations work.",
+    icon: Workflow,
+  },
+  {
+    title: "Deployment Support",
+    description: "Prepare projects for real hosting with CI/CD, cloud platforms, VPS setup, domains, SSL, and environment configuration.",
+    icon: Server,
+  },
+];
+
+type ProjectScreenshot = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
+type ActivePreview = ProjectScreenshot & {
+  projectTitle: string;
+};
+
+type Project = {
+  category: string;
+  title: string;
+  subtitle: string;
+  problem: string;
+  contribution: string;
+  result: string;
+  technologies: string[];
+  icon: LucideIcon;
+  href?: string;
+  demoHref?: string;
+  privateLabel?: string;
+  caseStudyLabel?: string;
+  screenshots?: ProjectScreenshot[];
+};
+
+const projects: Project[] = [
   {
     category: "private-professional-work",
-    title: "Business Operations SaaS Application",
-    subtitle: "Cloud workspace for water refilling operations",
-    problem: "Water refilling stations need clearer workflows for customers, products, orders, payments, inventory, and daily operations.",
+    title: "Business Operations SaaS Platform",
+    subtitle: "Cloud-based architecture for water refilling operations and delivery tracking",
+    problem: "Delivery-heavy local businesses deal with tracking friction, manual order bookkeeping, and disconnected logistics.",
     contribution:
-      "Designed the public case-study story around a modular business system with API-backed workflows, operational dashboards, auth/tenancy thinking, and deployment considerations.",
+      "Designed an end-to-end multi-tenant business system with structured order workflows, operational dashboards, auth boundaries, and a mobile-first interface for field users.",
     result:
-      "Shows how I approach real business software: practical modules, maintainable backend boundaries, data ownership, and operations-focused UX.",
-    technologies: [".NET", "Entity Framework Core", "React", "PostgreSQL", "Clerk", "JWT/OAuth", "Payment Gateways", "REST APIs", "Cloud Deployment"],
+      "Demonstrates complex business workflow modeling, multi-tenant data boundaries, secure API design, and practical PWA-style accessibility for operations teams.",
+    technologies: [".NET", "Entity Framework Core", "PostgreSQL", "Next.js", "Tailwind CSS", "PWA", "Clerk", "JWT/OAuth", "Payment Gateways", "REST APIs"],
     href: "https://github.com/danilomabulac/aquatrack-case-study",
     icon: Database,
     privateLabel: "Request a demo",
+    screenshots: [
+      { src: "/project-screenshots/aquatrack/landing.png", alt: "Business operations SaaS landing page", label: "Landing" },
+      { src: "/project-screenshots/aquatrack/dashboard.png", alt: "Business operations SaaS dashboard", label: "Dashboard" },
+      { src: "/project-screenshots/aquatrack/orders.png", alt: "Business operations SaaS orders page", label: "Orders" },
+    ],
   },
   {
     category: "live-demos",
-    title: "AI Travel Itinerary Planner Application",
-    subtitle: "A smart trip-planning demo for generating map-ready day itineraries",
+    title: "AI Travel Itinerary Planner",
+    subtitle: "Smart trip-generation platform with interactive spatial mapping",
     problem:
-      "Planning a local trip often involves jumping between maps, reviews, opening hours, and scattered recommendations. Users need a faster way to turn a travel idea into a usable plan.",
+      "Planning structured local travel forces users to jump between maps, reviews, opening hours, and fragmented notes.",
     contribution:
-      "Designed a frontend experience where users can enter a location and travel vibe, generate a structured itinerary, review suggested stops, and prepare the flow for map and place validation through an external API.",
+      "Built a lightweight PWA that accepts natural language travel prompts, coordinates AI-generated structured outputs, and presents map-ready stops through a responsive planning interface.",
     result:
-      "Demonstrates practical AI product thinking: turning a natural language prompt into a useful travel workflow with structured output, validation points, and a mobile-friendly planning experience.",
+      "Shows practical AI product work: structured prompt output, API contract validation, third-party map integration, and mobile-first itinerary UX.",
     technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Leaflet", "PWA", ".NET API", "Google Maps API", "Google Places API", "Gemini", "DeepSeek", "Grok", "Supabase", "Vercel", "Railway"],
     demoHref: "https://gala-tayo.vercel.app/",
     icon: Globe,
     caseStudyLabel: "Case study coming soon",
+    screenshots: [
+      { src: "/project-screenshots/gala-tayo/landing.png", alt: "AI travel itinerary planner landing page", label: "Landing" },
+      { src: "/project-screenshots/gala-tayo/planner.png", alt: "AI travel itinerary planner prompt page", label: "Planner" },
+      { src: "/project-screenshots/gala-tayo/routes.png", alt: "AI travel itinerary planner route view", label: "Routes" },
+    ],
   },
   {
     category: "live-demos",
     title: "Career Workspace SaaS Application",
-    subtitle: "Job application tracker with AI mentor support",
-    problem: "Job seekers need one workspace to track applications, statuses, follow-ups, notes, momentum, and guidance without relying on scattered spreadsheets.",
+    subtitle: "Focused job pipeline tracker with contextual AI mentor support",
+    problem: "Job applicants manage multiple interview stages, follow-ups, notes, and decisions across scattered tools.",
     contribution:
-      "Framed the product as a career workspace that can start personal and grow into a SaaS-style tool with structured tracking, reminders, reporting, and DeepSeek-powered AI mentor support.",
+      "Built an integrated pipeline workspace for status tracking, interaction logs, follow-up planning, and DeepSeek-powered AI mentor support.",
     result:
-      "Demonstrates my ability to turn a personal productivity pain into a practical product concept with SaaS and AI-assisted coaching potential.",
+      "Demonstrates SaaS workflow design, authenticated user experience, structured data tracking, and practical AI assistance inside a focused product.",
     technologies: ["Next.js", "TypeScript", "Supabase", "Prisma", "Clerk", "DeepSeek"],
     href: "https://github.com/danilomabulac/huntly-case-study",
     demoHref: "https://huntly-application-tracker.vercel.app/",
     icon: BriefcaseBusiness,
+    screenshots: [
+      { src: "/project-screenshots/huntly/landing.png", alt: "Career workspace landing page", label: "Landing" },
+      { src: "/project-screenshots/huntly/dashboard.png", alt: "Career workspace dashboard", label: "Dashboard" },
+      { src: "/project-screenshots/huntly/applications.png", alt: "Career workspace applications page", label: "Applications" },
+    ],
   },
   {
     category: "live-demos",
-    title: "Notification Infrastructure Case Study",
-    subtitle: "Lightweight notification service for existing applications",
-    problem: "Applications often need notification workflows without building a full notification platform from scratch.",
+    title: "Notification Infrastructure Engine",
+    subtitle: "Light event-driven notification service for existing applications",
+    problem: "Applications often add alerting, templates, and subscriber handling directly into the main codebase, creating avoidable complexity.",
     contribution:
-      "Documented an event-based notification service model with applications, subscribers, templates, API keys, inbox state, and integration safety.",
+      "Designed a lightweight service model with API token endpoints, applications, subscribers, templates, inbox state, and integration safety.",
     result:
-      "Highlights API design, platform thinking, auth boundaries, integration workflows, and infrastructure-style product development.",
+      "Highlights API design, platform thinking, auth boundaries, event-driven integrations, and infrastructure-style product development.",
     technologies: ["FastAPI", "Next.js", "PostgreSQL", "Clerk", "Railway", "API Integration"],
     href: "https://github.com/danilomabulac/signalkit-case-study",
     demoHref: "http://signalkit-webapp-nextjs.vercel.app/",
@@ -339,18 +386,22 @@ const projects = [
   },
   {
     category: "automation-workflows",
-    title: "AI Client Intake Automation Case Study",
-    subtitle: "IntakeFlow demo for turning inquiries into reviewable work",
+    title: "Enterprise AI Intake Automation",
+    subtitle: "Automated triage engine turning unstructured inquiries into reviewable tasks",
     problem:
-      "Businesses receive repeated inquiries, messages, and requests that need triage, summarization, routing, and follow-up before someone can act on them.",
+      "Operations teams spend time reading messy incoming text, classifying requests, and manually turning them into next steps.",
     contribution:
-      "Built a public IntakeFlow demo that captures structured intake, uses AI to summarize or extract context, supports human review, creates actionable tasks, and exposes integration points for business workflows.",
+      "Built a public demo that captures raw intake, extracts core intent with structured AI processing, supports review, and maps the result into workflow-ready outputs.",
     result:
-      "Shows how AI can reduce manual intake work while keeping people in control of review, decisions, and follow-up.",
-    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Route Handlers", "External AI/Webhook", "Vercel"],
+      "Shows how AI can reduce manual intake work while keeping people in control of review, decisions, routing, and follow-up.",
+    technologies: ["Next.js", "TypeScript", "Route Handlers", "LLM Integration", "Webhooks", "Vercel"],
     href: "https://github.com/danilomabulac/intakeflow-case-study",
     demoHref: "https://intakeflow-demo.vercel.app/",
     icon: Sparkles,
+    screenshots: [
+      { src: "/project-screenshots/intakeflow/intake.png", alt: "AI intake automation form", label: "Intake" },
+      { src: "/project-screenshots/intakeflow/review.png", alt: "AI intake automation review output", label: "Review" },
+    ],
   },
   {
     category: "private-professional-work",
@@ -382,17 +433,21 @@ const projects = [
   },
   {
     category: "automation-workflows",
-    title: "File Processing Automation Workflow",
-    subtitle: "n8n webhook for extracting structured data from uploaded files",
+    title: "Enterprise Multi-Format File Extractor",
+    subtitle: "Structural data processing for PDF, CSV, and XLSX uploads",
     problem:
-      "Teams receive PDFs, spreadsheets, and documents that still require manual extraction before data can be reviewed or used by another system.",
+      "Manual copy-pasting from PDFs, vendor documents, or spreadsheet attachments introduces errors and slows down operations.",
     contribution:
-      "Built and tested an n8n webhook workflow that accepts a file plus a process type, routes the request, extracts file content, and returns structured output through an API-style response.",
+      "Built and tested a file-processing product that accepts a file plus a process type, routes PDF, CSV, and XLSX requests to the right extraction path, and returns structured API-style output.",
     result:
-      "Demonstrates practical workflow automation with webhooks, file extraction, Postman testing, and a foundation for reusable document-processing services.",
-    technologies: ["n8n", "Webhooks", "API-based Workflow Automation", "Postman", "PDF Extraction"],
+      "Demonstrates practical product thinking around workflow automation, multi-format parsing, API testing, and reusable document-processing services.",
+    technologies: ["Webhooks", "API-based Workflow Automation", "Postman", "PDF Extraction", "CSV Extraction", "XLSX Extraction"],
+    demoHref: "https://file-extractor-demo.vercel.app/",
     icon: Workflow,
-    privateLabel: "Request workflow demo",
+    screenshots: [
+      { src: "/project-screenshots/file-extractor/landing.png", alt: "File processing automation upload screen", label: "Upload" },
+      { src: "/project-screenshots/file-extractor/output.png", alt: "File processing automation extracted output", label: "Output" },
+    ],
   },
 ];
 
@@ -489,6 +544,7 @@ const targetRoles = [
 
 const skillIcons: Record<string, LucideIcon> = {
   ".NET": Code2,
+  ".NET 10 / ASP.NET Core": Server,
   ".NET API": Server,
   "C#": Code2,
   "VB.NET": Code2,
@@ -498,20 +554,32 @@ const skillIcons: Record<string, LucideIcon> = {
   "SQL Server": Database,
   "Stored Procedures": Database,
   "Query Optimization": Database,
+  "Advanced Query Optimization": Database,
+  "ADO.NET": Database,
+  "REST Web APIs": Server,
   React: Globe,
   Leaflet: Globe,
   "Next.js": Globe,
+  "Next.js (App Router)": Globe,
   TypeScript: Code2,
   "Node.js": Server,
   JavaScript: Code2,
+  "JavaScript (ES6+)": Code2,
+  "HTML5 / CSS3": Code2,
+  "Bootstrap Framework": Code2,
+  "Responsive Mobile-First Design (PWA)": Globe,
   Python: Code2,
   FastAPI: Server,
   Docker: Server,
+  "Docker Containerization": Server,
   Linux: Server,
   Nginx: Server,
+  "Nginx Reverse Proxy Setup": Server,
+  "Linux / Ubuntu VPS Management": Server,
   "Linux VPS": Server,
   "GitHub Actions": Workflow,
   "GitHub Actions CI/CD": Workflow,
+  "GitHub Actions CI/CD Pipelines": Workflow,
   Vercel: Globe,
   Railway: Globe,
   PostgreSQL: Database,
@@ -527,26 +595,44 @@ const skillIcons: Record<string, LucideIcon> = {
   Webhooks: Workflow,
   "Background Jobs": Workflow,
   Hangfire: Workflow,
+  "Hangfire Asynchronous Background Tasks": Workflow,
   Redis: Database,
+  "Redis Caching": Database,
   systemd: Server,
+  "systemd Process Monitoring": Server,
   "Environment Variables": Code,
+  "Environment Variable Matrix Management": Code,
   "DNS / Custom Domains": Globe,
+  "DNS Routing": Globe,
   SSL: Server,
+  "SSL Configuration": Server,
+  "Postman API Automation": Workflow,
+  "Serilog Error Logging": Bug,
   "OpenAI API": Sparkles,
+  "OpenAI Suite": Sparkles,
   "Google Maps API": Globe,
   "Google Places API": Globe,
   Gemini: Sparkles,
   DeepSeek: Sparkles,
+  "DeepSeek API Core Integration": Sparkles,
   Grok: Sparkles,
   PWA: Globe,
   "LLM Integration": Sparkles,
   "Prompt Engineering": Sparkles,
+  "Advanced Prompt Engineering Architecture": Sparkles,
   "AI Workflow Automation": Sparkles,
   "API-based Automation": Workflow,
   n8n: Workflow,
+  "n8n Deployment": Workflow,
   "Make.com": Workflow,
+  "Make.com Nodes": Workflow,
   Zapier: Workflow,
+  "Zapier Logic": Workflow,
+  "Custom Structural Webhooks": Workflow,
   "API-based Workflow Automation": Workflow,
+  "PDF Extraction": Workflow,
+  "CSV Extraction": Workflow,
+  "XLSX Extraction": Workflow,
   "Azure App Service": Globe,
   "Azure SQL": Database,
   "Modular Monolith": Code,
@@ -556,6 +642,7 @@ const skillIcons: Record<string, LucideIcon> = {
 
 const skillColors: Record<string, string> = {
   ".NET": "text-purple-600 dark:text-purple-400",
+  ".NET 10 / ASP.NET Core": "text-purple-600 dark:text-purple-400",
   ".NET API": "text-purple-600 dark:text-purple-400",
   "C#": "text-purple-600 dark:text-purple-400",
   "VB.NET": "text-purple-600 dark:text-purple-400",
@@ -564,11 +651,16 @@ const skillColors: Record<string, string> = {
   "ASP.NET MVC": "text-purple-600 dark:text-purple-400",
   "Entity Framework": "text-purple-600 dark:text-purple-400",
   "Entity Framework Core": "text-purple-600 dark:text-purple-400",
+  "REST Web APIs": "text-green-600 dark:text-green-400",
+  "Advanced Query Optimization": "text-orange-600 dark:text-orange-400",
+  "ADO.NET": "text-orange-600 dark:text-orange-400",
   TypeScript: "text-blue-600 dark:text-blue-400",
   JavaScript: "text-yellow-600 dark:text-yellow-400",
+  "JavaScript (ES6+)": "text-yellow-600 dark:text-yellow-400",
   React: "text-cyan-600 dark:text-cyan-400",
   Leaflet: "text-emerald-600 dark:text-emerald-400",
   "Next.js": "text-slate-700 dark:text-slate-300",
+  "Next.js (App Router)": "text-slate-700 dark:text-slate-300",
   "Node.js": "text-green-600 dark:text-green-400",
   Python: "text-blue-600 dark:text-blue-400",
   FastAPI: "text-emerald-600 dark:text-emerald-400",
@@ -578,9 +670,12 @@ const skillColors: Record<string, string> = {
   Prisma: "text-slate-700 dark:text-slate-300",
   Drizzle: "text-green-600 dark:text-green-400",
   "HTML/CSS": "text-orange-500 dark:text-orange-400",
+  "HTML5 / CSS3": "text-orange-500 dark:text-orange-400",
   HTML: "text-orange-500 dark:text-orange-400",
   CSS: "text-blue-600 dark:text-blue-400",
   Bootstrap: "text-purple-600 dark:text-purple-400",
+  "Bootstrap Framework": "text-purple-600 dark:text-purple-400",
+  "Responsive Mobile-First Design (PWA)": "text-cyan-600 dark:text-cyan-400",
   "Tailwind CSS": "text-cyan-600 dark:text-cyan-400",
   "REST APIs": "text-green-600 dark:text-green-400",
   "Stored Procedures": "text-orange-600 dark:text-orange-400",
@@ -596,33 +691,55 @@ const skillColors: Record<string, string> = {
   "Prompt Engineering": "text-violet-600 dark:text-violet-400",
   "API-based Automation": "text-emerald-600 dark:text-emerald-400",
   "API-based Workflow Automation": "text-emerald-600 dark:text-emerald-400",
+  "PDF Extraction": "text-emerald-600 dark:text-emerald-400",
+  "CSV Extraction": "text-emerald-600 dark:text-emerald-400",
+  "XLSX Extraction": "text-emerald-600 dark:text-emerald-400",
   n8n: "text-orange-600 dark:text-orange-400",
+  "n8n Deployment": "text-orange-600 dark:text-orange-400",
   "Make.com": "text-violet-600 dark:text-violet-400",
+  "Make.com Nodes": "text-violet-600 dark:text-violet-400",
   Zapier: "text-orange-600 dark:text-orange-400",
+  "Zapier Logic": "text-orange-600 dark:text-orange-400",
+  "Custom Structural Webhooks": "text-emerald-600 dark:text-emerald-400",
   Docker: "text-blue-600 dark:text-blue-400",
+  "Docker Containerization": "text-blue-600 dark:text-blue-400",
   Linux: "text-slate-700 dark:text-slate-300",
   Nginx: "text-emerald-600 dark:text-emerald-400",
+  "Nginx Reverse Proxy Setup": "text-emerald-600 dark:text-emerald-400",
+  "Linux / Ubuntu VPS Management": "text-slate-700 dark:text-slate-300",
   "Linux VPS": "text-slate-700 dark:text-slate-300",
   "GitHub Actions": "text-slate-700 dark:text-slate-300",
   "GitHub Actions CI/CD": "text-slate-700 dark:text-slate-300",
+  "GitHub Actions CI/CD Pipelines": "text-slate-700 dark:text-slate-300",
   Vercel: "text-slate-700 dark:text-slate-300",
   Railway: "text-slate-700 dark:text-slate-300",
   "JWT/OAuth": "text-emerald-600 dark:text-emerald-400",
   Clerk: "text-violet-600 dark:text-violet-400",
   "Payment Gateways": "text-emerald-600 dark:text-emerald-400",
   Serilog: "text-orange-600 dark:text-orange-400",
+  "Serilog Error Logging": "text-orange-600 dark:text-orange-400",
   Hangfire: "text-violet-600 dark:text-violet-400",
+  "Hangfire Asynchronous Background Tasks": "text-violet-600 dark:text-violet-400",
   Redis: "text-red-600 dark:text-red-400",
+  "Redis Caching": "text-red-600 dark:text-red-400",
   systemd: "text-slate-700 dark:text-slate-300",
+  "systemd Process Monitoring": "text-slate-700 dark:text-slate-300",
   "Azure App Service": "text-blue-600 dark:text-blue-400",
   "Azure SQL": "text-blue-600 dark:text-blue-400",
   "DigitalOcean / VPS Hosting": "text-blue-600 dark:text-blue-400",
   "Environment Variables": "text-emerald-600 dark:text-emerald-400",
+  "Environment Variable Matrix Management": "text-emerald-600 dark:text-emerald-400",
   "DNS / Custom Domains": "text-cyan-600 dark:text-cyan-400",
+  "DNS Routing": "text-cyan-600 dark:text-cyan-400",
   SSL: "text-emerald-600 dark:text-emerald-400",
+  "SSL Configuration": "text-emerald-600 dark:text-emerald-400",
+  "Postman API Automation": "text-orange-600 dark:text-orange-400",
   "Google Maps API": "text-blue-600 dark:text-blue-400",
   "Google Places API": "text-blue-600 dark:text-blue-400",
   Gemini: "text-violet-600 dark:text-violet-400",
+  "OpenAI Suite": "text-violet-600 dark:text-violet-400",
+  "DeepSeek API Core Integration": "text-violet-600 dark:text-violet-400",
+  "Advanced Prompt Engineering Architecture": "text-violet-600 dark:text-violet-400",
   Grok: "text-violet-600 dark:text-violet-400",
   PWA: "text-cyan-600 dark:text-cyan-400",
   "Modular Monolith": "text-violet-600 dark:text-violet-400",
@@ -678,6 +795,9 @@ const techColors: Record<string, string> = {
   "Prompt Engineering": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   "API-based Automation": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "API-based Workflow Automation": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "PDF Extraction": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "CSV Extraction": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  "XLSX Extraction": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   n8n: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   "Make.com": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Zapier: "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
@@ -907,12 +1027,12 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
         <div className="mb-6">
           <AnimatedHelloIntro />
           <p className="mb-6 text-xl text-slate-600 dark:text-slate-300 md:text-2xl">
-            Software Engineer | Web Applications, APIs, Cloud & AI Automation
+            Full-Stack .NET & React Engineer | Production-Ready End-to-End MVPs
           </p>
           <div className="mb-8 flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/40 dark:text-emerald-300">
               <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              Open to hire
+              Open to hire & contract work
             </span>
             <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
               Full-time
@@ -928,11 +1048,15 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
 
         <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           <p>
-            I build web applications, APIs, dashboards, automations, and cloud-deployed business systems for teams that
-            need practical software delivered end to end.
+            I build web applications, secure REST APIs, dashboards, automations, and cloud-deployed systems for teams
+            that need practical software delivered end to end.
           </p>
           <p>
-            Professional experience in{" "}
+            My strength is execution: turning tickets, wireframes, technical requirements, or product ideas into clean,
+            working software across frontend, backend, database, and deployment concerns.
+          </p>
+          <p>
+            Professional background in{" "}
             <span className="rounded bg-purple-100 px-2 py-1 font-mono text-sm text-purple-700 dark:bg-purple-950/50 dark:text-purple-300">
               .NET
             </span>{" "}
@@ -946,20 +1070,20 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
               onClick={() => scrollToSection("contact")}
               className="group flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
             >
-              Discuss a Role
+              Discuss a Project
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </button>
             <button
               onClick={() => scrollToSection("services")}
               className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
             >
-              Inquire About Services
+              Inquire About MVP Services
             </button>
             <button
               onClick={() => scrollToSection("projects")}
               className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
             >
-              View Case Studies
+              Review Live Demos
             </button>
           </div>
 
@@ -970,7 +1094,7 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
               className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
             >
               <Download className="size-4" />
-              Request Resume
+              Request Tech CV
             </button>
             <a
               href="https://github.com/danilomabulac"
@@ -997,23 +1121,69 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   );
 }
 
+function CapabilitySnapshot() {
+  return (
+    <section id="capabilities" className="border-t border-slate-200 bg-slate-50 px-6 py-16 transition-colors dark:border-slate-800 dark:bg-slate-900/50">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <h2 className="font-mono text-sm text-slate-500 dark:text-slate-400">capabilities</h2>
+              <div className="h-px w-24 bg-slate-200 dark:bg-slate-800" />
+            </div>
+            <h2 className="max-w-2xl text-2xl font-semibold text-slate-900 dark:text-slate-100 md:text-3xl">
+              Practical execution across MVPs, APIs, automations, and deployment.
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={() => scrollToSection("projects")}
+            className="inline-flex items-center gap-2 self-start rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100 md:self-end"
+          >
+            See proof
+            <ArrowRight className="size-4" />
+          </button>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {capabilityHighlights.map((capability) => {
+            const Icon = capability.icon;
+            return (
+              <article
+                key={capability.title}
+                className="rounded-lg border border-slate-200 bg-white p-5 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+              >
+                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <Icon className="size-5" />
+                </div>
+                <h3 className="mb-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{capability.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{capability.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About() {
   const cards = [
     {
       title: "Enterprise Development",
-      description: "Building .NET applications, REST APIs, and production systems for business requirements.",
+      description: "Building decoupled .NET APIs, REST services, and production systems for real business requirements.",
       icon: Code,
       color: "purple",
     },
     {
       title: "Data & Systems",
-      description: "SQL Server work, data-backed features, API contracts, and production debugging.",
+      description: "SQL Server and PostgreSQL work, data-backed features, API contracts, and production debugging.",
       icon: Database,
       color: "orange",
     },
     {
       title: "Automation & AI",
-      description: "Creating practical tools that automate workflows, integrate AI, and reduce repetitive work.",
+      description: "Creating practical tools that automate workflows, integrate AI, and reduce repetitive operational work.",
       icon: Workflow,
       color: "cyan",
     },
@@ -1052,14 +1222,14 @@ function About() {
 
         <div className="max-w-3xl space-y-4 leading-relaxed text-slate-600 dark:text-slate-400">
           <p>
-            I'm a Software Developer with professional experience building, maintaining, and debugging enterprise web
-            applications. My background includes .NET web development, REST APIs, SQL Server, production issue
-            investigation, and business workflow support.
+            I'm a Software Developer with professional experience building, maintaining, and debugging enterprise-grade
+            backend infrastructure and modern web software. My background includes .NET web development, REST APIs, SQL
+            databases, production issue investigation, and business workflow support.
           </p>
           <p>
-            I focus on practical software: systems that help businesses manage data, automate workflows, improve
-            operations, and support real users. My core strength is web application development, with additional
-            capability in cloud deployment, infrastructure setup, CI/CD, and AI-assisted automation.
+            My working style is maker-focused: take complex requirements, open the editor, use documentation and modern
+            tools well, and deliver integrated software end to end. I focus on systems that reduce manual friction,
+            replace broken spreadsheets, automate administrative overhead, and support real users.
           </p>
         </div>
       </div>
@@ -1075,8 +1245,8 @@ function WhoIHelp() {
 
         <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
           <p>
-            I work best with people who need practical software for operations, data, workflows, integrations, and
-            product ideas that need to move from rough concept to working system.
+            I work best with people who have clear requirements, rough wireframes, operational pain, or a backlog of
+            features that need to move from idea to working software.
           </p>
         </div>
 
@@ -1152,9 +1322,9 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
 
         <div className="mb-10 max-w-3xl space-y-4 text-slate-600 dark:text-slate-400">
           <p>
-            I can help build and support practical software across backend APIs, web applications, business systems,
-            cloud hosting, infrastructure setup, automation, integrations, dashboards, troubleshooting, deployment, and
-            AI-assisted features.
+            I deliver practical software across decoupled SaaS applications, backend APIs, business systems, workflow
+            automation, database-backed dashboards, production troubleshooting, cloud deployment, and AI-assisted
+            product features.
           </p>
           <button
             type="button"
@@ -1356,7 +1526,7 @@ function MessageFormModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
   );
 }
 
-function Projects() {
+function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) => void }) {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 
   const toggleSection = (sectionId: string) => {
@@ -1383,9 +1553,9 @@ function Projects() {
 
         <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
           <p>
-            Work is grouped by what visitors can safely access: live demos, public case studies, private professional
-            work, automation workflows, and deployment/infrastructure proof. Public links stay separate from private
-            source code, secrets, production configuration, and customer data.
+            Work is grouped by direct access. Live production links are separated from private source code, database
+            structures, enterprise configuration, and customer data to keep the portfolio useful without compromising
+            safety.
           </p>
         </div>
 
@@ -1526,6 +1696,32 @@ function Projects() {
                               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
                             </div>
                           </div>
+                          {project.screenshots && project.screenshots.length > 0 ? (
+                            <div className="mb-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
+                              <h4 className="mr-1 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Preview</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {project.screenshots.map((screenshot) => (
+                                  <button
+                                    type="button"
+                                    key={screenshot.src}
+                                    onClick={() => onOpenPreview({ ...screenshot, projectTitle: project.title })}
+                                    className="group relative overflow-hidden rounded-md border border-slate-200 bg-slate-50 text-left transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+                                    title={`Preview ${screenshot.label}`}
+                                  >
+                                    <img
+                                      src={screenshot.src}
+                                      alt={screenshot.alt}
+                                      loading="lazy"
+                                      className="h-16 w-24 object-cover transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-32"
+                                    />
+                                    <figcaption className="absolute inset-x-0 bottom-0 bg-slate-950/75 px-2 py-1 font-mono text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                                      {screenshot.label}
+                                    </figcaption>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
                           <div className="space-y-3">
                             <div>
                               <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Stack</h4>
@@ -1592,6 +1788,59 @@ function Projects() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ScreenshotPreviewModal({
+  preview,
+  onClose,
+}: {
+  preview: ActivePreview | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!preview) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [preview, onClose]);
+
+  if (!preview) return null;
+
+  return (
+    <div className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/80 px-4 py-8 backdrop-blur-sm" onClick={onClose}>
+      <div
+        className="w-full max-w-6xl overflow-hidden rounded-lg border border-slate-800 bg-slate-950 shadow-2xl"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-4 border-b border-slate-800 px-5 py-4">
+          <div>
+            <p className="font-mono text-xs uppercase text-slate-500">{preview.projectTitle}</p>
+            <h2 className="mt-1 text-lg font-semibold text-slate-100">{preview.label}</h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg border border-slate-700 p-2 text-slate-400 transition-colors hover:border-slate-500 hover:text-slate-100"
+            aria-label="Close preview"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+        <div className="max-h-[78vh] overflow-auto bg-slate-900">
+          <img src={preview.src} alt={preview.alt} className="mx-auto h-auto w-full object-contain" />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -1818,13 +2067,12 @@ function Contact({
 
         <div className="max-w-2xl">
           <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
-            I'm open to full-time and part-time software development roles, freelance work, and project-based
-            opportunities involving web applications, APIs, business systems, cloud deployment, infrastructure setup,
-            automation, and AI-assisted tools.
+            I'm open to full-time execution roles, part-time technical projects, freelance work, and MVP contracts
+            involving web applications, APIs, business systems, cloud deployment, automation, and AI-assisted tools.
           </p>
           <p className="mb-8 text-slate-600 dark:text-slate-400">
-            Have a system, workflow, or product idea you want to build? Send me a message and I can help scope the MVP,
-            identify the first useful release, and turn it into a working application.
+            Have a backlog of developer tickets, a feature that needs immediate building, or a product idea ready for a
+            first useful release? Send me the requirements and I can help turn them into working software.
           </p>
           <button
             type="button"
@@ -1970,6 +2218,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeRequestOpen, setResumeRequestOpen] = useState(false);
   const [messageFormOpen, setMessageFormOpen] = useState(false);
+  const [activePreview, setActivePreview] = useState<ActivePreview | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -1986,11 +2235,12 @@ export default function App() {
       />
       <main>
         <Hero onOpenResumeRequest={() => setResumeRequestOpen(true)} />
-        <About />
+        <CapabilitySnapshot />
+        <Projects onOpenPreview={setActivePreview} />
+        <Services onOpenMessage={() => setMessageFormOpen(true)} />
         <WhoIHelp />
         <Skills />
-        <Services onOpenMessage={() => setMessageFormOpen(true)} />
-        <Projects />
+        <About />
         <TargetRoles />
         <Contact
           onOpenResumeRequest={() => setResumeRequestOpen(true)}
@@ -2000,6 +2250,7 @@ export default function App() {
       <Footer onOpenResumeRequest={() => setResumeRequestOpen(true)} />
       <ResumeRequestModal isOpen={resumeRequestOpen} onClose={() => setResumeRequestOpen(false)} />
       <MessageFormModal isOpen={messageFormOpen} onClose={() => setMessageFormOpen(false)} />
+      <ScreenshotPreviewModal preview={activePreview} onClose={() => setActivePreview(null)} />
     </div>
   );
 }
