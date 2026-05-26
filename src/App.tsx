@@ -6,8 +6,6 @@ import {
   Bug,
   CheckCircle2,
   ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   Code,
   Code2,
   Copy,
@@ -101,6 +99,7 @@ const skillCategories: SkillCategory[] = [
       "Entity Framework Core",
       "SQL Server",
       "PostgreSQL",
+      "MongoDB",
       "Stored Procedures",
       "Advanced Query Optimization",
       "ADO.NET",
@@ -552,6 +551,7 @@ const skillIcons: Record<string, LucideIcon> = {
   "ASP.NET Core": Server,
   "ASP.NET MVC": Server,
   "SQL Server": Database,
+  MongoDB: Database,
   "Stored Procedures": Database,
   "Query Optimization": Database,
   "Advanced Query Optimization": Database,
@@ -779,6 +779,7 @@ const techColors: Record<string, string> = {
   "Azure SQL": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   "SQL Server": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   PostgreSQL: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  MongoDB: "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
   "DigitalOcean / VPS Hosting": "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   "Stored Procedures": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
   "Query Optimization": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
@@ -828,11 +829,12 @@ function SectionLabel({ children }: { children: string }) {
   );
 }
 
-function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
+function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResumeRequest }: {
   theme: "dark" | "light";
   mobileMenuOpen: boolean;
   onToggleTheme: () => void;
   onToggleMenu: () => void;
+  onOpenResumeRequest: () => void;
 }) {
   const handleNav = (sectionId: string) => {
     scrollToSection(sectionId);
@@ -841,12 +843,12 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm transition-colors dark:border-slate-800 dark:bg-slate-950/95">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <button onClick={() => scrollToSection("hero")} className="font-mono text-sm text-slate-900 dark:text-slate-100">
           dbmblc.dev
         </button>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -856,9 +858,37 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
               {item.label}
             </button>
           ))}
+          <div className="ml-2 flex items-center gap-2 border-l border-slate-200 pl-4 dark:border-slate-800">
+            <button
+              type="button"
+              onClick={onOpenResumeRequest}
+              className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-indigo-400 hover:bg-indigo-50 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-indigo-500 dark:hover:bg-indigo-950/30"
+            >
+              <Download className="size-3.5" />
+              CV
+            </button>
+            <a
+              href="https://github.com/danilomabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            >
+              <Github className="size-3.5" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dbmabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
+            >
+              <Linkedin className="size-3.5" />
+              LinkedIn
+            </a>
+          </div>
           <button
             onClick={onToggleTheme}
-            className="ml-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
             aria-label="Toggle color theme"
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -895,6 +925,35 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu }: {
                 {item.label}
               </button>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                onOpenResumeRequest();
+                if (mobileMenuOpen) onToggleMenu();
+              }}
+              className="flex items-center gap-2 py-2 text-left text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            >
+              <Download className="size-4" />
+              Request CV
+            </button>
+            <a
+              href="https://github.com/danilomabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 py-2 text-left text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            >
+              <Github className="size-4" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dbmabulac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 py-2 text-left text-sm text-slate-600 transition-colors hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
+            >
+              <Linkedin className="size-4" />
+              LinkedIn
+            </a>
           </div>
         </div>
       )}
@@ -1011,11 +1070,17 @@ function AnimatedHelloIntro() {
   );
 }
 
-function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
+function Hero() {
   return (
-    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20 transition-colors">
+    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-16 pt-20 transition-colors">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 dark:from-slate-950 dark:via-indigo-950/20 dark:to-purple-950/20">
+        <div className="absolute inset-0 opacity-30 animate-gradient-x bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 blur-3xl" />
+      </div>
+
+      {/* Grid pattern overlay */}
       <div
-        className="absolute inset-0 opacity-20 [mask-image:linear-gradient(0deg,transparent,black)]"
+        className="absolute inset-0 opacity-10 [mask-image:linear-gradient(0deg,transparent,black)]"
         style={{
           backgroundImage:
             "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
@@ -1023,98 +1088,182 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <div className="mb-6">
+      {/* Floating decorative elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+
+      <div className="relative z-10 mx-auto max-w-4xl md:-translate-y-6">
+        <div className="mb-8">
           <AnimatedHelloIntro />
-          <p className="mb-6 text-xl text-slate-600 dark:text-slate-300 md:text-2xl">
-            Full-Stack .NET & React Engineer | Production-Ready End-to-End MVPs
+          
+          {/* Main headline with gradient */}
+          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+              Full-Stack .NET & React Engineer
+            </span>
+          </h1>
+          
+          <p className="mb-8 text-xl md:text-2xl text-slate-700 dark:text-slate-200 font-medium">
+            Production-Ready End-to-End MVPs
           </p>
-          <div className="mb-8 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/40 dark:text-emerald-300">
-              <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
+
+          {/* Availability badges */}
+          <div className="mb-8 flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 px-4 py-2 text-sm font-semibold text-emerald-700 dark:border-emerald-400/30 dark:from-emerald-400/10 dark:to-cyan-400/10 dark:text-emerald-300 shadow-lg">
+              <span className="size-2.5 rounded-full bg-emerald-500 animate-pulse-slow" aria-hidden="true" />
               Open to hire & contract work
             </span>
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
               Full-time
             </span>
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
               Part-time
             </span>
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
               Freelance
             </span>
           </div>
         </div>
 
-        <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-          <p>
-            I build web applications, secure REST APIs, dashboards, automations, and cloud-deployed systems for teams
-            that need practical software delivered end to end.
-          </p>
-          <p>
-            My strength is execution: turning tickets, wireframes, technical requirements, or product ideas into clean,
-            working software across frontend, backend, database, and deployment concerns.
-          </p>
-          <p>
-            Professional background in{" "}
-            <span className="rounded bg-purple-100 px-2 py-1 font-mono text-sm text-purple-700 dark:bg-purple-950/50 dark:text-purple-300">
-              .NET
-            </span>{" "}
-            web development, REST APIs, SQL databases, production debugging, and enterprise systems.
-          </p>
+        {/* Value proposition with better visual hierarchy */}
+        <div className="mb-6 rounded-2xl border border-slate-200/50 bg-white/60 p-8 backdrop-blur-sm shadow-xl dark:border-slate-800/50 dark:bg-slate-900/60">
+          <div className="space-y-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+            <p className="font-semibold text-slate-900 dark:text-white">
+              I build web applications, secure REST APIs, dashboards, automations, and cloud-deployed systems for teams
+              that need practical software delivered end to end.
+            </p>
+            <p>
+              My strength is execution: turning tickets, wireframes, technical requirements, or product ideas into clean,
+              working software across frontend, backend, database, and deployment concerns.
+            </p>
+            <p>
+              Professional background in{" "}
+              <span className="rounded-lg bg-gradient-to-r from-purple-100 to-indigo-100 px-3 py-1.5 font-mono text-sm font-semibold text-purple-700 dark:from-purple-900/50 dark:to-indigo-900/50 dark:text-purple-300">
+                .NET
+              </span>{" "}
+              web development, REST APIs, SQL databases, production debugging, and enterprise systems.
+            </p>
+          </div>
         </div>
 
-        <div className="mt-12 space-y-5">
-          <div className="flex flex-wrap items-center gap-3">
+        {/* Strong CTA buttons with gradient */}
+        <div className="space-y-6">
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
             <button
               onClick={() => scrollToSection("contact")}
-              className="group flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+              className="group relative flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white shadow-gradient transition-all hover:scale-105 hover:shadow-gradient-lg"
             >
               Discuss a Project
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-indigo-500 hover:bg-indigo-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-indigo-400 dark:hover:bg-indigo-950/30"
             >
-              Inquire About MVP Services
+              MVP Services
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-cyan-500 hover:bg-cyan-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30"
             >
-              Review Live Demos
+              Live Demos
             </button>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={onOpenResumeRequest}
-              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-            >
-              <Download className="size-4" />
-              Request Tech CV
-            </button>
-            <a
-              href="https://github.com/danilomabulac"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-            >
-              <Github className="size-4" />
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/dbmabulac"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-md border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-            >
-              <Linkedin className="size-4" />
-              LinkedIn
-            </a>
-          </div>
+function QuickStats() {
+  const stats = [
+    { value: 5, label: "Years Experience", suffix: "+", icon: BriefcaseBusiness },
+    { value: 20, label: "Projects Delivered", suffix: "+", icon: Code2 },
+    { value: 15, label: "Technologies", suffix: "+", icon: Terminal },
+    { value: 100, label: "Client Satisfaction", suffix: "%", icon: CheckCircle2 },
+  ];
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedValues, setAnimatedValues] = useState<number[]>(stats.map(() => 0));
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById("quick-stats");
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const duration = 2000;
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    const intervals = stats.map((stat, index) => {
+      return setInterval(() => {
+        setAnimatedValues((prev) => {
+          const newValues = [...prev];
+          if (newValues[index] < stat.value) {
+            newValues[index] = Math.min(newValues[index] + stat.value / steps, stat.value);
+          }
+          return newValues;
+        });
+      }, stepDuration);
+    });
+
+    return () => intervals.forEach((interval) => clearInterval(interval));
+  }, [isVisible, stats]);
+
+  return (
+    <section id="quick-stats" className="relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 px-6 py-16 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            const gradientColors = [
+              "from-indigo-500 to-purple-500",
+              "from-cyan-500 to-blue-500",
+              "from-rose-500 to-pink-500",
+              "from-emerald-500 to-teal-500",
+            ];
+            const gradient = gradientColors[index % gradientColors.length];
+            return (
+              <div
+                key={stat.label}
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Gradient accent line at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                
+                <div className="relative">
+                  <div className={`mb-4 flex size-14 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}>
+                    <Icon className="size-7" />
+                  </div>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-white dark:to-slate-300">
+                      {Math.round(animatedValues[index])}
+                    </span>
+                    <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{stat.suffix}</span>
+                  </div>
+                  <p className="text-sm font-medium text-slate-600 dark:text-slate-300">{stat.label}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1123,41 +1272,56 @@ function Hero({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
 
 function CapabilitySnapshot() {
   return (
-    <section id="capabilities" className="border-t border-slate-200 bg-slate-50 px-6 py-16 transition-colors dark:border-slate-800 dark:bg-slate-900/50">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
+    <section id="capabilities" className="relative border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white px-6 py-16 transition-colors dark:border-slate-800 dark:from-slate-900/50 dark:to-slate-950">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
-              <h2 className="font-mono text-sm text-slate-500 dark:text-slate-400">capabilities</h2>
-              <div className="h-px w-24 bg-slate-200 dark:bg-slate-800" />
+              <h2 className="font-mono text-sm font-semibold text-indigo-600 dark:text-indigo-400">capabilities</h2>
+              <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/50 to-transparent dark:from-indigo-400/50" />
             </div>
-            <h2 className="max-w-2xl text-2xl font-semibold text-slate-900 dark:text-slate-100 md:text-3xl">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-white dark:to-slate-300 md:text-4xl">
               Practical execution across MVPs, APIs, automations, and deployment.
             </h2>
           </div>
           <button
             type="button"
             onClick={() => scrollToSection("projects")}
-            className="inline-flex items-center gap-2 self-start rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100 md:self-end"
+            className="inline-flex items-center gap-2 self-start rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:from-indigo-500 dark:to-purple-500 md:self-end"
           >
             See proof
             <ArrowRight className="size-4" />
           </button>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {capabilityHighlights.map((capability) => {
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {capabilityHighlights.map((capability, index) => {
+            const gradientColors = [
+              "from-indigo-500 to-purple-500",
+              "from-cyan-500 to-blue-500",
+              "from-rose-500 to-pink-500",
+              "from-amber-500 to-orange-500",
+            ];
+            const gradient = gradientColors[index % gradientColors.length];
             const Icon = capability.icon;
             return (
               <article
                 key={capability.title}
-                className="rounded-lg border border-slate-200 bg-white p-5 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up stagger-${index + 1}`}
               >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  <Icon className="size-5" />
+                {/* Gradient accent line at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-700 shadow-md transition-transform group-hover:scale-110 dark:from-slate-800 dark:to-slate-700 dark:text-slate-300">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mb-2 text-base font-bold text-slate-900 dark:text-slate-100">{capability.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{capability.description}</p>
                 </div>
-                <h3 className="mb-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{capability.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{capability.description}</p>
               </article>
             );
           })}
@@ -1173,60 +1337,63 @@ function About() {
       title: "Enterprise Development",
       description: "Building decoupled .NET APIs, REST services, and production systems for real business requirements.",
       icon: Code,
-      color: "purple",
+      gradient: "from-purple-500 to-indigo-500",
     },
     {
       title: "Data & Systems",
       description: "SQL Server and PostgreSQL work, data-backed features, API contracts, and production debugging.",
       icon: Database,
-      color: "orange",
+      gradient: "from-orange-500 to-amber-500",
     },
     {
       title: "Automation & AI",
       description: "Creating practical tools that automate workflows, integrate AI, and reduce repetitive operational work.",
       icon: Workflow,
-      color: "cyan",
+      gradient: "from-cyan-500 to-blue-500",
     },
   ];
 
-  const colorClasses = {
-    purple: "bg-purple-100 text-purple-600 group-hover:border-purple-300 dark:bg-purple-950/50 dark:text-purple-400 dark:group-hover:border-purple-700",
-    orange: "bg-orange-100 text-orange-600 group-hover:border-orange-300 dark:bg-orange-950/50 dark:text-orange-400 dark:group-hover:border-orange-700",
-    cyan: "bg-cyan-100 text-cyan-600 group-hover:border-cyan-300 dark:bg-cyan-950/50 dark:text-cyan-400 dark:group-hover:border-cyan-700",
-  };
-
   return (
-    <section id="about" className="relative overflow-hidden border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
-      <div className="relative z-10 mx-auto max-w-5xl">
+    <section id="about" className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 px-6 py-24 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <SectionLabel>about</SectionLabel>
 
         <div className="mb-16 grid gap-6 md:grid-cols-3">
-          {cards.map((card) => {
+          {cards.map((card, index) => {
             const Icon = card.icon;
             return (
               <article
                 key={card.title}
-                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:shadow-slate-900/50"
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div
-                  className={`mb-4 flex size-12 items-center justify-center rounded-lg transition-transform group-hover:scale-110 ${colorClasses[card.color as keyof typeof colorClasses]}`}
-                >
-                  <Icon className="size-6" />
+                {/* Gradient accent line at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${card.gradient}`} />
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                
+                <div className="relative">
+                  <div
+                    className={`mb-4 flex size-14 items-center justify-center rounded-xl bg-gradient-to-br ${card.gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
+                  >
+                    <Icon className="size-7" />
+                  </div>
+                  <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-slate-100">{card.title}</h3>
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">{card.description}</p>
                 </div>
-                <h3 className="mb-3 text-slate-900 dark:text-slate-100">{card.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
               </article>
             );
           })}
         </div>
 
-        <div className="max-w-3xl space-y-4 leading-relaxed text-slate-600 dark:text-slate-400">
-          <p>
+        <div className="max-w-3xl space-y-6 leading-relaxed">
+          <p className="text-lg text-slate-700 dark:text-slate-300">
             I'm a Software Developer with professional experience building, maintaining, and debugging enterprise-grade
             backend infrastructure and modern web software. My background includes .NET web development, REST APIs, SQL
             databases, production issue investigation, and business workflow support.
           </p>
-          <p>
+          <p className="text-lg text-slate-700 dark:text-slate-300">
             My working style is maker-focused: take complex requirements, open the editor, use documentation and modern
             tools well, and deliver integrated software end to end. I focus on systems that reduce manual friction,
             replace broken spreadsheets, automate administrative overhead, and support real users.
@@ -1239,32 +1406,50 @@ function About() {
 
 function WhoIHelp() {
   return (
-    <section id="clients" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
-      <div className="mx-auto max-w-5xl">
+    <section id="clients" className="relative bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+      <div className="mx-auto max-w-6xl">
         <SectionLabel>who i help</SectionLabel>
 
-        <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
-          <p>
+        <div className="mb-12 max-w-3xl">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+            Ideal Clients
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-300">
             I work best with people who have clear requirements, rough wireframes, operational pain, or a backlog of
             features that need to move from idea to working software.
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {audiences.map((audience) => {
+          {audiences.map((audience, index) => {
             const Icon = audience.icon;
+            const gradientColors = [
+              "from-indigo-500 to-purple-500",
+              "from-cyan-500 to-blue-500",
+              "from-rose-500 to-pink-500",
+            ];
+            const gradient = gradientColors[index % gradientColors.length];
             return (
               <article
                 key={audience.title}
-                className="rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                    <Icon className="size-5" />
+                {/* Gradient accent line at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}>
+                      <Icon className="size-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{audience.title}</h3>
                   </div>
-                  <h3 className="text-slate-900 dark:text-slate-100">{audience.title}</h3>
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">{audience.description}</p>
                 </div>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{audience.description}</p>
               </article>
             );
           })}
@@ -1275,35 +1460,68 @@ function WhoIHelp() {
 }
 
 function Skills() {
+  const [openSkillGroups, setOpenSkillGroups] = useState<Record<string, boolean>>({});
+
   return (
-    <section id="skills" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
-      <div className="mx-auto max-w-5xl">
+    <section id="skills" className="border-t border-slate-200 bg-white px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+      <div className="mx-auto max-w-6xl">
         <SectionLabel>skills</SectionLabel>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-10 max-w-3xl">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+            Technical Expertise
+          </h2>
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            A compact view of the stack I use for business web applications, APIs, workflow automation, and production
+            deployment work.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
           {skillCategories.map((category) => {
             const CategoryIcon = category.icon;
+            const isOpen = openSkillGroups[category.category] ?? false;
+
             return (
-              <article key={category.category} className="group">
-                <div className="mb-6 flex items-center gap-2">
-                  <div className="rounded-lg bg-slate-200 p-2 text-slate-700 transition-transform group-hover:scale-110 dark:bg-slate-800 dark:text-slate-300">
-                    <CategoryIcon className="size-5" />
+              <article key={category.category} className="rounded-lg border border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-900/30">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenSkillGroups((current) => ({
+                      ...current,
+                      [category.category]: !isOpen,
+                    }))
+                  }
+                  className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="flex size-9 items-center justify-center rounded-lg bg-white text-slate-700 ring-1 ring-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:ring-slate-800">
+                      <CategoryIcon className="size-5" />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-slate-900 dark:text-slate-100">{category.category}</span>
+                      <span className="font-mono text-xs text-slate-500 dark:text-slate-400">{category.skills.length} skills</span>
+                    </span>
+                  </span>
+                  <ChevronDown className={`size-4 text-slate-500 transition-transform md:hidden ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                <div className={`${isOpen ? "block" : "hidden"} border-t border-slate-200 px-4 py-4 dark:border-slate-800 md:block`}>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {category.skills.map((skill) => {
+                      const SkillIcon = skillIcons[skill];
+                      return (
+                        <span
+                          key={skill}
+                          className={`inline-flex items-center gap-1.5 font-mono text-xs ${skillColors[skill] ?? "text-slate-600 dark:text-slate-400"}`}
+                        >
+                          {SkillIcon && <SkillIcon className="size-3.5" />}
+                          {skill}
+                        </span>
+                      );
+                    })}
                   </div>
-                  <h3 className="text-sm text-slate-900 dark:text-slate-100">{category.category}</h3>
-                </div>
-                <div className="space-y-3">
-                  {category.skills.map((skill) => {
-                    const SkillIcon = skillIcons[skill];
-                    return (
-                      <div
-                        key={skill}
-                        className={`flex items-center gap-2 font-mono text-sm transition-transform hover:translate-x-1 ${skillColors[skill] ?? "text-slate-600 dark:text-slate-400"}`}
-                      >
-                        {SkillIcon && <SkillIcon className="size-4" />}
-                        <span>{skill}</span>
-                      </div>
-                    );
-                  })}
                 </div>
               </article>
             );
@@ -1316,53 +1534,55 @@ function Skills() {
 
 function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
   return (
-    <section id="services" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
-      <div className="mx-auto max-w-5xl">
+    <section id="services" className="border-t border-slate-200 bg-white px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+      <div className="mx-auto max-w-6xl">
         <SectionLabel>what i can build</SectionLabel>
 
-        <div className="mb-10 max-w-3xl space-y-4 text-slate-600 dark:text-slate-400">
-          <p>
+        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="max-w-3xl">
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+              Services & Expertise
+            </h2>
+            <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             I deliver practical software across decoupled SaaS applications, backend APIs, business systems, workflow
             automation, database-backed dashboards, production troubleshooting, cloud deployment, and AI-assisted
             product features.
-          </p>
+            </p>
+          </div>
           <button
             type="button"
             onClick={onOpenMessage}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
           >
-            Interested in a service? Leave me a message
+            Discuss a service
             <ArrowRight className="size-4" />
           </button>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <article
-                key={service.title}
-                className="group rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
-              >
-                <div className="mb-4 flex items-start gap-3">
-                  <div className="rounded-lg bg-slate-100 p-2 text-slate-700 transition-transform group-hover:scale-110 dark:bg-slate-800 dark:text-slate-300">
+              <article key={service.title} className="grid gap-5 py-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+                <div className="flex gap-4">
+                  <div className="mt-1 flex size-10 flex-none items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                     <Icon className="size-5" />
                   </div>
                   <div>
-                    <h3 className="mb-2 text-lg text-slate-900 dark:text-slate-100">{service.title}</h3>
+                    <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">{service.title}</h3>
                     <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{service.description}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                      <span className="font-medium text-slate-800 dark:text-slate-200">Best fit:</span> {service.fit}
+                    </p>
                   </div>
                 </div>
-                <p className="mb-4 border-l-2 border-slate-200 pl-3 text-sm leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                  {service.fit}
-                </p>
-                <div className="border-t border-slate-100 pt-4 dark:border-slate-800">
-                  <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Relevant stack</h4>
+                <div>
+                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Relevant stack</h4>
                   <div className="flex flex-wrap gap-2">
                     {service.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className={`rounded-md px-3 py-1.5 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+                        className={`rounded-md px-2.5 py-1 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
                       >
                         {tech}
                       </span>
@@ -1527,265 +1747,353 @@ function MessageFormModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 }
 
 function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) => void }) {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const [openProjectDetails, setOpenProjectDetails] = useState<Record<string, boolean>>({});
+
+  const filters = [
+    { id: "all", label: "All Projects" },
+    ...projectSections.map((section) => ({ id: section.id, label: section.title })),
+  ];
+
+  const featuredDemoTitles = [
+    "AI Travel Itinerary Planner",
+    "Career Workspace SaaS Application",
+    "Enterprise Multi-Format File Extractor",
+  ];
+
+  const featuredDemos = featuredDemoTitles
+    .map((title) => projects.find((project) => project.title === title))
+    .filter((project): project is Project => Boolean(project));
+
+  const filteredProjects = activeFilter === "all"
+    ? projects
+    : projects.filter((project) => project.category === activeFilter);
+
+  const filteredSections = activeFilter === "all"
+    ? projectSections
+    : projectSections.filter((section) => section.id === activeFilter);
 
   const toggleSection = (sectionId: string) => {
     setOpenSections((current) => ({
       ...current,
-      [sectionId]: !current[sectionId],
+      [sectionId]: !(current[sectionId] ?? false),
     }));
   };
 
-  const scrollProjectSection = (sectionId: string, direction: -1 | 1) => {
-    const carousel = document.getElementById(`project-carousel-${sectionId}`);
-    if (!carousel) return;
+  const toggleProjectDetails = (projectTitle: string) => {
+    setOpenProjectDetails((current) => ({
+      ...current,
+      [projectTitle]: !(current[projectTitle] ?? false),
+    }));
+  };
 
-    carousel.scrollBy({
-      left: direction * Math.max(carousel.clientWidth * 0.9, 320),
-      behavior: "smooth",
-    });
+  const renderProjectCard = (project: Project) => {
+    const Icon = project.icon;
+    const displayedScreenshots = project.screenshots?.slice(0, 3) ?? [];
+    const hasMoreScreenshots = (project.screenshots?.length ?? 0) > 3;
+    const displayedTechnologies = project.technologies.slice(0, 4);
+    const hasMoreTechnologies = project.technologies.length > 4;
+    const isDetailsOpen = openProjectDetails[project.title] ?? false;
+
+    return (
+      <article
+        key={project.title}
+        className="rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/40 dark:hover:border-slate-700"
+      >
+        <div className="mb-4 flex items-start justify-between gap-3">
+          <div className="flex min-w-0 gap-3">
+            <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <Icon className="size-5" />
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">{project.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.subtitle}</p>
+            </div>
+          </div>
+          <div className="flex flex-none gap-2">
+            {project.demoHref ? (
+              <a
+                href={project.demoHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-rose-300 hover:text-rose-600 dark:border-slate-800 dark:text-slate-400 dark:hover:border-rose-800 dark:hover:text-rose-400"
+                title="View live demo"
+              >
+                <ExternalLink className="size-4" />
+              </a>
+            ) : (
+              <a
+                href="#contact"
+                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-slate-100"
+                title="Ask about this project"
+              >
+                <ExternalLink className="size-4" />
+              </a>
+            )}
+            {project.href ? (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-slate-100"
+                title="View GitHub case study"
+              >
+                <Github className="size-4" />
+              </a>
+            ) : (
+              <span
+                className="rounded-md border border-slate-200 p-2 text-slate-400 dark:border-slate-800 dark:text-slate-500"
+                title={project.privateLabel ?? "GitHub link coming soon"}
+              >
+                <Github className="size-4" />
+              </span>
+            )}
+          </div>
+        </div>
+
+        <p className="mb-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">{project.result}</p>
+
+        {displayedScreenshots.length > 0 ? (
+          <div className="mb-4">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Preview</h4>
+              <span className="font-mono text-[11px] text-slate-400">click to enlarge</span>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {displayedScreenshots.map((screenshot) => (
+                <button
+                  type="button"
+                  key={screenshot.src}
+                  onClick={() => onOpenPreview({ ...screenshot, projectTitle: project.title })}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-md border border-slate-200 bg-slate-100 text-left transition-colors hover:border-slate-400 dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-600"
+                  title={`Preview ${screenshot.label}`}
+                >
+                  <img
+                    src={screenshot.src}
+                    alt={screenshot.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <span className="absolute inset-x-0 bottom-0 bg-slate-950/75 px-2 py-1 font-mono text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                    {screenshot.label}
+                  </span>
+                </button>
+              ))}
+              {hasMoreScreenshots && (
+                <div className="flex aspect-[4/3] items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                  <span className="text-xs font-medium">+{project.screenshots!.length - 3}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : null}
+
+        <div className="mb-4">
+          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Stack</h4>
+          <div className="flex flex-wrap gap-2">
+            {displayedTechnologies.map((tech) => (
+              <span
+                key={tech}
+                className={`rounded-md px-2.5 py-1 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
+              >
+                {tech}
+              </span>
+            ))}
+            {hasMoreTechnologies && (
+              <span className="rounded-md border border-dashed border-slate-300 bg-slate-100 px-2.5 py-1 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                +{project.technologies.length - 4}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => toggleProjectDetails(project.title)}
+          className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-slate-100"
+          aria-expanded={isDetailsOpen}
+        >
+          Details
+          <ChevronDown className={`size-4 transition-transform ${isDetailsOpen ? "rotate-180" : ""}`} />
+        </button>
+
+        {isDetailsOpen && (
+          <div className="mb-4 grid gap-3 border-t border-slate-200 pt-4 dark:border-slate-800">
+            {[
+              ["Problem", project.problem],
+              ["Contribution", project.contribution],
+              ["Value", project.result],
+            ].map(([label, copy]) => (
+              <div key={label}>
+                <h4 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</h4>
+                <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{copy}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">
+          {project.demoHref ? (
+            <a
+              href={project.demoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md bg-rose-600 px-3 py-2 font-mono text-xs font-semibold text-white transition-colors hover:bg-rose-700"
+            >
+              View Live Demo
+              <ExternalLink className="size-3" />
+            </a>
+          ) : project.privateLabel ? (
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 rounded-md bg-slate-900 px-3 py-2 font-mono text-xs font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            >
+              {project.privateLabel}
+            </a>
+          ) : (
+            <span className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 font-mono text-xs font-medium text-rose-600 dark:border-rose-900/50 dark:bg-rose-950/20 dark:text-rose-400">
+              Live demo soon
+            </span>
+          )}
+          {project.href ? (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-slate-300 px-3 py-2 font-mono text-xs font-semibold text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+            >
+              Case Study
+              <Github className="size-3" />
+            </a>
+          ) : project.privateLabel || project.demoHref ? null : (
+            <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-800/40 dark:text-slate-400">
+              {project.caseStudyLabel ?? "GitHub link coming soon"}
+            </span>
+          )}
+        </div>
+      </article>
+    );
   };
 
   return (
-    <section id="projects" className="border-t border-slate-200 px-6 py-24 transition-colors dark:border-slate-800">
-      <div className="mx-auto max-w-5xl">
+    <section id="projects" className="border-t border-slate-200 bg-slate-50 px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+      <div className="mx-auto max-w-7xl">
         <SectionLabel>projects & case studies</SectionLabel>
 
-        <div className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
-          <p>
-            Work is grouped by direct access. Live production links are separated from private source code, database
-            structures, enterprise configuration, and customer data to keep the portfolio useful without compromising
-            safety.
+        <div className="mb-10 max-w-3xl">
+          <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
+            Featured Work
+          </h2>
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            Live demos come first for quick evaluation. Deeper case-study context stays available without making the page
+            feel like a wall of text.
           </p>
         </div>
 
-        <div className="mb-6 flex flex-wrap items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900/40">
-          <span className="rounded-md border border-rose-200 bg-rose-50 px-2 py-1 font-mono text-xs text-rose-600 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300">
-            More demos and case studies coming soon
-          </span>
-          <span className="text-sm text-slate-600 dark:text-slate-400">
-            Public links are added as projects are cleaned up, deployed, and safe to share.
-          </span>
-        </div>
+        <div className="mb-10 rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Featured Live Demos</h3>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Fast links for recruiters, clients, and teams reviewing capability.</p>
+            </div>
+            <span className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1 font-mono text-xs text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/20 dark:text-rose-300">
+              More demos coming soon
+            </span>
+          </div>
 
-        <div className="space-y-5">
-          {projectSections.map((section) => {
-            const sectionProjects = projects.filter((project) => project.category === section.id);
-            const isOpen = openSections[section.id] ?? false;
-
-            if (sectionProjects.length === 0) return null;
-
-            return (
-              <div key={section.id} className="rounded-lg border border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-900/30">
-                <button
-                  type="button"
-                  onClick={() => toggleSection(section.id)}
-                  className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white dark:hover:bg-slate-900/60"
-                  aria-expanded={isOpen}
+          <div className="grid gap-3 md:grid-cols-3">
+            {featuredDemos.map((project) => {
+              const Icon = project.icon;
+              return (
+                <a
+                  key={project.title}
+                  href={project.demoHref ?? project.href ?? "#contact"}
+                  target={project.demoHref || project.href ? "_blank" : undefined}
+                  rel={project.demoHref || project.href ? "noopener noreferrer" : undefined}
+                  className="group rounded-md border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-rose-300 hover:bg-white dark:border-slate-800 dark:bg-slate-950/50 dark:hover:border-rose-800 dark:hover:bg-slate-900"
                 >
-                  <div>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{section.title}</h3>
-                      <span className="rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                        {sectionProjects.length} {sectionProjects.length === 1 ? "item" : "items"}
-                      </span>
-                    </div>
-                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">{section.description}</p>
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="flex size-9 items-center justify-center rounded-md bg-white text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-800">
+                      <Icon className="size-5" />
+                    </span>
+                    <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{project.title}</h4>
                   </div>
-                  <ChevronDown className={`mt-1 size-5 flex-none text-slate-500 transition-transform dark:text-slate-400 ${isOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                {isOpen ? (
-                  <div className="border-t border-slate-200 p-5 dark:border-slate-800">
-                    {sectionProjects.length > 1 ? (
-                      <div className="mb-4 flex justify-end gap-2">
-                        <button
-                          type="button"
-                          onClick={() => scrollProjectSection(section.id, -1)}
-                          className="rounded-lg border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-slate-100"
-                          aria-label={`Scroll ${section.title} left`}
-                          title="Previous"
-                        >
-                          <ChevronLeft className="size-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => scrollProjectSection(section.id, 1)}
-                          className="rounded-lg border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-slate-100"
-                          aria-label={`Scroll ${section.title} right`}
-                          title="Next"
-                        >
-                          <ChevronRight className="size-4" />
-                        </button>
-                      </div>
-                    ) : null}
-                    <div
-                      id={`project-carousel-${section.id}`}
-                      className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:thin]"
-                    >
-                    {sectionProjects.map((project) => {
-                      const Icon = project.icon;
-                      return (
-                        <article
-                          key={project.title}
-                          className="group w-full flex-none snap-start rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50 md:w-[calc(100%-3rem)]"
-                        >
-                          <div className="mb-4 flex items-start justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                              <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                                <Icon className="size-5" />
-                              </div>
-                              <div>
-                                <h3 className="text-lg text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
-                                  {project.title}
-                                </h3>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">{project.subtitle}</p>
-                              </div>
-                            </div>
-                            <div className="flex gap-2">
-                              {project.demoHref ? (
-                                <a
-                                  href={project.demoHref}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                                  title="View live demo"
-                                >
-                                  <ExternalLink className="size-4" />
-                                </a>
-                              ) : (
-                                <a
-                                  href="#contact"
-                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                                  title="Ask about this project"
-                                >
-                                  <ExternalLink className="size-4" />
-                                </a>
-                              )}
-                              {project.href ? (
-                                <a
-                                  href={project.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="rounded-lg p-2 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-                                  title="View GitHub case study"
-                                >
-                                  <Github className="size-4" />
-                                </a>
-                              ) : (
-                                <span
-                                  className="rounded-lg p-2 text-slate-400 transition-all dark:text-slate-600"
-                                  title={project.privateLabel ?? "GitHub link coming soon"}
-                                >
-                                  <Github className="size-4" />
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <div className="mb-5 grid gap-4 md:grid-cols-3">
-                            <div>
-                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Problem</h4>
-                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.problem}</p>
-                            </div>
-                            <div>
-                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Contribution</h4>
-                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.contribution}</p>
-                            </div>
-                            <div>
-                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Value</h4>
-                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.result}</p>
-                            </div>
-                          </div>
-                          {project.screenshots && project.screenshots.length > 0 ? (
-                            <div className="mb-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
-                              <h4 className="mr-1 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Preview</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {project.screenshots.map((screenshot) => (
-                                  <button
-                                    type="button"
-                                    key={screenshot.src}
-                                    onClick={() => onOpenPreview({ ...screenshot, projectTitle: project.title })}
-                                    className="group relative overflow-hidden rounded-md border border-slate-200 bg-slate-50 text-left transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
-                                    title={`Preview ${screenshot.label}`}
-                                  >
-                                    <img
-                                      src={screenshot.src}
-                                      alt={screenshot.alt}
-                                      loading="lazy"
-                                      className="h-16 w-24 object-cover transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-32"
-                                    />
-                                    <figcaption className="absolute inset-x-0 bottom-0 bg-slate-950/75 px-2 py-1 font-mono text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
-                                      {screenshot.label}
-                                    </figcaption>
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          ) : null}
-                          <div className="space-y-3">
-                            <div>
-                              <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Stack</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech) => (
-                                  <span
-                                    key={tech}
-                                    className={`rounded-md px-3 py-1.5 font-mono text-xs transition-transform hover:scale-105 ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-3 dark:border-slate-800">
-                              {project.demoHref ? (
-                                <a
-                                  href={project.demoHref}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
-                                >
-                                  View live demo
-                                </a>
-                              ) : (
-                                project.privateLabel ? (
-                                  <a
-                                    href="#contact"
-                                    className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1.5 font-mono text-xs text-rose-700 transition-colors hover:border-rose-300 hover:text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:border-rose-700 dark:hover:text-rose-100"
-                                  >
-                                    {project.privateLabel}
-                                  </a>
-                                ) : (
-                                  <span className="rounded-md border border-rose-100 bg-rose-50/60 px-3 py-1.5 font-mono text-xs text-rose-500 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-400">
-                                    Live demo soon
-                                  </span>
-                                )
-                              )}
-                              {project.href ? (
-                                <a
-                                  href={project.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
-                                >
-                                  View GitHub case study
-                                </a>
-                              ) : project.privateLabel || project.demoHref ? null : (
-                                <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
-                                  {project.caseStudyLabel ?? "GitHub link coming soon"}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </article>
-                      );
-                    })}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
+                  <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.subtitle}</p>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-600 group-hover:text-rose-700 dark:text-rose-400 dark:group-hover:text-rose-300">
+                    View live demo
+                    <ExternalLink className="size-3" />
+                  </span>
+                </a>
+              );
+            })}
+          </div>
         </div>
+
+        <div className="mb-8 flex flex-wrap gap-2">
+          {filters.map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                activeFilter === filter.id
+                  ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950"
+                  : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:text-slate-100"
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
+        {activeFilter === "all" ? (
+          <div className="space-y-4">
+            {filteredSections.map((section) => {
+              const sectionProjects = filteredProjects.filter((project) => project.category === section.id);
+              const isOpen = openSections[section.id] ?? false;
+
+              if (sectionProjects.length === 0) return null;
+
+              return (
+                <div key={section.id} className="rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/30">
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(section.id)}
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <span>
+                      <span className="flex flex-wrap items-center gap-3">
+                        <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{section.title}</span>
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-xs text-slate-600 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-400">
+                          {sectionProjects.length} {sectionProjects.length === 1 ? "project" : "projects"}
+                        </span>
+                      </span>
+                      <span className="mt-1 block text-sm text-slate-600 dark:text-slate-400">{section.description}</span>
+                    </span>
+                    <ChevronDown className={`size-5 flex-none text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  </button>
+
+                  {isOpen && (
+                    <div className="grid gap-4 border-t border-slate-200 p-5 dark:border-slate-800 md:grid-cols-2 xl:grid-cols-3">
+                      {sectionProjects.map(renderProjectCard)}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/30">
+            <div className="mb-5">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">{filteredSections[0]?.title}</h3>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{filteredSections[0]?.description}</p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {filteredProjects.map(renderProjectCard)}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1846,37 +2154,51 @@ function ScreenshotPreviewModal({
 
 function TargetRoles() {
   return (
-    <section id="roles" className="bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
-      <div className="mx-auto max-w-5xl">
+    <section id="roles" className="relative bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+      <div className="mx-auto max-w-6xl">
         <SectionLabel>target roles</SectionLabel>
 
-        <p className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400">
-          These are the roles where my professional .NET background and broader web application skills map well to real
-          job openings.
-        </p>
+        <div className="mb-12 max-w-3xl">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+            Target Roles
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-300">
+            These are the roles where my professional .NET background and broader web application skills map well to real
+            job openings.
+          </p>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {targetRoles.map((role) => (
+          {targetRoles.map((role, index) => (
             <article
               key={role.title}
-              className="rounded-lg border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-700"
+              className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="rounded-lg bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  <BriefcaseBusiness className="size-5" />
-                </div>
-                <div>
-                  <h3 className="text-lg text-slate-900 dark:text-slate-100">{role.title}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{role.summary}</p>
-                </div>
-              </div>
-              <div className="space-y-3">
-                {role.points.map((point) => (
-                  <div key={point} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                    <span>{point}</span>
+              {/* Gradient accent line at top */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
+              
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+              
+              <div className="relative">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 p-3 text-white shadow-lg transition-transform group-hover:scale-110">
+                    <BriefcaseBusiness className="size-6" />
                   </div>
-                ))}
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{role.title}</h3>
+                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{role.summary}</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {role.points.map((point) => (
+                    <div key={point} className="flex items-start gap-2 text-base text-slate-600 dark:text-slate-300">
+                      <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -2061,111 +2383,152 @@ function Contact({
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-slate-50 px-6 py-24 transition-colors dark:bg-slate-900/50">
-      <div className="relative z-10 mx-auto max-w-5xl">
+    <section id="contact" className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <SectionLabel>contact</SectionLabel>
 
-        <div className="max-w-2xl">
-          <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
+        <div className="mb-12 max-w-3xl">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+            Let's Work Together
+          </h2>
+          <p className="mb-6 text-lg text-slate-600 dark:text-slate-300">
             I'm open to full-time execution roles, part-time technical projects, freelance work, and MVP contracts
             involving web applications, APIs, business systems, cloud deployment, automation, and AI-assisted tools.
           </p>
-          <p className="mb-8 text-slate-600 dark:text-slate-400">
+          <p className="text-lg text-slate-600 dark:text-slate-300">
             Have a backlog of developer tickets, a feature that needs immediate building, or a product idea ready for a
             first useful release? Send me the requirements and I can help turn them into working software.
           </p>
+        </div>
+
+        <div className="mb-12">
           <button
             type="button"
             onClick={onOpenMessage}
-            className="mb-8 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:from-indigo-500 dark:to-purple-500"
           >
             Send Me an Email Here
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-5" />
           </button>
+        </div>
 
-          <div className="space-y-3">
-            {contacts.map((contact) => {
-              const Icon = contact.icon;
-              const isExternal = contact.href.startsWith("http");
-              const copyValue = "copyValue" in contact ? contact.copyValue : undefined;
-              const isResume = contact.label === "Resume";
+        <div className="grid gap-4 md:grid-cols-2">
+          {contacts.map((contact, index) => {
+            const Icon = contact.icon;
+            const isExternal = contact.href.startsWith("http");
+            const copyValue = "copyValue" in contact ? contact.copyValue : undefined;
+            const isResume = contact.label === "Resume";
+            const gradientColors = [
+              "from-purple-500 to-indigo-500",
+              "from-emerald-500 to-teal-500",
+              "from-slate-700 to-slate-900",
+              "from-blue-500 to-blue-700",
+              "from-emerald-500 to-teal-500",
+            ];
+            const gradient = gradientColors[index % gradientColors.length];
 
-              if (copyValue) {
-                return (
-                  <div
-                    key={contact.label}
-                    className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
-                  >
+            if (copyValue) {
+              return (
+                <div
+                  key={contact.label}
+                  className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Gradient accent line at top */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                  
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                  
+                  <div className="relative flex items-center gap-4">
                     <div
-                      className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                      className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
                     >
-                      <Icon className="size-5" />
+                      <Icon className="size-6" />
                     </div>
                     <a href={contact.href} className="min-w-0 flex-1">
-                      <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
-                      <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
+                      <span className="text-base font-semibold text-slate-900 transition-colors group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-400">
                         {contact.value}
                       </span>
                     </a>
                     <button
                       type="button"
                       onClick={() => handleCopyContact(contact.label, copyValue)}
-                      className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-slate-100"
+                      className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-indigo-600 dark:hover:bg-indigo-950/30"
                       aria-label={`Copy ${contact.label.toLowerCase()}`}
                     >
                       <Copy className="size-4" />
-                      {copiedContact === contact.label ? "Copied" : "Copy"}
+                      {copiedContact === contact.label ? "Copied!" : "Copy"}
                     </button>
                   </div>
-                );
-              }
+                </div>
+              );
+            }
 
-              if (isResume) {
-                return (
-                  <button
-                    key={contact.label}
-                    type="button"
-                    onClick={onOpenResumeRequest}
-                    className="group flex w-full items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 text-left transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
-                  >
+            if (isResume) {
+              return (
+                <button
+                  key={contact.label}
+                  type="button"
+                  onClick={onOpenResumeRequest}
+                  className={`group relative overflow-hidden flex w-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Gradient accent line at top */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                  
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                  
+                  <div className="relative flex items-center gap-4">
                     <div
-                      className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                      className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
                     >
-                      <Icon className="size-5" />
+                      <Icon className="size-6" />
                     </div>
                     <div className="flex-1">
-                      <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
-                      <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
+                      <span className="text-base font-semibold text-slate-900 transition-colors group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-400">
                         {contact.value}
                       </span>
                     </div>
-                  </button>
-                );
-              }
+                  </div>
+                </button>
+              );
+            }
 
-              return (
-                <a
-                  key={contact.label}
-                  href={contact.href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700 dark:hover:shadow-slate-900/50"
-                >
+            return (
+              <a
+                key={contact.label}
+                href={contact.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className={`group relative overflow-hidden flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Gradient accent line at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
+                
+                <div className="relative flex items-center gap-4">
                   <div
-                    className={`rounded-lg bg-slate-100 p-2 text-slate-700 transition-colors dark:bg-slate-800 dark:text-slate-300 ${contact.accent}`}
+                    className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
                   >
-                    <Icon className="size-5" />
+                    <Icon className="size-6" />
                   </div>
                   <div className="flex-1">
-                    <div className="mb-1 text-xs text-slate-500 dark:text-slate-400">{contact.label}</div>
-                    <span className="text-slate-900 transition-colors group-hover:text-purple-600 dark:text-slate-100 dark:group-hover:text-purple-400">
+                    <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
+                    <span className="text-base font-semibold text-slate-900 transition-colors group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-400">
                       {contact.value}
                     </span>
                   </div>
-                </a>
-              );
-            })}
-          </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2174,20 +2537,31 @@ function Contact({
 
 function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   return (
-    <footer className="border-t border-slate-200 py-12 transition-colors dark:border-slate-800">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-        <p className="font-mono text-sm text-slate-500 dark:text-slate-400">&copy; 2026 dbmblc</p>
-        <div className="flex gap-6">
-          {contacts.map((contact) => {
+    <footer className="border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 py-12 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+        <div className="text-center md:text-left">
+          <p className="font-mono text-sm font-semibold text-slate-600 dark:text-slate-400">&copy; 2026 dbmblc</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-500">Full-Stack .NET & React Engineer</p>
+        </div>
+        <div className="flex gap-4">
+          {contacts.map((contact, index) => {
             const Icon = contact.icon;
             const isExternal = contact.href.startsWith("http");
+            const gradientColors = [
+              "from-purple-500 to-indigo-500",
+              "from-emerald-500 to-teal-500",
+              "from-slate-700 to-slate-900",
+              "from-blue-500 to-blue-700",
+              "from-emerald-500 to-teal-500",
+            ];
+            const gradient = gradientColors[index % gradientColors.length];
             if (contact.label === "Resume") {
               return (
                 <button
                   key={contact.label}
                   type="button"
                   onClick={onOpenResumeRequest}
-                  className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                  className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl`}
                   title={contact.label}
                 >
                   <Icon className="size-5" />
@@ -2201,7 +2575,7 @@ function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
                 href={contact.href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
-                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl`}
                 title={contact.label}
               >
                 <Icon className="size-5" />
@@ -2232,12 +2606,14 @@ export default function App() {
         mobileMenuOpen={mobileMenuOpen}
         onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
         onToggleMenu={() => setMobileMenuOpen((current) => !current)}
+        onOpenResumeRequest={() => setResumeRequestOpen(true)}
       />
       <main>
-        <Hero onOpenResumeRequest={() => setResumeRequestOpen(true)} />
+        <Hero />
+        <QuickStats />
         <CapabilitySnapshot />
-        <Projects onOpenPreview={setActivePreview} />
         <Services onOpenMessage={() => setMessageFormOpen(true)} />
+        <Projects onOpenPreview={setActivePreview} />
         <WhoIHelp />
         <Skills />
         <About />
