@@ -299,25 +299,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    category: "private-professional-work",
-    title: "Business Operations SaaS Platform",
-    subtitle: "Cloud-based architecture for water refilling operations and delivery tracking",
-    problem: "Delivery-heavy local businesses deal with tracking friction, manual order bookkeeping, and disconnected logistics.",
-    contribution:
-      "Designed an end-to-end multi-tenant business system with structured order workflows, operational dashboards, auth boundaries, and a mobile-first interface for field users.",
-    result:
-      "Demonstrates complex business workflow modeling, multi-tenant data boundaries, secure API design, and practical PWA-style accessibility for operations teams.",
-    technologies: [".NET", "Entity Framework Core", "PostgreSQL", "Next.js", "Tailwind CSS", "PWA", "Clerk", "JWT/OAuth", "Payment Gateways", "REST APIs"],
-    href: "https://github.com/danilomabulac/aquatrack-case-study",
-    icon: Database,
-    privateLabel: "Request a demo",
-    screenshots: [
-      { src: "/project-screenshots/aquatrack/landing.png", alt: "Business operations SaaS landing page", label: "Landing" },
-      { src: "/project-screenshots/aquatrack/dashboard.png", alt: "Business operations SaaS dashboard", label: "Dashboard" },
-      { src: "/project-screenshots/aquatrack/orders.png", alt: "Business operations SaaS orders page", label: "Orders" },
-    ],
-  },
-  {
     category: "live-demos",
     title: "AI Travel Itinerary Planner",
     subtitle: "Smart trip-generation platform with interactive spatial mapping",
@@ -335,6 +316,25 @@ const projects: Project[] = [
       { src: "/project-screenshots/gala-tayo/landing.png", alt: "AI travel itinerary planner landing page", label: "Landing" },
       { src: "/project-screenshots/gala-tayo/planner.png", alt: "AI travel itinerary planner prompt page", label: "Planner" },
       { src: "/project-screenshots/gala-tayo/routes.png", alt: "AI travel itinerary planner route view", label: "Routes" },
+    ],
+  },
+  {
+    category: "private-professional-work",
+    title: "Business Operations SaaS Platform",
+    subtitle: "Cloud-based architecture for water refilling operations and delivery tracking",
+    problem: "Delivery-heavy local businesses deal with tracking friction, manual order bookkeeping, and disconnected logistics.",
+    contribution:
+      "Designed an end-to-end multi-tenant business system with structured order workflows, operational dashboards, auth boundaries, and a mobile-first interface for field users.",
+    result:
+      "Demonstrates complex business workflow modeling, multi-tenant data boundaries, secure API design, and practical PWA-style accessibility for operations teams.",
+    technologies: [".NET", "Entity Framework Core", "PostgreSQL", "Next.js", "Tailwind CSS", "PWA", "Clerk", "JWT/OAuth", "Payment Gateways", "REST APIs"],
+    href: "https://github.com/danilomabulac/aquatrack-case-study",
+    icon: Database,
+    privateLabel: "Request a demo",
+    screenshots: [
+      { src: "/project-screenshots/aquatrack/landing.png", alt: "Business operations SaaS landing page", label: "Landing" },
+      { src: "/project-screenshots/aquatrack/dashboard.png", alt: "Business operations SaaS dashboard", label: "Dashboard" },
+      { src: "/project-screenshots/aquatrack/orders.png", alt: "Business operations SaaS orders page", label: "Orders" },
     ],
   },
   {
@@ -371,7 +371,7 @@ const projects: Project[] = [
     icon: Server,
   },
   {
-    category: "deployment-infrastructure",
+    category: "automation-workflows",
     title: "Production Deployment Pipeline Case Study",
     subtitle: "From local web app to live VPS deployment",
     problem:
@@ -468,14 +468,9 @@ const projectSections = [
   },
   {
     id: "automation-workflows",
-    title: "Automation & AI Workflows",
-    description: "Workflow automation, file processing, AI-assisted intake, and integration-focused systems.",
-  },
-  {
-    id: "deployment-infrastructure",
-    title: "Deployment & Infrastructure",
-    description: "Hosting, VPS deployment, CI/CD, domains, SSL, and production-style delivery paths.",
-  },
+    title: "Automation & DevOps",
+    description: "Workflow automation, deployment infrastructure, CI/CD, and integration-focused systems.",
+  }
 ];
 
 const targetRoles = [
@@ -822,9 +817,10 @@ function scrollToSection(sectionId: string) {
 
 function SectionLabel({ children }: { children: string }) {
   return (
-    <div className="mb-12 flex items-center gap-3">
-      <h2 className="font-mono text-sm text-slate-500 dark:text-slate-400">{children}</h2>
-      <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+    <div className="mx-auto mb-12 flex max-w-xl items-center justify-center gap-4">
+      <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+      <h2 className="font-mono text-xs uppercase tracking-[0.28em] text-violet-600 dark:text-violet-300">{children}</h2>
+      <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
     </div>
   );
 }
@@ -842,27 +838,27 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
   };
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm transition-colors dark:border-slate-800 dark:bg-slate-950/95">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <button onClick={() => scrollToSection("hero")} className="font-mono text-sm text-slate-900 dark:text-slate-100">
+    <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-slate-200/70 bg-white/85 px-4 py-2.5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-black/45">
+        <button onClick={() => scrollToSection("hero")} className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-slate-900 dark:text-slate-100">
           dbmblc.dev
         </button>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNav(item.id)}
-              className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+              className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
             >
               {item.label}
             </button>
           ))}
-          <div className="ml-2 flex items-center gap-2 border-l border-slate-200 pl-4 dark:border-slate-800">
+          <div className="ml-2 flex items-center gap-1 border-l border-slate-200 pl-3 dark:border-white/10">
             <button
               type="button"
               onClick={onOpenResumeRequest}
-              className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-indigo-400 hover:bg-indigo-50 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-indigo-500 dark:hover:bg-indigo-950/30"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-violet-400 hover:bg-violet-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-violet-400/50 dark:hover:bg-violet-400/10"
             >
               <Download className="size-3.5" />
               CV
@@ -871,7 +867,7 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
               href="https://github.com/danilomabulac"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
             >
               <Github className="size-3.5" />
               GitHub
@@ -880,7 +876,7 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
               href="https://www.linkedin.com/in/dbmabulac"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
+              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-700 dark:text-slate-400 dark:hover:bg-blue-400/10 dark:hover:text-blue-300"
             >
               <Linkedin className="size-3.5" />
               LinkedIn
@@ -888,7 +884,7 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
           </div>
           <button
             onClick={onToggleTheme}
-            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="rounded-full p-1.5 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
             aria-label="Toggle color theme"
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -898,14 +894,14 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
         <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={onToggleTheme}
-            className="p-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="rounded-full p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
             aria-label="Toggle color theme"
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
           <button
             onClick={onToggleMenu}
-            className="rounded-md p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+            className="rounded-full p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -914,7 +910,7 @@ function Header({ theme, mobileMenuOpen, onToggleTheme, onToggleMenu, onOpenResu
       </div>
 
       {mobileMenuOpen && (
-        <div className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 md:hidden">
+        <div className="mt-2 rounded-3xl border border-slate-200 bg-white/95 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-black/90 md:hidden">
           <div className="flex flex-col gap-2 px-6 py-4">
             {navItems.map((item) => (
               <button
@@ -966,7 +962,6 @@ type HelloPhase = "typingWorld" | "deletingWorld" | "typingDan" | "success" | "h
 const helloPrefix = "Hello ";
 const helloWorld = `${helloPrefix}world`;
 const helloDan = `${helloPrefix}I'm Dan`;
-const helloCommand = "let greeting = \"Hello world\";\ngreeting = greeting.replace(\"world\", \"I'm Dan\");\nconsole.log(greeting);";
 
 function AnimatedHelloIntro() {
   const [phase, setPhase] = useState<HelloPhase>("typingWorld");
@@ -1040,47 +1035,25 @@ function AnimatedHelloIntro() {
   }, [animatedOutput, phase]);
 
   return (
-    <div className="mb-8">
-      <div className="mb-6 overflow-hidden rounded-lg border border-slate-200 bg-white/90 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-        <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3 dark:border-slate-800">
-          <Terminal className="size-4 text-emerald-600 dark:text-emerald-400" />
-          <p className="font-mono text-xs text-slate-500 dark:text-slate-400">intro.ts</p>
-        </div>
-        <div className="space-y-3 px-4 py-4 font-mono text-sm">
-          <pre className="whitespace-pre-wrap text-slate-600 dark:text-slate-400">{helloCommand}</pre>
-          <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400" aria-live="polite">
-            <span className="text-slate-400">&gt;</span>
-            <span>{animatedOutput}</span>
-            <span className="h-5 w-2 animate-pulse bg-emerald-600 dark:bg-emerald-400" aria-hidden="true" />
-          </div>
-          {(phase === "success" || phase === "holding") && (
-            <div className="flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
-              <span className="text-slate-400">&gt;</span>
-              <span>return Success(200, "OK");</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <h1 className="min-h-[7.5rem] text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:min-h-[10.5rem] md:text-7xl">
-        {animatedOutput}
-       <span className="sr-only">Software Engineer | Web Applications, APIs, Cloud & AI Automation</span>
-      </h1>
+    <div className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-slate-200 bg-white/80 px-4 py-2 font-mono text-xs text-slate-600 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
+      <Terminal className="size-3.5 text-violet-600 dark:text-violet-300" />
+      <span className="text-slate-400">&gt;</span>
+      <span aria-live="polite">{animatedOutput}</span>
+      <span className="h-4 w-1.5 animate-pulse rounded-full bg-violet-500" aria-hidden="true" />
+      {(phase === "success" || phase === "holding") && (
+        <span className="hidden text-emerald-600 dark:text-emerald-300 sm:inline">return Success(200, "OK");</span>
+      )}
     </div>
   );
 }
 
 function Hero() {
   return (
-    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-16 pt-20 transition-colors">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 dark:from-slate-950 dark:via-indigo-950/20 dark:to-purple-950/20">
-        <div className="absolute inset-0 opacity-30 animate-gradient-x bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 blur-3xl" />
-      </div>
-
-      {/* Grid pattern overlay */}
+    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-6 pb-16 pt-28 transition-colors dark:bg-[#030207]">
+      <div className="frame-glow absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-600/20 blur-3xl dark:bg-violet-500/25" />
+      <div className="absolute right-0 top-1/3 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
       <div
-        className="absolute inset-0 opacity-10 [mask-image:linear-gradient(0deg,transparent,black)]"
+        className="absolute inset-0 opacity-[0.06] [mask-image:linear-gradient(180deg,black,transparent_82%)]"
         style={{
           backgroundImage:
             "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
@@ -1088,87 +1061,67 @@ function Hero() {
         }}
       />
 
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
-
-      <div className="relative z-10 mx-auto max-w-4xl md:-translate-y-6">
-        <div className="mb-8">
+      <div className="frame-section relative z-10 mx-auto max-w-5xl text-center md:-translate-y-4">
+        <div className="mx-auto mb-8 max-w-4xl">
           <AnimatedHelloIntro />
-          
-          {/* Main headline with gradient */}
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.32em] text-violet-600 dark:text-violet-300">
+            Web Applications • Decoupled APIs • AI & Cloud Automation
+          </p>
+
+          <h1 className="mx-auto mb-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl lg:text-7xl">
+            Hi, I'm Danilo Mabulac Jr.
+            <span className="mt-3 block text-2xl font-medium text-slate-500 dark:text-slate-400 md:text-4xl">
               Full-Stack .NET & React Engineer
             </span>
           </h1>
-          
-          <p className="mb-8 text-xl md:text-2xl text-slate-700 dark:text-slate-200 font-medium">
-            Production-Ready End-to-End MVPs
+
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300 md:text-lg">
+            I build production-ready web applications, secure APIs, business dashboards, automation workflows, and
+            AI-assisted tools for teams that need practical software delivered end to end.
           </p>
 
-          {/* Availability badges */}
-          <div className="mb-8 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 px-4 py-2 text-sm font-semibold text-emerald-700 dark:border-emerald-400/30 dark:from-emerald-400/10 dark:to-cyan-400/10 dark:text-emerald-300 shadow-lg">
-              <span className="size-2.5 rounded-full bg-emerald-500 animate-pulse-slow" aria-hidden="true" />
-              Open to hire & contract work
-            </span>
-            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
-              Full-time
-            </span>
-            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
-              Part-time
-            </span>
-            <span className="rounded-full border border-slate-300/50 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300">
-              Freelance
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+              <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
+              Open to full-time, part-time, freelance, and contract work
             </span>
           </div>
         </div>
 
-        {/* Value proposition with better visual hierarchy */}
-        <div className="mb-6 rounded-2xl border border-slate-200/50 bg-white/60 p-8 backdrop-blur-sm shadow-xl dark:border-slate-800/50 dark:bg-slate-900/60">
-          <div className="space-y-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-            <p className="font-semibold text-slate-900 dark:text-white">
-              I build web applications, secure REST APIs, dashboards, automations, and cloud-deployed systems for teams
-              that need practical software delivered end to end.
-            </p>
-            <p>
-              My strength is execution: turning tickets, wireframes, technical requirements, or product ideas into clean,
-              working software across frontend, backend, database, and deployment concerns.
-            </p>
-            <p>
-              Professional background in{" "}
-              <span className="rounded-lg bg-gradient-to-r from-purple-100 to-indigo-100 px-3 py-1.5 font-mono text-sm font-semibold text-purple-700 dark:from-purple-900/50 dark:to-indigo-900/50 dark:text-purple-300">
-                .NET
-              </span>{" "}
-              web development, REST APIs, SQL databases, production debugging, and enterprise systems.
-            </p>
-          </div>
-        </div>
-
-        {/* Strong CTA buttons with gradient */}
-        <div className="space-y-6">
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
+        <div className="mx-auto mb-10 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
             <button
               onClick={() => scrollToSection("contact")}
-              className="group relative flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white shadow-gradient transition-all hover:scale-105 hover:shadow-gradient-lg"
+              className="group relative flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-violet-950/10 transition-all hover:scale-105 dark:bg-white dark:text-slate-950"
             >
               Discuss a Project
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-indigo-500 hover:bg-indigo-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-indigo-400 dark:hover:bg-indigo-950/30"
+              className="rounded-full border border-slate-300 bg-white/50 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-violet-400 hover:bg-violet-50 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300 dark:hover:border-violet-400/50 dark:hover:bg-violet-400/10"
             >
               MVP Services
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-cyan-500 hover:bg-cyan-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30"
+              className="rounded-full border border-slate-300 bg-white/50 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-cyan-400 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300 dark:hover:border-cyan-400/50 dark:hover:bg-cyan-400/10"
             >
               Live Demos
             </button>
-          </div>
+        </div>
+
+        <div className="frame-line mx-auto grid max-w-4xl gap-3 border-y border-slate-200 py-5 dark:border-white/10 md:grid-cols-3">
+          {[
+            ["Professional core", ".NET APIs, SQL Server, enterprise systems"],
+            ["Modern delivery", "React, Next.js, cloud deployment, CI/CD"],
+            ["Business automation", "Workflow tools, AI-assisted features, integrations"],
+          ].map(([label, value]) => (
+            <div key={label} className="px-3 text-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-400">{label}</p>
+              <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">{value}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1225,42 +1178,27 @@ function QuickStats() {
   }, [isVisible, stats]);
 
   return (
-    <section id="quick-stats" className="relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 px-6 py-16 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <section id="quick-stats" className="frame-section border-y border-slate-200 bg-white px-6 py-12 transition-colors dark:border-white/10 dark:bg-[#030207]">
+      <div className="mx-auto max-w-5xl">
+        <div className="frame-line grid gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 dark:border-white/10 dark:bg-white/10 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
-            const gradientColors = [
-              "from-indigo-500 to-purple-500",
-              "from-cyan-500 to-blue-500",
-              "from-rose-500 to-pink-500",
-              "from-emerald-500 to-teal-500",
-            ];
-            const gradient = gradientColors[index % gradientColors.length];
             return (
               <div
                 key={stat.label}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                className="frame-card group bg-white p-6 text-center transition-colors hover:bg-slate-50 dark:bg-[#07050d] dark:hover:bg-white/[0.04]"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Gradient accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                
-                <div className="relative">
-                  <div className={`mb-4 flex size-14 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}>
-                    <Icon className="size-7" />
+                <div className="mx-auto mb-4 flex size-11 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                    <Icon className="size-5" />
                   </div>
                   <div className="mb-2">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-white dark:to-slate-300">
+                    <span className="text-3xl font-semibold text-slate-950 dark:text-white">
                       {Math.round(animatedValues[index])}
                     </span>
-                    <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{stat.suffix}</span>
+                    <span className="text-xl font-semibold text-violet-600 dark:text-violet-300">{stat.suffix}</span>
                   </div>
-                  <p className="text-sm font-medium text-slate-600 dark:text-slate-300">{stat.label}</p>
-                </div>
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-500">{stat.label}</p>
               </div>
             );
           })}
@@ -1272,56 +1210,36 @@ function QuickStats() {
 
 function CapabilitySnapshot() {
   return (
-    <section id="capabilities" className="relative border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white px-6 py-16 transition-colors dark:border-slate-800 dark:from-slate-900/50 dark:to-slate-950">
+    <section id="capabilities" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-3">
-              <h2 className="font-mono text-sm font-semibold text-indigo-600 dark:text-indigo-400">capabilities</h2>
-              <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/50 to-transparent dark:from-indigo-400/50" />
-            </div>
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-white dark:to-slate-300 md:text-4xl">
+        <SectionLabel>capabilities</SectionLabel>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-4xl">
               Practical execution across MVPs, APIs, automations, and deployment.
             </h2>
-          </div>
           <button
             type="button"
             onClick={() => scrollToSection("projects")}
-            className="inline-flex items-center gap-2 self-start rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:from-indigo-500 dark:to-purple-500 md:self-end"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-violet-400 hover:text-slate-950 dark:border-white/10 dark:text-slate-300 dark:hover:border-violet-400/50 dark:hover:text-white"
           >
             See proof
             <ArrowRight className="size-4" />
           </button>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {capabilityHighlights.map((capability, index) => {
-            const gradientColors = [
-              "from-indigo-500 to-purple-500",
-              "from-cyan-500 to-blue-500",
-              "from-rose-500 to-pink-500",
-              "from-amber-500 to-orange-500",
-            ];
-            const gradient = gradientColors[index % gradientColors.length];
             const Icon = capability.icon;
             return (
               <article
                 key={capability.title}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up stagger-${index + 1}`}
+                className={`frame-card group rounded-3xl border border-slate-200 bg-slate-50/70 p-5 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40 dark:hover:bg-white/[0.05] stagger-${index + 1}`}
               >
-                {/* Gradient accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                
-                <div className="relative">
-                  <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-700 shadow-md transition-transform group-hover:scale-110 dark:from-slate-800 dark:to-slate-700 dark:text-slate-300">
-                    <Icon className="size-6" />
+                <div className="mb-4 flex size-11 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                    <Icon className="size-5" />
                   </div>
-                  <h3 className="mb-2 text-base font-bold text-slate-900 dark:text-slate-100">{capability.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{capability.description}</p>
-                </div>
+                  <h3 className="mb-2 text-base font-semibold text-slate-950 dark:text-slate-100">{capability.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{capability.description}</p>
               </article>
             );
           })}
@@ -1337,63 +1255,53 @@ function About() {
       title: "Enterprise Development",
       description: "Building decoupled .NET APIs, REST services, and production systems for real business requirements.",
       icon: Code,
-      gradient: "from-purple-500 to-indigo-500",
     },
     {
       title: "Data & Systems",
       description: "SQL Server and PostgreSQL work, data-backed features, API contracts, and production debugging.",
       icon: Database,
-      gradient: "from-orange-500 to-amber-500",
     },
     {
       title: "Automation & AI",
       description: "Creating practical tools that automate workflows, integrate AI, and reduce repetitive operational work.",
       icon: Workflow,
-      gradient: "from-cyan-500 to-blue-500",
     },
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 px-6 py-24 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
+    <section id="about" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="relative z-10 mx-auto max-w-6xl">
         <SectionLabel>about</SectionLabel>
 
-        <div className="mb-16 grid gap-6 md:grid-cols-3">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            I'm a Software Developer with professional experience building, maintaining, and debugging enterprise-grade
+            backend infrastructure and modern web software. My background includes .NET web development, REST APIs, SQL
+            databases, production issue investigation, and business workflow support.
+          </p>
+        </div>
+
+        <div className="mb-12 grid gap-4 md:grid-cols-3">
           {cards.map((card, index) => {
             const Icon = card.icon;
             return (
               <article
                 key={card.title}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                className="frame-card group rounded-3xl border border-slate-200 bg-slate-50/70 p-6 text-center transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40 dark:hover:bg-white/[0.05]"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Gradient accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${card.gradient}`} />
-                
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                
-                <div className="relative">
-                  <div
-                    className={`mb-4 flex size-14 items-center justify-center rounded-xl bg-gradient-to-br ${card.gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
-                  >
-                    <Icon className="size-7" />
+                <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                    <Icon className="size-5" />
                   </div>
-                  <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-slate-100">{card.title}</h3>
-                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">{card.description}</p>
-                </div>
+                  <h3 className="mb-3 text-lg font-semibold text-slate-950 dark:text-slate-100">{card.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
               </article>
             );
           })}
         </div>
 
-        <div className="max-w-3xl space-y-6 leading-relaxed">
-          <p className="text-lg text-slate-700 dark:text-slate-300">
-            I'm a Software Developer with professional experience building, maintaining, and debugging enterprise-grade
-            backend infrastructure and modern web software. My background includes .NET web development, REST APIs, SQL
-            databases, production issue investigation, and business workflow support.
-          </p>
-          <p className="text-lg text-slate-700 dark:text-slate-300">
+        <div className="frame-card mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-slate-50/70 p-6 text-center dark:border-white/10 dark:bg-white/[0.03]">
+          <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
             My working style is maker-focused: take complex requirements, open the editor, use documentation and modern
             tools well, and deliver integrated software end to end. I focus on systems that reduce manual friction,
             replace broken spreadsheets, automate administrative overhead, and support real users.
@@ -1406,50 +1314,36 @@ function About() {
 
 function WhoIHelp() {
   return (
-    <section id="clients" className="relative bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+    <section id="clients" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-6xl">
         <SectionLabel>who i help</SectionLabel>
 
-        <div className="mb-12 max-w-3xl">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
             Ideal Clients
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300">
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             I work best with people who have clear requirements, rough wireframes, operational pain, or a backlog of
             features that need to move from idea to working software.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
-            const gradientColors = [
-              "from-indigo-500 to-purple-500",
-              "from-cyan-500 to-blue-500",
-              "from-rose-500 to-pink-500",
-            ];
-            const gradient = gradientColors[index % gradientColors.length];
             return (
               <article
                 key={audience.title}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                className="frame-card group rounded-3xl border border-slate-200 bg-slate-50/70 p-6 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40 dark:hover:bg-white/[0.05]"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Gradient accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                
-                <div className="relative">
                   <div className="mb-4 flex items-center gap-3">
-                    <div className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}>
-                      <Icon className="size-6" />
+                    <div className="flex size-10 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                      <Icon className="size-5" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{audience.title}</h3>
+                    <h3 className="text-lg font-semibold text-slate-950 dark:text-slate-100">{audience.title}</h3>
                   </div>
-                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">{audience.description}</p>
-                </div>
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{audience.description}</p>
               </article>
             );
           })}
@@ -1463,12 +1357,12 @@ function Skills() {
   const [openSkillGroups, setOpenSkillGroups] = useState<Record<string, boolean>>({});
 
   return (
-    <section id="skills" className="border-t border-slate-200 bg-white px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+    <section id="skills" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-6xl">
         <SectionLabel>skills</SectionLabel>
 
-        <div className="mb-10 max-w-3xl">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
             Technical Expertise
           </h2>
           <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
@@ -1483,7 +1377,7 @@ function Skills() {
             const isOpen = openSkillGroups[category.category] ?? false;
 
             return (
-              <article key={category.category} className="rounded-lg border border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-900/30">
+              <article key={category.category} className="frame-card rounded-3xl border border-slate-200 bg-slate-50/70 dark:border-white/10 dark:bg-white/[0.03]">
                 <button
                   type="button"
                   onClick={() =>
@@ -1496,7 +1390,7 @@ function Skills() {
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-center gap-3">
-                    <span className="flex size-9 items-center justify-center rounded-lg bg-white text-slate-700 ring-1 ring-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:ring-slate-800">
+                    <span className="flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white text-violet-600 dark:border-white/10 dark:bg-transparent dark:text-violet-300">
                       <CategoryIcon className="size-5" />
                     </span>
                     <span>
@@ -1507,7 +1401,7 @@ function Skills() {
                   <ChevronDown className={`size-4 text-slate-500 transition-transform md:hidden ${isOpen ? "rotate-180" : ""}`} />
                 </button>
 
-                <div className={`${isOpen ? "block" : "hidden"} border-t border-slate-200 px-4 py-4 dark:border-slate-800 md:block`}>
+                <div className={`${isOpen ? "block" : "hidden"} border-t border-slate-200 px-4 py-4 dark:border-white/10 md:block`}>
                   <div className="flex flex-wrap gap-x-4 gap-y-2">
                     {category.skills.map((skill) => {
                       const SkillIcon = skillIcons[skill];
@@ -1534,13 +1428,12 @@ function Skills() {
 
 function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
   return (
-    <section id="services" className="border-t border-slate-200 bg-white px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+    <section id="services" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-6xl">
         <SectionLabel>what i can build</SectionLabel>
 
-        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
-          <div className="max-w-3xl">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+            <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
               Services & Expertise
             </h2>
             <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
@@ -1548,24 +1441,23 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
             automation, database-backed dashboards, production troubleshooting, cloud deployment, and AI-assisted
             product features.
             </p>
-          </div>
           <button
             type="button"
             onClick={onOpenMessage}
-            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
           >
             Discuss a service
             <ArrowRight className="size-4" />
           </button>
         </div>
 
-        <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+        <div className="frame-line overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10">
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <article key={service.title} className="grid gap-5 py-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+              <article key={service.title} className="frame-card grid gap-5 border-b border-slate-200 bg-slate-50/70 p-6 last:border-b-0 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
                 <div className="flex gap-4">
-                  <div className="mt-1 flex size-10 flex-none items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <div className="mt-1 flex size-10 flex-none items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
                     <Icon className="size-5" />
                   </div>
                   <div>
@@ -1748,297 +1640,155 @@ function MessageFormModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 
 function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) => void }) {
   const [activeFilter, setActiveFilter] = useState<string>("all");
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
-  const [openProjectDetails, setOpenProjectDetails] = useState<Record<string, boolean>>({});
 
   const filters = [
     { id: "all", label: "All Projects" },
     ...projectSections.map((section) => ({ id: section.id, label: section.title })),
   ];
 
-  const featuredDemoTitles = [
-    "AI Travel Itinerary Planner",
-    "Career Workspace SaaS Application",
-    "Enterprise Multi-Format File Extractor",
-  ];
-
-  const featuredDemos = featuredDemoTitles
-    .map((title) => projects.find((project) => project.title === title))
-    .filter((project): project is Project => Boolean(project));
-
   const filteredProjects = activeFilter === "all"
     ? projects
     : projects.filter((project) => project.category === activeFilter);
 
-  const filteredSections = activeFilter === "all"
-    ? projectSections
-    : projectSections.filter((section) => section.id === activeFilter);
-
-  const toggleSection = (sectionId: string) => {
-    setOpenSections((current) => ({
-      ...current,
-      [sectionId]: !(current[sectionId] ?? false),
-    }));
-  };
-
-  const toggleProjectDetails = (projectTitle: string) => {
-    setOpenProjectDetails((current) => ({
-      ...current,
-      [projectTitle]: !(current[projectTitle] ?? false),
-    }));
-  };
-
-  const renderProjectCard = (project: Project) => {
+  const renderProjectCard = (project: Project, index: number) => {
     const Icon = project.icon;
-    const displayedScreenshots = project.screenshots?.slice(0, 3) ?? [];
-    const hasMoreScreenshots = (project.screenshots?.length ?? 0) > 3;
-    const displayedTechnologies = project.technologies.slice(0, 4);
-    const hasMoreTechnologies = project.technologies.length > 4;
-    const isDetailsOpen = openProjectDetails[project.title] ?? false;
+    const isHero = index === 0 && activeFilter === "all";
+    const heroScreenshot = project.screenshots?.[0];
 
     return (
       <article
         key={project.title}
-        className="rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/40 dark:hover:border-slate-700"
+        className={`project-card group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all hover:border-violet-300 dark:border-white/10 dark:bg-[#030207] dark:hover:border-violet-400/40 ${
+          isHero ? "md:col-span-2 xl:col-span-3 md:flex-row" : ""
+        }`}
       >
-        <div className="mb-4 flex items-start justify-between gap-3">
-          <div className="flex min-w-0 gap-3">
-            <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-              <Icon className="size-5" />
+        {/* Visual Hero Area */}
+        <div 
+          className={`relative overflow-hidden bg-slate-100 dark:bg-slate-900 ${isHero ? "md:w-3/5 xl:w-2/3 md:min-h-[400px]" : "aspect-[16/9]"}`}
+          onClick={() => {
+            if (heroScreenshot) {
+              onOpenPreview({ ...heroScreenshot, projectTitle: project.title });
+            }
+          }}
+          style={{ cursor: heroScreenshot ? "pointer" : "default" }}
+        >
+          {heroScreenshot ? (
+            <div className="relative h-full w-full">
+              <img
+                src={heroScreenshot.src}
+                alt={heroScreenshot.alt}
+                loading="lazy"
+                className="project-card-image absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="project-card-overlay absolute inset-0 pointer-events-none" />
             </div>
-            <div className="min-w-0">
-              <h3 className="text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">{project.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.subtitle}</p>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800/50 dark:to-slate-900/50">
+              <Icon className="size-16 text-slate-300 dark:text-slate-700" />
             </div>
-          </div>
-          <div className="flex flex-none gap-2">
-            {project.demoHref ? (
-              <a
-                href={project.demoHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-rose-300 hover:text-rose-600 dark:border-slate-800 dark:text-slate-400 dark:hover:border-rose-800 dark:hover:text-rose-400"
-                title="View live demo"
-              >
-                <ExternalLink className="size-4" />
-              </a>
-            ) : (
-              <a
-                href="#contact"
-                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-slate-100"
-                title="Ask about this project"
-              >
-                <ExternalLink className="size-4" />
-              </a>
-            )}
-            {project.href ? (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md border border-slate-200 p-2 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-slate-100"
-                title="View GitHub case study"
-              >
-                <Github className="size-4" />
-              </a>
-            ) : (
-              <span
-                className="rounded-md border border-slate-200 p-2 text-slate-400 dark:border-slate-800 dark:text-slate-500"
-                title={project.privateLabel ?? "GitHub link coming soon"}
-              >
-                <Github className="size-4" />
-              </span>
-            )}
-          </div>
+          )}
+          
+          {/* Content that overlays the image in non-hero */}
+          {!isHero && heroScreenshot && (
+            <div className="absolute inset-x-0 bottom-0 p-6 z-10 flex flex-col justify-end pointer-events-none">
+              <h3 className="text-xl font-bold text-white drop-shadow-md">{project.title}</h3>
+              <p className="mt-1 text-sm text-slate-200 drop-shadow-md line-clamp-1">{project.subtitle}</p>
+            </div>
+          )}
         </div>
 
-        <p className="mb-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">{project.result}</p>
-
-        {displayedScreenshots.length > 0 ? (
-          <div className="mb-4">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Preview</h4>
-              <span className="font-mono text-[11px] text-slate-400">click to enlarge</span>
+        {/* Details Area */}
+        <div className={`flex flex-col p-6 ${isHero ? "md:w-2/5 xl:w-1/3 md:justify-center" : "flex-1"}`}>
+          {(!heroScreenshot || isHero) && (
+            <div className="mb-4">
+              <h3 className={`font-bold text-slate-900 dark:text-slate-100 ${isHero ? "text-2xl lg:text-3xl" : "text-xl"}`}>{project.title}</h3>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{project.subtitle}</p>
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {displayedScreenshots.map((screenshot) => (
-                <button
-                  type="button"
-                  key={screenshot.src}
-                  onClick={() => onOpenPreview({ ...screenshot, projectTitle: project.title })}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-md border border-slate-200 bg-slate-100 text-left transition-colors hover:border-slate-400 dark:border-slate-800 dark:bg-slate-950/60 dark:hover:border-slate-600"
-                  title={`Preview ${screenshot.label}`}
+          )}
+
+          <p className={`mb-6 text-sm leading-relaxed text-slate-700 dark:text-slate-300 ${isHero ? "text-base" : ""}`}>{project.result}</p>
+
+          <div className="mt-auto">
+            <div className="mb-6 flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className={`rounded-md px-2.5 py-1 font-mono text-[10px] sm:text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-400"}`}
                 >
-                  <img
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <span className="absolute inset-x-0 bottom-0 bg-slate-950/75 px-2 py-1 font-mono text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
-                    {screenshot.label}
-                  </span>
-                </button>
+                  {tech}
+                </span>
               ))}
-              {hasMoreScreenshots && (
-                <div className="flex aspect-[4/3] items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
-                  <span className="text-xs font-medium">+{project.screenshots!.length - 3}</span>
-                </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {project.demoHref ? (
+                <a
+                  href={project.demoHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2.5 font-mono text-sm font-semibold text-white transition-all hover:from-violet-500 hover:to-indigo-500 hover:shadow-lg hover:shadow-violet-500/25"
+                >
+                  Live Demo
+                  <ExternalLink className="size-4" />
+                </a>
+              ) : project.privateLabel ? (
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2.5 font-mono text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+                >
+                  {project.privateLabel}
+                </a>
+              ) : (
+                <span className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-2.5 font-mono text-sm font-medium text-rose-600 dark:border-rose-900/50 dark:bg-rose-950/20 dark:text-rose-400">
+                  Live demo soon
+                </span>
+              )}
+              {project.href ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 font-mono text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-900/50 dark:hover:text-slate-100"
+                >
+                  Case Study
+                  <Github className="size-4" />
+                </a>
+              ) : project.privateLabel || project.demoHref ? null : (
+                <span className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 font-mono text-sm font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-400">
+                  {project.caseStudyLabel ?? "GitHub link coming soon"}
+                </span>
               )}
             </div>
           </div>
-        ) : null}
-
-        <div className="mb-4">
-          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Stack</h4>
-          <div className="flex flex-wrap gap-2">
-            {displayedTechnologies.map((tech) => (
-              <span
-                key={tech}
-                className={`rounded-md px-2.5 py-1 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
-              >
-                {tech}
-              </span>
-            ))}
-            {hasMoreTechnologies && (
-              <span className="rounded-md border border-dashed border-slate-300 bg-slate-100 px-2.5 py-1 font-mono text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
-                +{project.technologies.length - 4}
-              </span>
-            )}
-          </div>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => toggleProjectDetails(project.title)}
-          className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-slate-100"
-          aria-expanded={isDetailsOpen}
-        >
-          Details
-          <ChevronDown className={`size-4 transition-transform ${isDetailsOpen ? "rotate-180" : ""}`} />
-        </button>
-
-        {isDetailsOpen && (
-          <div className="mb-4 grid gap-3 border-t border-slate-200 pt-4 dark:border-slate-800">
-            {[
-              ["Problem", project.problem],
-              ["Contribution", project.contribution],
-              ["Value", project.result],
-            ].map(([label, copy]) => (
-              <div key={label}>
-                <h4 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</h4>
-                <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{copy}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">
-          {project.demoHref ? (
-            <a
-              href={project.demoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md bg-rose-600 px-3 py-2 font-mono text-xs font-semibold text-white transition-colors hover:bg-rose-700"
-            >
-              View Live Demo
-              <ExternalLink className="size-3" />
-            </a>
-          ) : project.privateLabel ? (
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 rounded-md bg-slate-900 px-3 py-2 font-mono text-xs font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
-            >
-              {project.privateLabel}
-            </a>
-          ) : (
-            <span className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 font-mono text-xs font-medium text-rose-600 dark:border-rose-900/50 dark:bg-rose-950/20 dark:text-rose-400">
-              Live demo soon
-            </span>
-          )}
-          {project.href ? (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-slate-300 px-3 py-2 font-mono text-xs font-semibold text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
-            >
-              Case Study
-              <Github className="size-3" />
-            </a>
-          ) : project.privateLabel || project.demoHref ? null : (
-            <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-800/40 dark:text-slate-400">
-              {project.caseStudyLabel ?? "GitHub link coming soon"}
-            </span>
-          )}
         </div>
       </article>
     );
   };
 
   return (
-    <section id="projects" className="border-t border-slate-200 bg-slate-50 px-6 py-20 transition-colors dark:border-slate-800 dark:bg-slate-950">
+    <section id="projects" className="frame-section border-b border-slate-200 bg-slate-50/50 px-6 py-24 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-7xl">
-        <SectionLabel>projects & case studies</SectionLabel>
+        <SectionLabel>showcase</SectionLabel>
 
-        <div className="mb-10 max-w-3xl">
-          <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-            Featured Work
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+            Selected Work
           </h2>
-          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Live demos come first for quick evaluation. Deeper case-study context stays available without making the page
-            feel like a wall of text.
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+            A collection of products, workflows, and engineering systems I've built.
+            Focusing on clean architecture and highly polished user experiences.
           </p>
         </div>
 
-        <div className="mb-10 rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Featured Live Demos</h3>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Fast links for recruiters, clients, and teams reviewing capability.</p>
-            </div>
-            <span className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1 font-mono text-xs text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/20 dark:text-rose-300">
-              More demos coming soon
-            </span>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-3">
-            {featuredDemos.map((project) => {
-              const Icon = project.icon;
-              return (
-                <a
-                  key={project.title}
-                  href={project.demoHref ?? project.href ?? "#contact"}
-                  target={project.demoHref || project.href ? "_blank" : undefined}
-                  rel={project.demoHref || project.href ? "noopener noreferrer" : undefined}
-                  className="group rounded-md border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-rose-300 hover:bg-white dark:border-slate-800 dark:bg-slate-950/50 dark:hover:border-rose-800 dark:hover:bg-slate-900"
-                >
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="flex size-9 items-center justify-center rounded-md bg-white text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-800">
-                      <Icon className="size-5" />
-                    </span>
-                    <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{project.title}</h4>
-                  </div>
-                  <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.subtitle}</p>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-600 group-hover:text-rose-700 dark:text-rose-400 dark:group-hover:text-rose-300">
-                    View live demo
-                    <ExternalLink className="size-3" />
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="mb-12 flex flex-wrap justify-center gap-2">
           {filters.map((filter) => (
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
                 activeFilter === filter.id
-                  ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950"
-                  : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:text-slate-100"
+                  ? "bg-slate-950 text-white shadow-md dark:bg-white dark:text-slate-950"
+                  : "border border-slate-200 bg-white text-slate-600 hover:border-violet-300 hover:text-slate-950 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300 dark:hover:border-violet-400/40 dark:hover:text-slate-100"
               }`}
             >
               {filter.label}
@@ -2046,54 +1796,9 @@ function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) =
           ))}
         </div>
 
-        {activeFilter === "all" ? (
-          <div className="space-y-4">
-            {filteredSections.map((section) => {
-              const sectionProjects = filteredProjects.filter((project) => project.category === section.id);
-              const isOpen = openSections[section.id] ?? false;
-
-              if (sectionProjects.length === 0) return null;
-
-              return (
-                <div key={section.id} className="rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/30">
-                  <button
-                    type="button"
-                    onClick={() => toggleSection(section.id)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                    aria-expanded={isOpen}
-                  >
-                    <span>
-                      <span className="flex flex-wrap items-center gap-3">
-                        <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{section.title}</span>
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-xs text-slate-600 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-400">
-                          {sectionProjects.length} {sectionProjects.length === 1 ? "project" : "projects"}
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-sm text-slate-600 dark:text-slate-400">{section.description}</span>
-                    </span>
-                    <ChevronDown className={`size-5 flex-none text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                  </button>
-
-                  {isOpen && (
-                    <div className="grid gap-4 border-t border-slate-200 p-5 dark:border-slate-800 md:grid-cols-2 xl:grid-cols-3">
-                      {sectionProjects.map(renderProjectCard)}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/30">
-            <div className="mb-5">
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">{filteredSections[0]?.title}</h3>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{filteredSections[0]?.description}</p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {filteredProjects.map(renderProjectCard)}
-            </div>
-          </div>
-        )}
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {filteredProjects.map((project, index) => renderProjectCard(project, index))}
+        </div>
       </div>
     </section>
   );
@@ -2154,52 +1859,44 @@ function ScreenshotPreviewModal({
 
 function TargetRoles() {
   return (
-    <section id="roles" className="relative bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+    <section id="roles" className="frame-section border-b border-slate-200 bg-white px-6 py-20 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto max-w-6xl">
         <SectionLabel>target roles</SectionLabel>
 
-        <div className="mb-12 max-w-3xl">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
             Target Roles
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300">
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             These are the roles where my professional .NET background and broader web application skills map well to real
             job openings.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           {targetRoles.map((role, index) => (
             <article
               key={role.title}
-              className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+              className="frame-card group rounded-3xl border border-slate-200 bg-slate-50/70 p-6 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40 dark:hover:bg-white/[0.05]"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Gradient accent line at top */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
-              
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-              
-              <div className="relative">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 p-3 text-white shadow-lg transition-transform group-hover:scale-110">
-                    <BriefcaseBusiness className="size-6" />
+                  <div className="flex size-10 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                    <BriefcaseBusiness className="size-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{role.title}</h3>
+                    <h3 className="text-lg font-semibold text-slate-950 dark:text-slate-100">{role.title}</h3>
                     <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{role.summary}</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   {role.points.map((point) => (
                     <div key={point} className="flex items-start gap-2 text-base text-slate-600 dark:text-slate-300">
-                      <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
                       <span>{point}</span>
                     </div>
                   ))}
                 </div>
-              </div>
             </article>
           ))}
         </div>
@@ -2383,12 +2080,12 @@ function Contact({
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white px-6 py-24 transition-colors dark:from-slate-900/50 dark:to-slate-950">
+    <section id="contact" className="frame-section bg-white px-6 py-20 transition-colors dark:bg-[#030207]">
       <div className="relative z-10 mx-auto max-w-6xl">
         <SectionLabel>contact</SectionLabel>
 
-        <div className="mb-12 max-w-3xl">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
             Let's Work Together
           </h2>
           <p className="mb-6 text-lg text-slate-600 dark:text-slate-300">
@@ -2401,11 +2098,11 @@ function Contact({
           </p>
         </div>
 
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <button
             type="button"
             onClick={onOpenMessage}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:from-indigo-500 dark:to-purple-500"
+            className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
           >
             Send Me an Email Here
             <ArrowRight className="size-5" />
@@ -2418,33 +2115,17 @@ function Contact({
             const isExternal = contact.href.startsWith("http");
             const copyValue = "copyValue" in contact ? contact.copyValue : undefined;
             const isResume = contact.label === "Resume";
-            const gradientColors = [
-              "from-purple-500 to-indigo-500",
-              "from-emerald-500 to-teal-500",
-              "from-slate-700 to-slate-900",
-              "from-blue-500 to-blue-700",
-              "from-emerald-500 to-teal-500",
-            ];
-            const gradient = gradientColors[index % gradientColors.length];
 
             if (copyValue) {
               return (
                 <div
                   key={contact.label}
-                  className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                  className="frame-card group rounded-3xl border border-slate-200 bg-slate-50/70 p-5 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Gradient accent line at top */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                  
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                  
-                  <div className="relative flex items-center gap-4">
-                    <div
-                      className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
-                    >
-                      <Icon className="size-6" />
+                  <div className="flex items-center gap-4">
+                    <div className="flex size-11 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                      <Icon className="size-5" />
                     </div>
                     <a href={contact.href} className="min-w-0 flex-1">
                       <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
@@ -2455,7 +2136,7 @@ function Contact({
                     <button
                       type="button"
                       onClick={() => handleCopyContact(contact.label, copyValue)}
-                      className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-indigo-600 dark:hover:bg-indigo-950/30"
+                      className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-violet-300 dark:border-white/10 dark:bg-black/20 dark:text-slate-300 dark:hover:border-violet-400/40"
                       aria-label={`Copy ${contact.label.toLowerCase()}`}
                     >
                       <Copy className="size-4" />
@@ -2472,20 +2153,12 @@ function Contact({
                   key={contact.label}
                   type="button"
                   onClick={onOpenResumeRequest}
-                  className={`group relative overflow-hidden flex w-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                  className="frame-card group flex w-full items-center gap-4 rounded-3xl border border-slate-200 bg-slate-50/70 p-5 text-left transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Gradient accent line at top */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                  
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                  
-                  <div className="relative flex items-center gap-4">
-                    <div
-                      className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
-                    >
-                      <Icon className="size-6" />
+                  <div className="flex items-center gap-4">
+                    <div className="flex size-11 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                      <Icon className="size-5" />
                     </div>
                     <div className="flex-1">
                       <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
@@ -2504,20 +2177,12 @@ function Contact({
                 href={contact.href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
-                className={`group relative overflow-hidden flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition-all hover:scale-[1.02] hover:border-indigo-300 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700 dark:hover:shadow-indigo-900/20 animate-fade-in-up`}
+                className="frame-card group flex items-center gap-4 rounded-3xl border border-slate-200 bg-slate-50/70 p-5 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Gradient accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient}`} />
-                
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-cyan-500/0 transition-all group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-cyan-500/5" />
-                
-                <div className="relative flex items-center gap-4">
-                  <div
-                    className={`rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-transform group-hover:scale-110`}
-                  >
-                    <Icon className="size-6" />
+                <div className="flex items-center gap-4">
+                  <div className="flex size-11 items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
+                    <Icon className="size-5" />
                   </div>
                   <div className="flex-1">
                     <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{contact.label}</div>
@@ -2537,31 +2202,23 @@ function Contact({
 
 function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
   return (
-    <footer className="border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 py-12 transition-colors dark:border-slate-800 dark:from-slate-950 dark:to-slate-900/50">
+    <footer className="border-t border-slate-200 bg-white py-12 transition-colors dark:border-white/10 dark:bg-[#030207]">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
         <div className="text-center md:text-left">
           <p className="font-mono text-sm font-semibold text-slate-600 dark:text-slate-400">&copy; 2026 dbmblc</p>
           <p className="mt-1 text-sm text-slate-500 dark:text-slate-500">Full-Stack .NET & React Engineer</p>
         </div>
-        <div className="flex gap-4">
-          {contacts.map((contact, index) => {
+        <div className="flex gap-2">
+          {contacts.map((contact) => {
             const Icon = contact.icon;
             const isExternal = contact.href.startsWith("http");
-            const gradientColors = [
-              "from-purple-500 to-indigo-500",
-              "from-emerald-500 to-teal-500",
-              "from-slate-700 to-slate-900",
-              "from-blue-500 to-blue-700",
-              "from-emerald-500 to-teal-500",
-            ];
-            const gradient = gradientColors[index % gradientColors.length];
             if (contact.label === "Resume") {
               return (
                 <button
                   key={contact.label}
                   type="button"
                   onClick={onOpenResumeRequest}
-                  className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl`}
+                  className="rounded-full border border-slate-200 p-3 text-slate-500 transition-colors hover:border-violet-300 hover:text-violet-600 dark:border-white/10 dark:text-slate-400 dark:hover:border-violet-400/40 dark:hover:text-violet-300"
                   title={contact.label}
                 >
                   <Icon className="size-5" />
@@ -2575,7 +2232,7 @@ function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
                 href={contact.href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
-                className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl`}
+                className="rounded-full border border-slate-200 p-3 text-slate-500 transition-colors hover:border-violet-300 hover:text-violet-600 dark:border-white/10 dark:text-slate-400 dark:hover:border-violet-400/40 dark:hover:text-violet-300"
                 title={contact.label}
               >
                 <Icon className="size-5" />
