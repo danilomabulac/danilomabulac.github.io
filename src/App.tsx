@@ -50,12 +50,20 @@ const contacts = [
     accent: "group-hover:bg-purple-100 dark:group-hover:bg-purple-950/50 group-hover:text-purple-600 dark:group-hover:text-purple-400",
   },
   {
-    label: "Phone",
+    label: "WhatsApp",
     value: "+63 976 572 0751",
     copyValue: "+639765720751",
     href: "tel:+639765720751",
     icon: Phone,
     accent: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950/50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
+  },
+  {
+    label: "Viber",
+    value: "+63 995 413 1893",
+    copyValue: "+639954131893",
+    href: "tel:+639954131893",
+    icon: Phone,
+    accent: "group-hover:bg-violet-100 dark:group-hover:bg-violet-950/50 group-hover:text-violet-600 dark:group-hover:text-violet-400",
   },
   {
     label: "GitHub",
@@ -141,82 +149,61 @@ const skillCategories: SkillCategory[] = [
 
 const services = [
   {
-    title: "Business Web Application Development",
-    description: "Build decoupled web applications that connect modern React or Next.js interfaces to reliable backend APIs.",
-    fit: "Best for teams that need production-ready MVPs or business systems delivered across UI, API, and database layers.",
+    title: "Full-Stack Web Applications",
+    description: "Build modern, secure, and scalable web applications from interface to backend, database, and deployment.",
+    fit: "Best for teams that need a practical product, client portal, operations app, or internal system delivered end to end.",
     icon: Code2,
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "ASP.NET Core", "SQL Server", "PostgreSQL"],
   },
   {
-    title: "Backend API Development",
-    description: "Design, build, and maintain REST APIs, authentication flows, database-backed features, and service integrations.",
-    fit: "Best for teams that need reliable backend delivery, clear contracts, and production-aware development.",
+    title: "Backend Systems and APIs",
+    description: "Design API-backed business platforms with authentication, database workflows, integrations, and reliable service boundaries.",
+    fit: "Best for companies that need backend-heavy work, API contracts, and systems that can support real business operations.",
     icon: Server,
-    technologies: ["ASP.NET Core", "C#", "REST APIs", "Entity Framework Core", "SQL Server", "JWT/OAuth", "API Gateways"],
   },
   {
-    title: "Business Systems and Internal Tools",
-    description: "Create workflow tools, admin modules, dashboards, and reporting screens that organize daily operations into one usable system.",
-    fit: "Best for companies replacing manual paperwork, spreadsheet tracking, or disconnected operational processes.",
+    title: "SaaS Tools and Internal Systems",
+    description: "Create MVPs, admin modules, dashboards, reports, and business tools that organize daily work into usable software.",
+    fit: "Best for founders, agencies, and operations-heavy teams replacing spreadsheets, manual tracking, or disconnected tools.",
     icon: Workflow,
-    technologies: [".NET", "React", "TypeScript", "SQL Server", "PostgreSQL", "Background Jobs", "Tailwind CSS"],
   },
   {
-    title: "Database-Backed Applications",
-    description: "Model data, write queries, optimize database access, and connect application workflows to reliable storage.",
-    fit: "Best for applications where data quality, reporting, and operational correctness matter.",
-    icon: Database,
-    technologies: ["SQL Server", "PostgreSQL", "Azure SQL", "Entity Framework Core", "Stored Procedures", "Query Optimization"],
-  },
-  {
-    title: "API and Webhook Integrations",
-    description: "Connect systems through REST APIs, webhook flows, background jobs, and practical integration checks.",
-    fit: "Best for teams that need applications to exchange data cleanly with other services.",
-    icon: Code,
-    technologies: ["REST APIs", "API Integration", "API Gateways", "Webhooks", "Background Jobs", "Payment Gateways", "Postman"],
-  },
-  {
-    title: "Automation Workflows",
-    description: "Design automated workflow channels that reduce repetitive work, manual data handling, and operational friction.",
-    fit: "Best for teams with recurring business processes that can be simplified through software.",
+    title: "Workflow Automation and Integrations",
+    description: "Connect apps, APIs, files, forms, notifications, and business rules into repeatable workflows that reduce manual work.",
+    fit: "Best for businesses with recurring admin tasks, intake processes, file handling, follow-ups, or integration needs.",
     icon: Workflow,
-    technologies: ["n8n", "Make.com", "Zapier", "Webhooks", "API-based Workflow Automation", "Postman"],
   },
   {
-    title: "AI-Assisted Business Features",
-    description: "Add AI-assisted features that support business workflows, summarize information, or help users work faster.",
-    fit: "Best for teams exploring AI or automation with a business-first, MVP-focused approach.",
+    title: "AI-Powered Process Tools",
+    description: "Add useful AI features for summarization, extraction, routing, review, and decision support inside real workflows.",
+    fit: "Best for teams that want AI to support operations without losing human review and control.",
     icon: Sparkles,
-    technologies: ["OpenAI API", "DeepSeek", "LLM Integration", "Prompt Engineering", "TypeScript", "Python", "FastAPI"],
   },
   {
-    title: "Admin Dashboard / Reporting System",
-    description: "Build dashboard views, filters, tables, reports, and admin interfaces for operational visibility.",
-    fit: "Best for businesses that need clearer data and faster daily decision-making.",
+    title: "Cloud-Ready Delivery and Support",
+    description: "Prepare applications for real hosting with deployment flows, domains, SSL, environment setup, and release support.",
+    fit: "Best for teams that need software moved from idea or local development into a maintainable live environment.",
     icon: Globe,
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "SQL Server", "PostgreSQL"],
+  },
+];
+
+const servicePosters = [
+  {
+    title: "Full-Stack MVP or SaaS App",
+    description: "Idea-to-launch product builds for founders, teams, and small businesses.",
+    src: "/project-screenshots/services/full-stack-mvp-saas.jpg",
+    alt: "Full-stack MVP or SaaS application service poster",
   },
   {
-    title: "Bug Fixing and Production Troubleshooting",
-    description: "Investigate failed requests, environment issues, query problems, data mismatches, and release risks.",
-    fit: "Best for teams that need someone comfortable tracing issues across code, APIs, logs, and databases.",
-    icon: Bug,
-    technologies: [".NET", "Serilog", "SQL Server", "Postman", "Query Optimization", "REST APIs"],
+    title: "Full-Stack Web Applications",
+    description: "Modern web applications with frontend, backend, database, APIs, and deployment support.",
+    src: "/project-screenshots/services/full-stack-web-applications.jpg",
+    alt: "Full-stack web applications service poster",
   },
   {
-    title: "Cloud Deployment & CI/CD Setup",
-    description: "Set up practical deployment flows, service hosting, environment configuration, build pipelines, and live release paths.",
-    fit: "Best for projects that need a more reliable path from development to live environments.",
-    icon: BriefcaseBusiness,
-    technologies: ["Docker", "GitHub Actions CI/CD", "Vercel", "Railway", "Azure App Service", "Environment Variables"],
-  },
-  {
-    title: "Cloud Solutions and Infrastructure Setup",
-    description:
-      "Deploy and configure web applications using cloud platforms, VPS hosting, reverse proxies, custom domains, SSL, and environment-based configuration.",
-    fit: "Best for teams that need applications moved from local development into a usable, maintainable hosted environment.",
-    icon: Globe,
-    technologies: ["Azure App Service", "Azure SQL", "Supabase", "DigitalOcean / VPS Hosting", "Nginx", "Linux VPS", "DNS / Custom Domains", "SSL"],
+    title: "Dashboard and Admin Panels",
+    description: "Operational dashboards, reports, management screens, and business visibility tools.",
+    src: "/project-screenshots/services/dashboard-admin-panels.jpg",
+    alt: "Dashboard and admin panels service poster",
   },
 ];
 
@@ -292,6 +279,9 @@ type Project = {
   icon: LucideIcon;
   href?: string;
   demoHref?: string;
+  apiHref?: string;
+  extraHref?: string;
+  extraLabel?: string;
   privateLabel?: string;
   caseStudyLabel?: string;
   screenshots?: ProjectScreenshot[];
@@ -316,6 +306,71 @@ const projects: Project[] = [
       { src: "/project-screenshots/gala-tayo/landing.png", alt: "AI travel itinerary planner landing page", label: "Landing" },
       { src: "/project-screenshots/gala-tayo/planner.png", alt: "AI travel itinerary planner prompt page", label: "Planner" },
       { src: "/project-screenshots/gala-tayo/routes.png", alt: "AI travel itinerary planner route view", label: "Routes" },
+    ],
+  },
+  {
+    category: "live-demos",
+    title: "Mini HCM Attendance & Timekeeping System",
+    subtitle: "Cloud-based attendance tracking system for employees and admins",
+    problem:
+      "Small teams need a simple way to track employee punch records, daily attendance, corrections, and admin reports without spreadsheet-heavy timekeeping.",
+    contribution:
+      "Built a cloud-based attendance and timekeeping system for a 1-week technical assessment, covering employee punch in/out, attendance history, admin employee visibility, daily and weekly reporting, and punch correction workflows.",
+    result:
+      "Demonstrates secure REST API design, Firebase Authentication, Firestore data modeling, role-based access control, attendance metric computation, and production deployment.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Firebase Auth",
+      "Firestore",
+      "Firebase Hosting",
+      "Render",
+      "REST APIs",
+      "Role-Based Access",
+    ],
+    href: "https://github.com/danilomabulac/Mini-CHM",
+    demoHref: "https://mini-hcm-1bf76.web.app/",
+    apiHref: "https://mini-hcm-api-7nlg.onrender.com/health",
+    icon: BriefcaseBusiness,
+    caseStudyLabel: "Source code",
+    screenshots: [
+      { src: "/project-screenshots/mini-hcm/login.png", alt: "Mini HCM attendance and timekeeping login screen", label: "Login" },
+    ],
+  },
+  {
+    category: "live-demos",
+    title: "Ajaia Docs Collaborative Document Editor",
+    subtitle: "Lightweight document editor with sharing, import, autosave, and access control",
+    problem:
+      "A useful document workflow needs more than a text editor: users need persistence, ownership, sharing rules, safe imports, access control, and clear saved/error states.",
+    contribution:
+      "Built a complete Next.js App Router application with TipTap rich-text editing, Supabase Postgres persistence, server-side route handlers, HTML sanitization, Zod validation, demo-user switching, access-control checks, and automated tests for authorization and file import behavior.",
+    result:
+      "Demonstrates full-stack product delivery under an assessment timebox: reliable document CRUD, import, sharing, access protection, production deployment, architecture documentation, and verification through lint, typecheck, tests, build, and live walkthrough.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "TipTap",
+      "Supabase",
+      "PostgreSQL",
+      "Route Handlers",
+      "Zod",
+      "sanitize-html",
+      "Tailwind CSS",
+      "Vitest",
+      "Vercel",
+    ],
+    href: "https://github.com/danilomabulac/ajaia-docs-assessment",
+    demoHref: "https://ajaia-docs-assessment.vercel.app/",
+    extraHref: "https://www.loom.com/share/19bf7e1232e64c2296363cc7686e171d",
+    extraLabel: "Walkthrough",
+    icon: Code,
+    caseStudyLabel: "Source code",
+    screenshots: [
+      { src: "/project-screenshots/ajaia-docs/dashboard.png", alt: "Ajaia Docs collaborative document dashboard", label: "Dashboard" },
     ],
   },
   {
@@ -369,6 +424,9 @@ const projects: Project[] = [
     href: "https://github.com/danilomabulac/signalkit-case-study",
     demoHref: "http://signalkit-webapp-nextjs.vercel.app/",
     icon: Server,
+    screenshots: [
+      { src: "/project-screenshots/signalkit/dashboard.png", alt: "SignalKit developer notification dashboard", label: "Dashboard" },
+    ],
   },
   {
     category: "automation-workflows",
@@ -475,64 +533,34 @@ const projectSections = [
 
 const targetRoles = [
   {
-    title: ".NET Backend Developer",
-    summary: "Strongest professional fit.",
+    title: "Software Engineer",
+    summary: "Best fit for product and business software teams.",
+    points: ["Web applications, APIs, and business systems", "Feature delivery across frontend, backend, and database layers", "Practical software that solves operational problems"],
+  },
+  {
+    title: ".NET / Backend Developer",
+    summary: "Strong fit for backend-heavy work.",
     points: ["ASP.NET Core / C# API development", "SQL Server and EF Core-backed features", "Production issue investigation"],
   },
   {
-    title: "Software Developer",
-    summary: "Broad fit for business application teams.",
-    points: ["Maintainable application development", "Feature delivery across existing systems", "Debugging and support for real users"],
-  },
-  {
-    title: "Backend Developer",
-    summary: "Good fit for API and database-heavy work.",
-    points: ["REST API implementation", "Database-backed business logic", "Integrations and background processes"],
-  },
-  {
     title: "Full-Stack Developer",
-    summary: "Good fit for product teams and internal systems.",
+    summary: "Good fit for SaaS, startups, product teams, and agencies.",
     points: ["React + TypeScript frontend work", "API integration and contract alignment", "Business workflow implementation"],
   },
   {
-    title: "Web Application Developer",
-    summary: "Good fit for practical app delivery across modern stacks.",
-    points: ["Dashboards, admin tools, and forms", "Frontend/backend feature wiring", "Maintainable business application code"],
+    title: "Contract / Freelance Developer",
+    summary: "Good fit for project-based delivery.",
+    points: ["MVP builds and feature implementation", "Admin panels, dashboards, and internal tools", "Deployment and handoff support"],
   },
   {
-    title: "API Integration Developer",
-    summary: "Good fit for connecting systems and workflows.",
-    points: ["REST API and webhook integrations", "Contract alignment between services", "Testing and troubleshooting integration flows"],
+    title: "Automation / AI Integration Developer",
+    summary: "Good fit for workflow and integration-heavy teams.",
+    points: ["AI-assisted business features", "REST API and webhook integrations", "Workflow automation over manual admin work"],
   },
   {
-    title: "Business Systems Developer",
-    summary: "Good fit for operational software.",
-    points: ["Workflow-focused feature development", "Reporting and admin tools", "Business data and process support"],
-  },
-  {
-    title: "Internal Tools Developer",
-    summary: "Good fit for teams improving internal operations.",
-    points: ["Admin panels and internal dashboards", "Data entry and tracking workflows", "Practical tools for non-technical users"],
-  },
-  {
-    title: "Automation Developer",
-    summary: "Good fit for operations-heavy teams.",
-    points: ["Workflow automation", "Process improvement tools", "Recurring task reduction"],
-  },
-  {
-    title: "AI Integration Developer",
-    summary: "Good fit for teams adding AI to existing workflows.",
-    points: ["AI-assisted business features", "MVP-focused experiments", "Useful automation over novelty demos"],
-  },
-  {
-    title: "Cloud / Deployment Support Developer",
+    title: "Cloud / DevOps Support Developer",
     summary: "Good fit for teams that need practical hosting and release support.",
     points: ["App hosting and environment setup", "CI/CD and deployment troubleshooting", "Custom domains, SSL, and VPS configuration"],
-  },
-  {
-    title: "Application Support Developer",
-    summary: "Good fit for production support and maintenance.",
-    points: ["Bug investigation", "Log and request tracing", "Database and environment issue diagnosis"],
   },
 ];
 
@@ -754,12 +782,22 @@ const techColors: Record<string, string> = {
   "Next.js": "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
   TypeScript: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   React: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  TipTap: "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Leaflet: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   "Tailwind CSS": "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
   PWA: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
   "Route Handlers": "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+  Zod: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
+  "sanitize-html": "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800",
+  Vitest: "bg-lime-100 dark:bg-lime-950/50 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800",
   "External AI/Webhook": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   "Node.js": "bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800",
+  Express: "bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700",
+  "Firebase Auth": "bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800",
+  Firestore: "bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800",
+  "Firebase Hosting": "bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800",
+  Render: "bg-cyan-100 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800",
+  "Role-Based Access": "bg-violet-100 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800",
   Python: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
   FastAPI: "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
   Docker: "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800",
@@ -1066,25 +1104,30 @@ function Hero() {
           <AnimatedHelloIntro />
 
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.32em] text-violet-600 dark:text-violet-300">
-            Web Applications • Decoupled APIs • AI & Cloud Automation
+            Web Applications | APIs | AI Automation | Cloud Solutions | DevOps
           </p>
 
           <h1 className="mx-auto mb-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl lg:text-7xl">
             Hi, I'm Danilo Mabulac Jr.
             <span className="mt-3 block text-2xl font-medium text-slate-500 dark:text-slate-400 md:text-4xl">
-              Full-Stack .NET & React Engineer
+              Software Engineer
             </span>
           </h1>
 
           <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300 md:text-lg">
-            I build production-ready web applications, secure APIs, business dashboards, automation workflows, and
-            AI-assisted tools for teams that need practical software delivered end to end.
+            I build scalable products, APIs, and business solutions that solve real operational problems.
           </p>
 
           <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
               <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              Open to full-time, part-time, freelance, and contract work
+              Based in the Philippines
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-500/10 px-3 py-1.5 text-xs font-medium text-sky-700 dark:text-sky-300">
+              Open to remote, hybrid, and global opportunities
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-3 py-1.5 text-xs font-medium text-violet-700 dark:text-violet-300">
+              Full-time | Contract | Freelance
             </span>
           </div>
         </div>
@@ -1113,9 +1156,9 @@ function Hero() {
 
         <div className="frame-line mx-auto grid max-w-4xl gap-3 border-y border-slate-200 py-5 dark:border-white/10 md:grid-cols-3">
           {[
-            ["Professional core", ".NET APIs, SQL Server, enterprise systems"],
-            ["Modern delivery", "React, Next.js, cloud deployment, CI/CD"],
-            ["Business automation", "Workflow tools, AI-assisted features, integrations"],
+            ["What I build", "Web apps, SaaS tools, dashboards, and internal systems"],
+            ["Backend focus", "APIs, databases, integrations, and business platforms"],
+            ["Delivery support", "Automation, AI workflows, cloud deployment, and DevOps"],
           ].map(([label, value]) => (
             <div key={label} className="px-3 text-center">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-400">{label}</p>
@@ -1434,12 +1477,11 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
 
         <div className="mx-auto mb-10 max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-              Services & Expertise
+              Services I Offer
             </h2>
             <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            I deliver practical software across decoupled SaaS applications, backend APIs, business systems, workflow
-            automation, database-backed dashboards, production troubleshooting, cloud deployment, and AI-assisted
-            product features.
+            I help teams turn ideas, operational pain, and repeated manual work into useful software: web applications,
+            APIs, SaaS tools, dashboards, automations, AI-assisted workflows, and cloud-ready systems.
             </p>
           <button
             type="button"
@@ -1451,11 +1493,40 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
           </button>
         </div>
 
+        <div className="mb-10 grid gap-4 lg:grid-cols-3">
+          {servicePosters.map((poster) => (
+            <article
+              key={poster.title}
+              className="frame-card group overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/70 transition-colors hover:border-violet-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-violet-400/40"
+            >
+              <button
+                type="button"
+                onClick={onOpenMessage}
+                className="block w-full text-left"
+                aria-label={`Discuss ${poster.title}`}
+              >
+                <div className="aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                  <img
+                    src={poster.src}
+                    alt={poster.alt}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{poster.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{poster.description}</p>
+                </div>
+              </button>
+            </article>
+          ))}
+        </div>
+
         <div className="frame-line overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10">
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <article key={service.title} className="frame-card grid gap-5 border-b border-slate-200 bg-slate-50/70 p-6 last:border-b-0 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+              <article key={service.title} className="frame-card border-b border-slate-200 bg-slate-50/70 p-6 last:border-b-0 dark:border-white/10 dark:bg-white/[0.03]">
                 <div className="flex gap-4">
                   <div className="mt-1 flex size-10 flex-none items-center justify-center rounded-full border border-slate-200 text-violet-600 dark:border-white/10 dark:text-violet-300">
                     <Icon className="size-5" />
@@ -1466,19 +1537,6 @@ function Services({ onOpenMessage }: { onOpenMessage: () => void }) {
                     <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                       <span className="font-medium text-slate-800 dark:text-slate-200">Best fit:</span> {service.fit}
                     </p>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Relevant stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {service.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`rounded-md px-2.5 py-1 font-mono text-xs ${techColors[tech] ?? "border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"}`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
                   </div>
                 </div>
               </article>
@@ -1683,8 +1741,20 @@ function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) =
               <div className="project-card-overlay absolute inset-0 pointer-events-none" />
             </div>
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800/50 dark:to-slate-900/50">
-              <Icon className="size-16 text-slate-300 dark:text-slate-700" />
+            <div className="relative flex h-full min-h-[220px] w-full items-center justify-center overflow-hidden bg-slate-100 dark:bg-[#07050d]">
+              <div className="absolute inset-6 rounded-3xl border border-dashed border-slate-300 dark:border-white/10" />
+              <div className="absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-3xl" />
+              <div className="relative z-10 flex flex-col items-center gap-4 text-center">
+                <div className="flex size-16 items-center justify-center rounded-full border border-slate-300 bg-white/70 text-violet-600 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04] dark:text-violet-300">
+                  <Icon className="size-7" />
+                </div>
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-slate-400">Preview pending</p>
+                  <p className="mt-2 max-w-[14rem] text-xs leading-relaxed text-slate-500 dark:text-slate-500">
+                    Project thumbnail will be added after screenshots are ready.
+                  </p>
+                </div>
+              </div>
             </div>
           )}
           
@@ -1750,7 +1820,7 @@ function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) =
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 font-mono text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-900/50 dark:hover:text-slate-100"
                 >
-                  Case Study
+                  {project.caseStudyLabel ?? "Case Study"}
                   <Github className="size-4" />
                 </a>
               ) : project.privateLabel || project.demoHref ? null : (
@@ -1758,6 +1828,28 @@ function Projects({ onOpenPreview }: { onOpenPreview: (preview: ActivePreview) =
                   {project.caseStudyLabel ?? "GitHub link coming soon"}
                 </span>
               )}
+              {project.apiHref ? (
+                <a
+                  href={project.apiHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 px-4 py-2.5 font-mono text-sm font-medium text-emerald-700 transition-colors hover:border-emerald-300 hover:bg-emerald-50 dark:border-emerald-900/50 dark:text-emerald-300 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/30"
+                >
+                  API Health
+                  <ExternalLink className="size-4" />
+                </a>
+              ) : null}
+              {project.extraHref ? (
+                <a
+                  href={project.extraHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-violet-200 px-4 py-2.5 font-mono text-sm font-medium text-violet-700 transition-colors hover:border-violet-300 hover:bg-violet-50 dark:border-violet-900/50 dark:text-violet-300 dark:hover:border-violet-700 dark:hover:bg-violet-950/30"
+                >
+                  {project.extraLabel ?? "More"}
+                  <ExternalLink className="size-4" />
+                </a>
+              ) : null}
             </div>
           </div>
         </div>
@@ -1868,8 +1960,8 @@ function TargetRoles() {
             Target Roles
           </h2>
           <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            These are the roles where my professional .NET background and broader web application skills map well to real
-            job openings.
+            I'm looking for remote, hybrid, and global opportunities where I can contribute to backend-heavy,
+            full-stack, SaaS, automation, or cloud-ready product work.
           </p>
         </div>
 
@@ -2089,12 +2181,12 @@ function Contact({
             Let's Work Together
           </h2>
           <p className="mb-6 text-lg text-slate-600 dark:text-slate-300">
-            I'm open to full-time execution roles, part-time technical projects, freelance work, and MVP contracts
-            involving web applications, APIs, business systems, cloud deployment, automation, and AI-assisted tools.
+            I'm based in the Philippines and open to remote, hybrid, and global opportunities across full-time,
+            contract, and freelance work.
           </p>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            Have a backlog of developer tickets, a feature that needs immediate building, or a product idea ready for a
-            first useful release? Send me the requirements and I can help turn them into working software.
+            I can share my CV, portfolio, and project demos for web applications, APIs, SaaS tools, cloud-ready systems,
+            automation, and AI-assisted workflow projects.
           </p>
         </div>
 
@@ -2206,7 +2298,7 @@ function Footer({ onOpenResumeRequest }: { onOpenResumeRequest: () => void }) {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
         <div className="text-center md:text-left">
           <p className="font-mono text-sm font-semibold text-slate-600 dark:text-slate-400">&copy; 2026 dbmblc</p>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-500">Full-Stack .NET & React Engineer</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-500">Software Engineer</p>
         </div>
         <div className="flex gap-2">
           {contacts.map((contact) => {
